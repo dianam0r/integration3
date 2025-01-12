@@ -5,9 +5,53 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="stylesheet" href="./src/normalize.css">
+    <link rel="stylesheet" href="./src/style.css">
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+
+  <div >
+      <p>at least 9 interactions (2 drag bushes, talk, phone click2nd, sign, titling, talk, notes, know more)</p>
+    <div class="container">
+      <div class="draggable" draggable="true">Drag Me!</div>
+    </div>
+    <p>check zooming and shrinking</p>
+    <p>check talking</p>
+    <p>phone click2nd</p>
+    <form id="signatureForm">
+      <label for="signature">Signature:</label>
+      <canvas id="signatureCanvas" width="500" height="200" style="border: 1px solid #000;"></canvas>
+
+      <button type="button" id="clearButton">Clear Signature</button>
+      <button type="submit">Submit</button>
+    </form>
+    <p>right number</p>
+      <form id="guessForm">
+        <label for="guessInput">Guess the number (40000):</label>
+        <input type="number" id="guessInput" min="20000" max="60000" step="1000" required>
+        <button type="submit">Submit Guess</button>
+        <p id="guessResult"></p>
+      </form>
+    <p>tilting</p>
+    <div id="tiltSquare"></div>
+
+    <p>notes?scratch?</p>
+    <p>know more</p>
+
+  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script defer src="https://unpkg.com/split-type"></script>
+    <script type="module" src="/vite-project/src/main.js"></script>
   </body>
+
 </html>
+
+<!-- 1 - ask about accessing it on phone ... didnt work w ip adress
+     2 - ask about zooming something (is it just 2 fingers get together scale changes?)
+     3 - talking ...microphone where should i start ... 
+     4 - tilting device orientation?
+     5 - 
+  -->
