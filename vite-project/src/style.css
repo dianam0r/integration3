@@ -43,9 +43,6 @@
   cursor: crosshair;
 }
 
-
-
-
 #tiltSquare {
   width: 100px;
   height: 100px;
@@ -53,4 +50,17 @@
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+
+#scratchCanvas {
+  position: absolute;
+  z-index: 2;
+}
+
+#underlyingImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
 }
