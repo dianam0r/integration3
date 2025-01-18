@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import fetchApi from "../lib/strapi.js";
+import Filter from "../components/Filter.astro";
+import CategoryList from "../components/CategoryList.astro";
+
+
+const categories = await fetchApi({
+    endpoint: "categories",
+    wrappedByKey: "data",
+    query: {populate:["stickers"]}
+});
+
+---
+
+<BaseLayout>
+    <Filter categories={categories} />
+    <CategoryList categories={categories} />
+</BaseLayout>

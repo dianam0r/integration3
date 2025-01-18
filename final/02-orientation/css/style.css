@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    color: white;
+
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+}
+
+.container{
+    background-color: deepskyblue;
+    width: 50vw;
+    height: 50vw;
+    display: grid;
+    place-items: center;
+}
+
+.container::before{
+    content: "orientation";
+    text-align: center;
+}
+
+@media only screen and (orientation: portrait) {
+  .container::before {
+    content: "portrait";
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .container::before {
+    content: "landscape";
+  }
+}
