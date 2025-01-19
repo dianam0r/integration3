@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/normalize.css">
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/css/normalize.css">
+    <link rel="stylesheet" href="./src/css/style.css">
   </head>
 
   <body>
@@ -22,13 +22,7 @@
     <p>check zooming and shrinking</p>
     <p>check talking</p>
     <p>phone click2nd</p>
-    <form id="signatureForm">
-      <label for="signature">Signature:</label>
-      <canvas id="signatureCanvas" width="500" height="200" style="border: 1px solid #000;"></canvas>
-
-      <button type="button" id="clearButton">Clear Signature</button>
-      <button type="submit">Submit</button>
-    </form>
+    
     <p>right number</p>
       <form id="guessForm">
         <label for="guessInput">Guess the number (40000):</label>
@@ -117,10 +111,17 @@
     </div>
 
     <div class="hello_there">
+      <div class="hello_there__text">
      <h2> Hello there! </h2>
   <p>I’ve returned from the afterlife to my garden for a moment of reading peace. 
   <br>What a serendipitous rencontre, 
   let us delve into those wonders.</p>
+</div>
+   <img class="hello_there__writing_icon" src="./src/assets/icon_writing.svg" alt="Writing seal"  width="66"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            /> 
     </div>
     
     <div class="messages">
@@ -130,14 +131,14 @@
         real quick on my phone
         What does “serendipitous rencontre” mean? 
         </p> 
-      <p> Read 9:40 PM</p>
+      <p> <span class="bold">Read</span> 9:40 PM</p>
       </div>
       <div class="messages__second">
       <p>
-        What is this... phone? 
+        What is this... phone? <br>
       Some kind of dictionary📖?
         </p> 
-      <p> Read 9:42 PM</p>
+      <p> <span class="bold">Read </span> 9:42 PM</p>
       </div>
       <div class="messages__third">
       <p>
@@ -145,7 +146,7 @@
         any language. 🇵🇹 🇳🇱 🇱🇻 🇺🇸
 
         </p> 
-      <p> Read 9:44 PM</p>
+      <p> <span class="bold">Read</span> 9:44 PM</p>
       </div>
       <div class="messages__fourth">
       <p>
@@ -153,7 +154,7 @@
   Could you, perhaps, read one of my books on it? 📚
 
         </p> 
-      <p>Read 9:46 PM</p>
+      <p><span class="bold">Read</span> 9:46 PM</p>
       </div>
       <div class="messages__fifth">
       <p>
@@ -161,106 +162,262 @@
   Let’s see what information we have about it.
 
         </p> 
-      <p>Read 9:48 PM</p>
+      <p><span class="bold">Read</span> 9:48 PM</p>
       </div>
     </div>
 
     <div class="biblia">
+      
+      <div class="biblia__photos">
+
+         <img class="biblia__plantin_page" src="./src/assets/plantin_page_right.svg" alt="old printed page by plantin"  width="125"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      /> 
+
+      <img class="biblia__atlas" src="./src/assets/atlas.svg" alt="old atlas"  width="203"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      />
+
+      <img class="biblia__bibli_icon" src="./src/assets/biblia_pol_icon.svg" alt="biblia seal"  width="66"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            /> 
+
+      <img class="biblia__open_biblia" src="./src/assets/open_biblia.svg" alt="biblia"  width="185"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      /> 
+
+      <img class="biblia__music_sheet" src="./src/assets/music.svg" alt="music sheet"  width="130"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      /> 
+
+       <img class="biblia__octo_icon" src="./src/assets/octo_icon.svg" alt="octo missae seal"  width="59"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      /> 
+
+    
+       <img class="biblia__location_icon" src="./src/assets/location_icon.svg" alt="location icon"  width="48"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+      /> 
+      </div>
+
+      <div class="biblia__first_page">
       <p>
-        It was printed in 
-        8 parts
-        4 from the Old Testament, 
-        1 from the New Testament
-        3 with commentary
-        The text was in 5 languages: 
-        Latin
-        Greek
-        Hebrew
-        Chaldean
-        Syriac. 
-        A truly monumental masterpiece, commissioned by King Philip II himself. 
-        Sign here as 
-        King Philip II to continue
-      </p>
+        It was printed in <br>
+        <span class="biblia__big_text bold"> 8 parts</span> 
+        <ul> 
+          <li>4 from the Old Testament </li>
+        <li>1 from the New Testament</li>
+        <li>3 with commentary</li>
+        </ul>
+        </p>
+        <p>
+        The text was in <span class="biblia__big_text bold"> 5 languages: </span>
+       <ol> <li>Latin</li>
+        <li>Greek</li>
+        <li>Hebrew</li>
+        <li>Chaldean</li>
+        <li>Syriac.</li>
+        </ol>
+        </p>
+        <p>
+        A truly monumental masterpiece, commissioned by King Philip II himself. </p>
+
+      <form id="signatureForm">
+      <label for="signature" class="bold">Sign here as <br>
+        King Philip II to continue</label>
+        <div class="biblia__flex_row">
+      <canvas id="signatureCanvas" width="250" height="80"></canvas>
+
+      <button type="submit">
+        <img class="biblia__submit" src="./src/assets/submit.svg" alt="Submit Icon"  width="66"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            /> 
+      </button>
+      </div>
+
+       <button type="button" id="clearButton">
+        <img class="biblia__retry" src="./src/assets/retry_icon.svg" alt="Retry Icon"  width="66"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            /> 
+      </button>
+
+    </form>
+
+      </div>
+
+      <div class="biblia__second_page">
       <p>
         Only 1,200 copies were made, each intended for influential figures like the Pope and the King of Spain. In the 16th-century Netherlands, books like this were not just tools of knowledge, they were instruments of power and influence. 
         The Biblia Polyglotta also symbolized the Catholic Church's intellectual and cultural authority during the Counter-Reformation, reinforcing its dominance through scholarly and artistic excellence.
       </p>
-      <p>
-        Impossible! The Biblia Polyglotta weighs 48 kilograms, how could something so monumental fit in your hand? This giant work, like my others, made knowledge more accessible. Imagine such a creation in your tiny phone!
-        Ah, you carry that remarkable 'phone' in your hand but let’s see what I have in mine. 
-      </p>
+      </div>
+      
+    </div>
+
+    <div class="conclusion_biblia">
+      <img class="conclusion_biblia__date_icon" src="./src/assets/dates_conclusion_bible.svg" alt="Stamp of the date 1568-73"/>
+            <div class="conclusion_biblia__clicking_portrait">
+              <img class="conclusion_biblia__portrait" src="./src/assets/plantin.svg" alt="Portrait of Plantin"/>
+              <img class="conclusion_biblia__g_woodblock" src="./src/assets/g_woodblock.svg" alt="G wood block"/>
+              <img class="conclusion_biblia__hand" src="./src/assets/hand.svg" alt="Plantin's hand"/>
+              <img class="conclusion_biblia__click_icon" src="./src/assets/click_icon.svg" alt="Clicking icon"/>
+            </div>
+              <div class="conclusion_biblia__text">
+            <p>
+              Impossible! The Biblia Polyglotta weighs 48 kilograms, how could something so monumental fit in your hand? This giant work, like my others, made knowledge more accessible. Imagine such a creation in your tiny phone!
+              Ah, you carry that remarkable 'phone' in your hand but 
+              <span class="conclusion_biblia__text__title bold">Let’s see what I have in my hand. </span>
+            </p>
+            </div>
+     
+        
     </div>
 
     <div class="woodblocks">
       <p>
         These blocks were the soul of his illustrations, carved with meticulous care to bring entire books to life.
-      How many woodblocks do you think they have in the museum? 
+      </p>
+      <div class="woodblocks__question">
+      <p class="bold">How many woodblocks do you think they have in the museum? </p>
+      <img class="woodblocks__question__arrow" src="./src/assets/arrow.svg" alt="Arrow icon"/>
+    </div>
+
+    <div class="woodblocks__img">
+        <img class="woodblocks__img__woodblock" src="./src/assets/g_block_w_frame.svg" alt="g wood block"/>
+        <img class="woodblocks__img__leaf_icon" src="./src/assets/leaf_seak.svg" alt="leaf icon"/>
+        <img class="woodblocks__img__carving_icon" src="./src/assets/carving_icon.svg" alt="carving icon"/>
+    </div>
+      <p>
       We have over 14000 blocks featuring botanical drawings, scientific diagrams, decorative initials, and intricate religious scenes. 
       </p>
       <p>This extraordinary collection, preserved at the Plantin-Moretus Museum, showcases a significant contribution to 16th-century publishing and art, including works by renowned botanists like Dodoens, Clusius, and Lobelius.</p>
     </div>
     
     <div class="comics">
+      <div class="comics__background">
       <h2>Which of these do you think inspired the proportions used in comics?</h2>
+      <div class="comics__options">
+          <img class="comics__options__1" src="./src/assets/tilting1.svg" alt="wood block with nature"/>
+          <img class="comics__options__2" src="./src/assets/tilting2.svg" alt="woodblock with religious scene"/>
+          <img class="comics__options__3" src="./src/assets/tilting3.svg" alt="woodblock with a g"/>
+          <img class="comics__options__4" src="./src/assets/tilting4.svg" alt="woodblock with a hand holding a crown"/>
+      </div>
+      <p class="comics__instructions">  Tilt your phone</p>
+      </div>
     </div>
 
     <div class="timeline">
-      <h2>1960</h2>
-      <p>In the 1960s, the woodblocks were systematically cataloged, with their printed images compiled into five volumes previously accessible only in the museum's reading room. However, earlier treatments with toxic anti-woodworm products posed preservation challenges, limiting physical access.</p>
-      <h2>Now</h2>
-      <p>Today, the digitized collection ensures these historical treasures can be admired without handling risks, preserving their legacy for future generations. These blocks, the foundation of 16th-century publishing, continue to inspire globally. Now digitized, they are celebrated through webinars, events, and initiatives like #WoodblockWednesday. Visitors can delve into their intricate beauty and historical significance through the Plantin-Moretus Museum's exhibitions and online database. 
-      </p>
+      <div class="timeline__before">
+        <p>In the 1960s, the woodblocks were systematically cataloged, with their printed images compiled into five volumes previously accessible only in the museum's reading room. However, earlier treatments with toxic anti-woodworm products posed preservation challenges, limiting physical access. Today, the digitized collection ensures these historical treasures can be admired without handling risks, preserving their legacy for future generations.</p>
+        <h2 class="timeline__before__1960">1960</h2>
+      </div>
+              <img class="timeline__before__line" src="./src/assets/timeline.svg" alt=""/>
+      <div class="timeline__now">
+        <h2>Now</h2>
+        <p> These blocks, the foundation of 16th-century publishing, continue to inspire globally. Now digitized, they are celebrated through webinars, events, and initiatives like #WoodblockWednesday. Visitors can delve into their intricate beauty and historical significance through the Plantin-Moretus Museum's exhibitions and online database. 
+        </p>
+      </div>
+    </div>
+
+    <div class="beggining_music">
+      <img class="beggining_music__plantin" src="./src/assets/plantin.svg" alt="Portrait of Plantin"/>
+      <img class="beggining_music__book_icon" src="./src/assets/book_icon.png" alt="Yellow Book seal"  width="66"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            />
+        <p  class="beggining_music__p">I already answered some things now I have a question for you ...how does music sound nowadays?
+        Because when I printed Octo Missae , 
+        music was like this.
+        </p>
+        <img class="beggining_music__date" src="./src/assets/1578.svg" alt="1578 stamp"/>
     </div>
 
     <div class="music">
-      <p>I already answered some things now I have a question for you ...how does music sound nowadays?
-        Because when I printed Octo Missae , 
-        music was like this.
-      </p>
-    <h2> The first musical work printed by Plantin’s press</h2>
-      <p>Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
+      <h2  class="music__h2"> The first musical work printed by Plantin’s press</h2>
+        <p class="music__p">Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
   The publication was massive, measuring 55 by 40 cm, designed so all choir singers could read it together.</p>
-  <p>To bring it to life, he used the 'Grande musique' type set from Hendrik van den Keere, a master type founder from Ghent. He supplied Plantin with 44 sets of punches and matrices, including those for music printing. 
-  This collaboration made Antwerp a center for music publishing during his time.</p>
-  <h2>Did you know that Octo Missae was composed by Georges de la Hèle? </h2>
-  <p>
-  He was a brilliant composer whose work flourished despite much of it being lost in a fire later. 
-  The equipment he used for music printing, preserved today, shows just how much care went into every note and letter.</p>
-    </div>
+            <img class="music__musicsheet" src="./src/assets/music_sheet.svg" alt="music sheet from then and now"/>
+
+</div>
 
     <div class="learn">
-      <h2>What did we learn?</h2>
-      <p>Biblia Polygllota</p>
-      <button>More</button>
-      <p>Wood Printing</p>
-      <button>More</button>
-      <p>Octo Missae</p>
+      <h2 class="learn__h2" >What did we learn?</h2>
+      <div class="learn__biblia">
+      <img class="learn__biblia__img" src="./src/assets/learn_biblia.svg" alt="opened biblia with a frame"/>
+      <p class="learn__biblia__title bold">Biblia Polygllota</p>
+      <button class="more bold">More</button>
+    </div>
+    <div>
+      <p class="learn__wood bold">Wood Printing</p>
       <button>More</button>
     </div>
+    <div>
+      <p class="learn__octo bold">Octo Missae</p>
+      <button>More</button>
+    </div>
+  </div>
 
     <div class="bye">
+      <div class="bye__text">
     <h2> Bye Plantin</h2>
-    <p>Thank you, Plantin, for bringing history to life and letting us glimpse your extraordinary world. Curious to explore more? Step into the legacy of Plantin’s workshop and uncover the masterpieces that shaped centuries of knowledge and art.</p>
-    <button>Go to Museum Website</button>
+    <p class="bye__text__p">Thank you, Plantin, for bringing history to life and letting us glimpse your extraordinary world. Curious to explore more? Step into the legacy of Plantin’s workshop and uncover the masterpieces that shaped centuries of knowledge and art.</p>
+    <button class="bye__button bold">Go to Museum Website</button>
+    </div>
+    <div class="bye__imgs">
+      <img class="bye__imgs__garden" src="./src/assets/garden_end.svg" alt="museum's garden"/>
+      <img class="bye__imgs__entrance" src="./src/assets/entrance_end.svg" alt="museum's entrance"/>
+    </div>
     </div>
     </main>
 
+
     <footer>
+      <img class="nature__footer_left" src="./src/assets/tree_footer_left.svg" alt="leafs"/>
+        <img class="nature__footer_right" src="./src/assets/tree_footer_right.svg" alt="leafs"/>
+
       <nav>
-        <ul>
+        <ul class="footer__nav bold">
           <li><a href="#">Biblia</a></li>
           <li><a href="#">Wood Block</a></li>
           <li><a href="#">Octo Missae</a></li>
         </ul>
       </nav>
       <div>
-        <p>MUSEUM PLANTIN-MORETUS
-    Vrijdagmarkt 22
-    2000 Antwerp
-    Belgium
-    tel. +32 (0)3 221 14 50
+        <p>MUSEUM PLANTIN-MORETUS <br>
+    Vrijdagmarkt 22<br>
+    2000 Antwerp<br>
+    Belgium<br>
+    tel. +32 (0)3 221 14 50<br>
     museum.plantin.moretus@antwerpen.be</p>
+    </div>
+    <div class="footer__socials">
+          <img class="socials__insta" src="./src/assets/insta.svg" alt="instagram icon"/>
+          <img class="socials__facebook" src="./src/assets/faceook.svg" alt="facebook icon"/>
+          <img class="socials__soundcloud" src="./src/assets/soundcloud.svg" alt="soundcloud icon"/>
+          <img class="socials__tripadvisor" src="./src/assets/tripadvisor.svg" alt="tripadvisor icon"/>
+          <img class="socials__youtube" src="./src/assets/youtube.svg" alt="youtube icon"/>
+          <img class="socials__pinterest" src="./src/assets/pinterest.svg" alt="pinterest icon"/>
+          <img class="socials__medium" src="./src/assets/medium.svg" alt="medium icon"/>
+
       </div>
     </footer>
 

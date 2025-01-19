@@ -44,6 +44,62 @@
 // canvas.addEventListener("touchmove", scratch);
 // canvas.addEventListener("touchend", stopScratching);
 // canvas.addEventListener("touchcancel", stopScratching);
+const canvas = document.getElementById("signatureCanvas");
+const ctx = canvas.getContext("2d");
+let isDrawing = false;
+let hasDrawing = false;
+
+function startDrawing(event) {
+  isDrawing = true;
+  hasDrawing = true;
+  ctx.beginPath();
+  ctx.moveTo(getX(event), getY(event));
+}
+function draw(event) {
+  if (!isDrawing) return;
+
+  ctx.lineTo(getX(event), getY(event));
+  ctx.strokeStyle = "#BD2B54";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  if (!hasDrawing) return;
+}
+
+function stopDrawing() {
+  isDrawing = false;
+  ctx.closePath();
+}
+
+function getX(event) {
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
+    return event.touches[0].clientX - rect.left; // Adjust for canvas offset
+  }
+  return event.offsetX;
+}
+
+function getY(event) {
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
+    return event.touches[0].clientY - rect.top; // Adjust for canvas offset
+  }
+  return event.offsetY;
+}
+
+
+document.getElementById("clearButton").addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hasDrawing = false;
+});
+
+document.getElementById("signatureForm").addEventListener("submit", (event) => {
+  if (!hasDrawing) {
+    alert("You must sign before submitting the form.");
+    event.preventDefault(); // Prevent form submission
+  } else {
+    alert("Form submitted with signature!");
+  }
+});
 
 
 const init = () => {
@@ -52,6 +108,8 @@ const init = () => {
   const $navList = document.querySelector('.nav__list');
   const $iconLink = document.querySelector('#iconlink');
   const listItems = $navList.querySelectorAll("li a");
+  const canvas = document.getElementById("signatureCanvas");
+  
 
   $navButton.classList.remove('hidden');
   $navList.classList.add("hidden");
@@ -92,6 +150,15 @@ const init = () => {
       closeNavigation();
     }
   });
+
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("touchstart", startDrawing);
+  canvas.addEventListener("touchmove", draw);
+  canvas.addEventListener("touchend", stopDrawing);
+  
 }
 
 
