@@ -13,6 +13,9 @@ function startDrawing(event) {
   hasDrawing = true;
   ctx.beginPath();
   ctx.moveTo(getX(event), getY(event));
+  document.querySelector(".biblia__submit").style.display = "block";
+  document.querySelector(".biblia__write").style.display = "none";
+  clearForm();
 }
 function draw(event) {
   if (!isDrawing) return;
@@ -45,18 +48,25 @@ function getY(event) {
   return event.offsetY;
 }
 
-
+const clearForm = () =>{
+  document.querySelector(".biblia__retry").style.display = "block";
 document.getElementById("clearButton").addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   hasDrawing = false;
+  document.querySelector(".biblia__second_page").style.display = "none";
+  document.querySelector(".biblia__submit").style.display = "none";
+  document.querySelector(".biblia__write").style.display = "block";
+  document.querySelector(".biblia__retry").style.display = "none";
 });
+}
 
 document.getElementById("signatureForm").addEventListener("submit", (event) => {
   if (!hasDrawing) {
     alert("You must sign before submitting the form.");
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
   } else {
-    alert("Form submitted with signature!");
+    document.querySelector(".biblia__second_page").style.display = "block";
+    event.preventDefault(); 
   }
 });
 
@@ -150,6 +160,40 @@ const showMessages = () => {
   });
 };
 
+const bibleStamps = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".biblia__photos",
+      start: "top 50%",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+
+  tl.fromTo(
+    [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
+    { opacity: 0, scale: 0.8 },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1.5,
+      ease: "power1.out",
+      stagger: 0.5,
+    }
+  )
+    .to(
+      [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
+      {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1.5,
+        ease: "power1.out",
+        stagger: 0.5,
+      }
+    );
+};
+ 
+
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -201,6 +245,7 @@ const init = () => {
   canvas.addEventListener("touchend", stopDrawing);
 
   showMessages();
+  bibleStamps();
 }
 
 
