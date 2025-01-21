@@ -148,22 +148,65 @@
         </div>
 
         <div class="intro__plantin">
-        <img class="intro__plantin__portrait_1" sizes="(min-width: 25em) 100vw,
-                            (max-width:92em) 10vw" src="./src/assets/plantin.svg" alt="Portrait of Plantin"/>
+              <picture class="intro__plantin__portrait_1">
+                  <source
+                          sizes="(min-width: 350px)  75vw,
+                    (min-width:1420px) 75vw"
+                          srcset="
+                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  75vw,
+                    (min-width:1420px) 75vw"
+                    srcset="
+                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.png 422w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.png 526w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.png 620w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.png 872w"
+                    src="./src/assets/plantin/plantin.png"
+                    alt="Portrait of Plantin">
+              </picture>
               <div class="intro__plantin__post_it">
                 <p>Business Publisher</p>
               </div>
 
-              <img class="intro__plantin__book_icon" src="./src/assets/book_icon.png" alt="Yellow Book seal"  width="66"
-                        widths={[250, 350, 500, 750]}
-                        format="avif"
-                        sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-                    />
-              <img class="intro__plantin__writing_icon" src="./src/assets/icon_writing.svg" alt="Writing seal"  width="66"
-                        widths={[250, 350, 500, 750]}
-                        format="avif"
-                        sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-                    /> 
+              <picture class="intro__plantin__book_icon">
+                  <source
+                          sizes="(min-width: 350px)  20vw,
+                    (min-width:1420px) 20vw"
+                          srcset="
+                  ./src/assets/icons/book/book_icon_pwevqe.avif 85w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  20vw,
+                    (min-width:1420px) 20vw"
+                    srcset="
+                  ./src/assets/icons/book/book_icon_pwevqe.png 85w"
+                    src="./src/assets/icons/book/book_icon.png"
+                    alt="Icon of a book">
+              </picture>
+                    
+             <picture class="intro__plantin__writing_icon">
+                  <source
+                          sizes="(min-width: 350px)  18vw,
+                    (min-width:1420px) 18vw"
+                          srcset="
+                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  18vw,
+                    (min-width:1420px) 18vw"
+                    srcset="
+                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.png 200w,
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.png 525w"
+                    src="./src/assets/icons/ink/ink_icon.png"
+                    alt="Icon of ink with a pen feather">
+              </picture>       
+
         </div>
         <div class="stroll">
             <div class="stroll__text">
@@ -180,11 +223,23 @@
             <br>What a serendipitous rencontre, 
             let us delve into those wonders.</p>
           </div>
-          <img class="hello_there__writing_icon" src="./src/assets/icon_writing.svg" alt="Writing seal"  width="66"
-                    widths={[250, 350, 500, 750]}
-                    format="avif"
-                    sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-                /> 
+           <picture class="hello_there__writing_icon">
+                  <source
+                          sizes="(min-width: 350px)  18vw,
+                    (min-width:1420px) 18vw"
+                          srcset="
+                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  18vw,
+                    (min-width:1420px) 18vw"
+                    srcset="
+                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.png 200w,
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.png 525w"
+                    src="./src/assets/icons/ink/ink_icon.png"
+                    alt="Icon of ink with a pen feather">
+              </picture>        
         </div>
       </div>
   

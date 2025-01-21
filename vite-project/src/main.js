@@ -85,16 +85,17 @@ mm.add("(min-width: 350px)", () => {
         duration: 1,
         ease: "power1.out",
       },
-      "<" 
+      "<"
     )
     .to(
       ".intro__plantin",
       {
+        marginBottom: 0,
         y: -300,
         duration: 1,
         ease: "power1.out",
       },
-      "<" 
+      "<"
     )
   tl.to(".stroll", {
     opacity: 0,
@@ -106,14 +107,48 @@ mm.add("(min-width: 350px)", () => {
     duration: 1,
     ease: "power1.out",
   })
-  tl.to(".hello_there", {
+  tl.to(".intro__plantin__writing_icon, .intro__plantin__post_it", {
     opacity: 0,
     duration: 1,
     ease: "power1.out",
+  },
+    "<")
+    .to(
+      ".intro__plantin",
+      {
+        x: -20,
+        duration: 1,
+        ease: "power1.out",
+      },
+      "<"
+    );
+});
+
+const showMessages = () => {
+  const messages = gsap.utils.toArray(".messages > div"); // Select all message divs
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".messages",
+      start: "top 50%", 
+      end: "bottom 70%", 
+      scrub: 1,
+    },
   });
 
-  
-});
+  messages.forEach((message) => {
+    tl.fromTo(
+      message,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power1.out",
+      }
+    );
+  });
+};
 
 
 const init = () => {
@@ -165,6 +200,7 @@ const init = () => {
   canvas.addEventListener("touchmove", draw);
   canvas.addEventListener("touchend", stopDrawing);
 
+  showMessages();
 }
 
 
