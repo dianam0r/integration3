@@ -1,53 +1,12 @@
-// const canvas = document.getElementById("scratchCanvas");
-// const ctx = canvas.getContext("2d");
-// const image = document.getElementById("underlyingImage");
-
-// canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
-
-// // Draw a black layer over the image
-// ctx.fillStyle = "black";
-// ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-// let isScratching = false;
-
-// function startScratching(event) {
-//   isScratching = true;
-//   scratch(event);
-// }
-
-// function stopScratching() {
-//   isScratching = false;
-// }
-
-// function scratch(event) {
-//   if (!isScratching) return;
-
-//   // Get mouse or touch position
-//   const x = event.offsetX || event.touches[0].clientX - canvas.offsetLeft;
-//   const y = event.offsetY || event.touches[0].clientY - canvas.offsetTop;
-
-//   // Create a circular scratch area
-//   ctx.globalCompositeOperation = "destination-out"; // Make the black layer transparent
-//   ctx.beginPath();
-//   ctx.arc(x, y, 30, 0, Math.PI * 2);
-//   ctx.fill();
-// }
-
-// // Event listeners for mouse and touch interactions
-// canvas.addEventListener("mousedown", startScratching);
-// canvas.addEventListener("mousemove", scratch);
-// canvas.addEventListener("mouseup", stopScratching);
-// canvas.addEventListener("mouseout", stopScratching);
-
-// canvas.addEventListener("touchstart", startScratching);
-// canvas.addEventListener("touchmove", scratch);
-// canvas.addEventListener("touchend", stopScratching);
-// canvas.addEventListener("touchcancel", stopScratching);
 const canvas = document.getElementById("signatureCanvas");
 const ctx = canvas.getContext("2d");
 let isDrawing = false;
 let hasDrawing = false;
+
+const $navButton = document.querySelector('.nav__button');
+const $navList = document.querySelector('.nav__list');
+const $iconLink = document.querySelector('#iconlink');
+const listItems = $navList.querySelectorAll("li a");
 
 function startDrawing(event) {
   isDrawing = true;
@@ -101,15 +60,64 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
   }
 });
 
+let mm = gsap.matchMedia();
+
+mm.add("(min-width: 350px)", () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".intro",
+      start: "top 10%",
+      end: "+=500",
+      pin: ".intro__grid",
+      scrub: true,
+    },
+  });
+
+  tl.to(".intro", {
+    opacity: 0,
+    duration: 1,
+    ease: "power1.out",
+  })
+    .to(
+      ".stroll",
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      },
+      "<" 
+    )
+    .to(
+      ".intro__plantin",
+      {
+        y: -300,
+        duration: 1,
+        ease: "power1.out",
+      },
+      "<" 
+    )
+  tl.to(".stroll", {
+    opacity: 0,
+    duration: 1,
+    ease: "power1.out",
+  })
+  tl.to(".hello_there", {
+    opacity: 1,
+    duration: 1,
+    ease: "power1.out",
+  })
+  tl.to(".hello_there", {
+    opacity: 0,
+    duration: 1,
+    ease: "power1.out",
+  });
+
+  
+});
+
 
 const init = () => {
-
-  const $navButton = document.querySelector('.nav__button');
-  const $navList = document.querySelector('.nav__list');
-  const $iconLink = document.querySelector('#iconlink');
-  const listItems = $navList.querySelectorAll("li a");
-  const canvas = document.getElementById("signatureCanvas");
-  
+  gsap.registerPlugin(ScrollTrigger);
 
   $navButton.classList.remove('hidden');
   $navList.classList.add("hidden");
@@ -140,10 +148,8 @@ const init = () => {
 
   $navButton.addEventListener("click", toggleNavigation);
 
-  // add event to the last item in the nav list to trigger the disclosure to close if the user tabs out of the disclosure
   listItems[listItems.length - 1].addEventListener("blur", handleBlur);
 
-  // Close the disclosure if a user presses the escape key
   window.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
       $navButton.focus();
@@ -158,7 +164,7 @@ const init = () => {
   canvas.addEventListener("touchstart", startDrawing);
   canvas.addEventListener("touchmove", draw);
   canvas.addEventListener("touchend", stopDrawing);
-  
+
 }
 
 

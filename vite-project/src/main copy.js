@@ -1,22 +1,59 @@
+// const canvas = document.getElementById("scratchCanvas");
+// const ctx = canvas.getContext("2d");
+// const image = document.getElementById("underlyingImage");
 
-// import javascriptLogo from './javascript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.js';
-gsap.registerPlugin(ScrollTrigger, Draggable);
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
+
+// // Draw a black layer over the image
+// ctx.fillStyle = "black";
+// ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// let isScratching = false;
+
+// function startScratching(event) {
+//   isScratching = true;
+//   scratch(event);
+// }
+
+// function stopScratching() {
+//   isScratching = false;
+// }
+
+// function scratch(event) {
+//   if (!isScratching) return;
+
+//   // Get mouse or touch position
+//   const x = event.offsetX || event.touches[0].clientX - canvas.offsetLeft;
+//   const y = event.offsetY || event.touches[0].clientY - canvas.offsetTop;
+
+//   // Create a circular scratch area
+//   ctx.globalCompositeOperation = "destination-out"; // Make the black layer transparent
+//   ctx.beginPath();
+//   ctx.arc(x, y, 30, 0, Math.PI * 2);
+//   ctx.fill();
+// }
+
+// // Event listeners for mouse and touch interactions
+// canvas.addEventListener("mousedown", startScratching);
+// canvas.addEventListener("mousemove", scratch);
+// canvas.addEventListener("mouseup", stopScratching);
+// canvas.addEventListener("mouseout", stopScratching);
+
+// canvas.addEventListener("touchstart", startScratching);
+// canvas.addEventListener("touchmove", scratch);
+// canvas.addEventListener("touchend", stopScratching);
+// canvas.addEventListener("touchcancel", stopScratching);
 const canvas = document.getElementById("signatureCanvas");
 const ctx = canvas.getContext("2d");
 let isDrawing = false;
 let hasDrawing = false;
-const targetNumber = 40000; // The correct number
-const guessForm = document.getElementById("guessForm");
-const guessInput = document.getElementById("guessInput");
-const guessResult = document.getElementById("guessResult");
 
 
-Draggable.create(".draggable", {
-  bounds: ".container",
-  inertia: true
-});
+const $navButton = document.querySelector('.nav__button');
+const $navList = document.querySelector('.nav__list');
+const $iconLink = document.querySelector('#iconlink');
+const listItems = $navList.querySelectorAll("li a");
 
 function startDrawing(event) {
   isDrawing = true;
@@ -24,12 +61,11 @@ function startDrawing(event) {
   ctx.beginPath();
   ctx.moveTo(getX(event), getY(event));
 }
-
 function draw(event) {
   if (!isDrawing) return;
 
   ctx.lineTo(getX(event), getY(event));
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = "#BD2B54";
   ctx.lineWidth = 2;
   ctx.stroke();
   if (!hasDrawing) return;
@@ -40,28 +76,27 @@ function stopDrawing() {
   ctx.closePath();
 }
 
-// Get mouse or touch coordinates
 function getX(event) {
-  return event.type.includes("touch") ? event.touches[0].clientX : event.offsetX;
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
+    return event.touches[0].clientX - rect.left; // Adjust for canvas offset
+  }
+  return event.offsetX;
 }
 
 function getY(event) {
-  return event.type.includes("touch") ? event.touches[0].clientY : event.offsetY;
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
+    return event.touches[0].clientY - rect.top; // Adjust for canvas offset
+  }
+  return event.offsetY;
 }
+
 
 document.getElementById("clearButton").addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   hasDrawing = false;
 });
-
-// Event listeners for mouse and touch
-canvas.addEventListener("mousedown", startDrawing);
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("mouseup", stopDrawing);
-canvas.addEventListener("mouseout", stopDrawing);
-canvas.addEventListener("touchstart", startDrawing);
-canvas.addEventListener("touchmove", draw);
-canvas.addEventListener("touchend", stopDrawing);
 
 document.getElementById("signatureForm").addEventListener("submit", (event) => {
   if (!hasDrawing) {
@@ -72,37 +107,218 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
   }
 });
 
-guessForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const userGuess = parseInt(guessInput.value, 10);
+const introToStroll = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".intro",
+      start: "top 10%",
+      end: "+=300",
+      scrub: 1,
+      pin: ".intro",
+    },
+  });
 
-  const difference = Math.abs(userGuess - targetNumber);
+  tl.to(".intro", {
+    opacity: 0,
+    duration: 20,
+    ease: "power1.out",
+  })
+    .to(
+      ".intro__plants__left",
+      {
+        x: -500,
+        duration: 20,
+        ease: "power1.out",
+      },
+      "<"
+    )
+    .to(
+      ".stroll",
+      {
+        opacity: 1,
+        duration: 20,
+        ease: "power1.out",
+      },
+      ">"
+    )
 
-  // Change input field color and provide feedback based on the difference
-  if (userGuess === targetNumber) {
-    guessInput.style.backgroundColor = "green";
-    guessResult.textContent = "🎉 Correct! You guessed the number!";
-    guessResult.style.color = "green";
-  } else if (difference <= 10000) { // Close range
-    guessInput.style.backgroundColor = "yellow";
-    guessResult.textContent = "You're close! Try again.";
-    guessResult.style.color = "orange";
-  } else { // Far away
-    guessInput.style.backgroundColor = "red";
-    guessResult.textContent = "Too far! Try again.";
-    guessResult.style.color = "red";
+    .to(
+      ".intro__plants__right_down--phone_right",
+      {
+        x: 200,
+        duration: 20,
+        ease: "power1.out",
+      },
+      "<"
+    )
+    .to(
+      ".intro__plants__right_up--phone_left",
+      {
+        x: -200,
+        duration: 20,
+        ease: "power1.out",
+      },
+      "<"
+    );
+
+  ScrollTrigger.create({
+    trigger: ".stroll",
+    start: "top 50%",
+    end: "+=800",
+    pin: ".stroll",
+    scrub: 1,
+  });
+
+
+  ScrollTrigger.create({
+    trigger: ".intro__plants__computer",
+    start: "top 10%", 
+    end: "+=600", 
+    pin: ".intro__plants__computer", 
+  });
+
+  ScrollTrigger.create({
+    trigger: ".intro__plants__phone",
+    start: "top 10%", 
+    end: "+=400", 
+    pin: ".intro__plants__phone", 
+  });
+
+
+  tl.to(".stroll", {
+    opacity: 0,
+    duration: 2,
+    ease: "power1.out",
+  })
+    .to(
+      ".hello_there",
+      {
+        opacity: 1,
+        duration: 2,
+        ease: "power1.out",
+      },
+      ">"
+    );
+
+  ScrollTrigger.create({
+    trigger: ".hello_there",
+    start: "top 50%",
+    end: "+=800",
+    pin: ".hello_there",
+    scrub: 1,
+  });
+
+  ScrollTrigger.create({
+    trigger: ".intro__plantin__portrait_1",
+    start: "top 10%",
+    end: "+=1200",
+    pin: ".intro__plantin__portrait_1",
+    scrub: 1,
+  });
+};
+
+const showMessages = () => {
+  const messages = gsap.utils.toArray(".messages > div"); // Select all message divs
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".messages",
+      start: "top 80%", // Start when the .messages container enters the viewport
+      end: "bottom 20%", // End when the .messages container exits the viewport
+      scrub: 1,
+    },
+  });
+
+  messages.forEach((message) => {
+    tl.fromTo(
+      message,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power1.out",
+      }
+    );
+  });
+};
+
+const bibleStamps = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".biblia__photos",
+      start: "top 50%",
+    },
+  });
+
+  tl.fromTo(
+    [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"], // First two icons
+    { opacity: 0, scale: 0.8 }, // Starting state
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1.5,
+      ease: "power1.out",
+      stagger: 0.5, // Slight delay between the two
+    }
+  );
+
+};
+
+const init = () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  $navButton.classList.remove('hidden');
+  $navList.classList.add("hidden");
+
+  const openNavigation = () => {
+    $navButton.setAttribute("aria-expanded", "true");
+    $iconLink.setAttribute("xlink:href", "#close");
+    $navList.classList.remove("hidden");
   }
-});
 
-// let tiltSquare = document.getElementById("tiltSquare");
+  const closeNavigation = () => {
+    $navButton.setAttribute("aria-expanded", "false");
+    $iconLink.setAttribute("xlink:href", "#navicon");
+    $navList.classList.add("hidden");
+  }
 
-// window.addEventListener("deviceorientation", function (event) {
-//   const gamma = event.gamma; 
+  const toggleNavigation = () => {
+    const open = $navButton.getAttribute("aria-expanded");
+    open === "false" ? openNavigation() : closeNavigation();
+  }
 
-//   let movement = gamma * 2; 
-//   let windowWidth = window.innerWidth;
 
-//   let newLeft = Math.max(0, Math.min(windowWidth - 100, windowWidth / 2 + movement));
+  const handleBlur = () => {
+    //if (!event.relatedTarget || !$navList.contains(event.relatedTarget)) {
+    closeNavigation();
+    //}
+  }
 
-//   tiltSquare.style.left = newLeft + "px";
-// });
+  $navButton.addEventListener("click", toggleNavigation);
+
+  listItems[listItems.length - 1].addEventListener("blur", handleBlur);
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      $navButton.focus();
+      closeNavigation();
+    }
+  });
+
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("touchstart", startDrawing);
+  canvas.addEventListener("touchmove", draw);
+  canvas.addEventListener("touchend", stopDrawing);
+
+  // introToStroll();
+  // showMessages();
+  // bibleStamps();
+}
+
+
+
+init();
