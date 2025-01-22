@@ -225,9 +225,9 @@ const woodBlock = () => {
 const dateIcon = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".conclusion_biblia__date_icon",
-      start: "top 80%",
-      end: "bottom top",
+      trigger: ".after__bible",
+      start: "top 0%",
+      end: "bottom 50%",
       scrub: true,
       markers: true
     },
