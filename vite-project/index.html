@@ -126,7 +126,7 @@
         <div class="intro">
             <div class="intro__flex">
                 <h1>Who’s That?</h1>
-                <p class="intro__p">Let’s walk through <span class="yellow bold"> Plantin’s Garden. </span> <br>
+                <p class="intro__p">Let’s walk through <span class="yellow strong"> Plantin’s Garden. </span> <br>
                 This interactive story brings Christophe Plantin's legacy to life, the first in a series for the Plantin-Moretus Museum.</p>
               
             </div>
@@ -250,14 +250,14 @@
         real quick on my phone
       <br>  What does “serendipitous rencontre” mean? 
         </p> 
-      <p> <span class="bold">Read</span> 9:40 PM</p>
+      <p> <span class="strong">Read</span> 9:40 PM</p>
       </div>
       <div class="messages__second">
       <p>
         What is this... phone? <br>
       Some kind of dictionary📖?
         </p> 
-      <p> <span class="bold">Read </span> 9:42 PM</p>
+      <p> <span class="strong">Read </span> 9:42 PM</p>
       </div>
       <div class="messages__third">
       <p>
@@ -265,7 +265,7 @@
         any language. 🇵🇹 🇳🇱 🇱🇻 🇺🇸
 
         </p> 
-      <p> <span class="bold">Read</span> 9:44 PM</p>
+      <p> <span class="strong">Read</span> 9:44 PM</p>
       </div>
       <div class="messages__fourth">
       <p>
@@ -273,7 +273,7 @@
   Could you, perhaps, read one of my books on it? 📚
 
         </p> 
-      <p><span class="bold">Read</span> 9:46 PM</p>
+      <p><span class="strong">Read</span> 9:46 PM</p>
       </div>
       <div class="messages__fifth">
       <p>
@@ -281,7 +281,7 @@
   Let’s see what information we have about it.
 
         </p> 
-      <p><span class="bold">Read</span> 9:48 PM</p>
+      <p><span class="strong">Read</span> 9:48 PM</p>
       </div>
     </div>
 
@@ -421,7 +421,7 @@
       <div class="biblia__first_page">
       <p>
         It was printed in <br>
-        <span class="biblia__big_text bold"> 8 parts</span> 
+        <span class="biblia__big_text strong"> 8 parts</span> 
         <ul> 
           <li>4 from the Old Testament </li>
         <li>1 from the New Testament</li>
@@ -429,7 +429,7 @@
         </ul>
         </p>
         <p>
-        The text was in <span class="biblia__big_text bold"> 5 languages: </span>
+        The text was in <span class="biblia__big_text strong"> 5 languages: </span>
        <ol> <li>Latin</li>
         <li>Greek</li>
         <li>Hebrew</li>
@@ -438,96 +438,195 @@
         </ol>
         </p>
         <p>
-        A truly monumental masterpiece, commissioned by King Philip II himself. </p>
+        A truly monumental masterpiece, commissioned by King Philip II himself. 
+        </p>
 
-      <form id="signatureForm">
-      <label for="signature" class="bold">Sign here as <br>
-        King Philip II to continue</label>
-        <div class="biblia__flex_row">
-      <canvas id="signatureCanvas" width="250" height="80"></canvas>
+        <form id="signatureForm">
+        <label for="signature" class="strong">Sign here as <br>
+          King Philip II to continue</label>
+          <div class="biblia__form">
+            <div class="biblia__form__writing">
+              <button type="button" id="clearButton">
+                <picture class="biblia__retry">
+                          <source sizes="(min-width: 350px)  15vw, (min-width:1420px) 15vw"
+                                  srcset="
+                            ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.avif 200w,
+                          ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.avif 525w"
+                                  type="image/avif">
+                            <img
+                            sizes="(min-width: 350px)  15vw,
+                            (min-width:1420px) 15vw"
+                            srcset="
+                            ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.png 200w,
+                          ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.png 525w"
+                            src="./src/assets/icons/form_retry/retry.png"
+                            alt="retry icon">
+                </picture>
+              </button>
+              <canvas id="signatureCanvas" width="170" height="80"></canvas>  
+            </div>
 
-      <button type="submit">
-        <picture class="biblia__submit">
-                  <source sizes="(min-width: 350px)  18vw, (min-width:1420px) 18vw"
+            <button type="submit">
+              <picture class="biblia__submit">
+                        <source sizes="(min-width: 350px)  18vw, (min-width:1420px) 18vw"
+                                srcset="
+                          ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.avif 200w,
+                        ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.avif 513w"
+                                type="image/avif">
+                          <img
+                          sizes="(min-width: 350px)  18vw,
+                          (min-width:1420px) 18vw"
                           srcset="
-                    ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.avif 200w,
-                  ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.avif 513w"
-                          type="image/avif">
-                    <img
-                    sizes="(min-width: 350px)  18vw,
-                    (min-width:1420px) 18vw"
-                    srcset="
-                    ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.png 200w,
-                  ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.png 513w"
-                    src="./src/assets/icons/submit/submit.png"
-                    alt="submit icon">
-        </picture>
-        <picture class="biblia__write">
-                  <source sizes="(min-width: 350px)  18vw, (min-width:1420px) 18vw"
+                          ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.png 200w,
+                        ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.png 513w"
+                          src="./src/assets/icons/submit/submit.png"
+                          alt="submit icon">
+              </picture>
+              <picture class="biblia__write">
+                        <source sizes="(min-width: 350px)  18vw, (min-width:1420px) 18vw"
+                                srcset="
+                          ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.avif 200w,
+                        ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.avif 863w,
+                        ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.avif 1400w"
+                                type="image/avif">
+                          <img
+                          sizes="(min-width: 350px)  18vw,
+                          (min-width:1420px) 18vw"
                           srcset="
-                    ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.avif 200w,
-                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.avif 863w,
-                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.avif 1400w"
-                          type="image/avif">
-                    <img
-                    sizes="(min-width: 350px)  18vw,
-                    (min-width:1420px) 18vw"
-                    srcset="
-                    ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.png 200w,
-                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.png 863w,
-                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.png 1400w"
-                    src="./src/assets/icons/form_writing/writing_form.png"
-                    alt="submit icon">
-        </picture>
-      </button>
-      </div>
+                          ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.png 200w,
+                        ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.png 863w,
+                        ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.png 1400w"
+                          src="./src/assets/icons/form_writing/writing_form.png"
+                          alt="submit icon">
+              </picture>
+            </button>
+        </div>
 
-       <button type="button" id="clearButton">
-        <picture class="biblia__retry">
-                  <source sizes="(min-width: 350px)  15vw, (min-width:1420px) 15vw"
-                          srcset="
-                    ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.avif 200w,
-                  ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.avif 525w"
-                          type="image/avif">
-                    <img
-                    sizes="(min-width: 350px)  15vw,
-                    (min-width:1420px) 15vw"
-                    srcset="
-                    ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.png 200w,
-                  ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.png 525w"
-                    src="./src/assets/icons/form_retry/retry.png"
-                    alt="retry icon">
-        </picture>
-      </button>
+        
 
-    </form>
-
+        </form>
       </div>
 
       <div class="biblia__second_page">
       <p>
         Only 1,200 copies were made, each intended for influential figures like the Pope and the King of Spain. In the 16th-century Netherlands, books like this were not just tools of knowledge, they were instruments of power and influence. 
-        The Biblia Polyglotta also symbolized the Catholic Church's intellectual and cultural authority during the Counter-Reformation, reinforcing its dominance through scholarly and artistic excellence.
+       </p> <p>The Biblia Polyglotta also symbolized the Catholic Church's intellectual and cultural authority during the Counter-Reformation, reinforcing its dominance through scholarly and artistic excellence.
       </p>
       </div>
       
     </div>
 
-    <div class="conclusion_biblia hidden">
-      <img class="conclusion_biblia__date_icon" src="./src/assets/dates_conclusion_bible.svg" alt="Stamp of the date 1568-73"/>
-            <div class="conclusion_biblia__clicking_portrait">
-              <img class="conclusion_biblia__portrait" src="./src/assets/plantin.svg" alt="Portrait of Plantin"/>
-              <img class="conclusion_biblia__g_woodblock" src="./src/assets/g_woodblock.svg" alt="G wood block"/>
-              <img class="conclusion_biblia__hand" src="./src/assets/hand.svg" alt="Plantin's hand"/>
-              <img class="conclusion_biblia__click_icon" src="./src/assets/click_icon.svg" alt="Clicking icon"/>
-            </div>
-              <div class="conclusion_biblia__text">
+    <div class="conclusion_biblia">
+      <div class="conclusion_biblia__clicking_portrait">
+        
+              <picture class="intro__plantin__portrait_1">
+                  <source
+                          sizes="(min-width: 350px)  75vw,
+                    (min-width:1420px) 75vw"
+                          srcset="
+                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  75vw,
+                    (min-width:1420px) 75vw"
+                    srcset="
+                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.png 422w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.png 526w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.png 620w,
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.png 872w"
+                    src="./src/assets/plantin/plantin.png"
+                    alt="Portrait of Plantin">
+              </picture>
+
+               <picture class="conclusion_biblia__g_woodblock">
+                  <source
+                          sizes="(min-width: 350px)  30vw,
+                    (min-width:1420px) 30vw"
+                          srcset="
+                  ./src/assets/woodblock/g_block_qdfanw_c_scale,w_200.avif 200w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_350.avif 350w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_455.avif 455w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_538.avif 538w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  30vw,
+                    (min-width:1420px) 30vw"
+                    srcset="
+                  ./src/assets/woodblock/g_block_qdfanw_c_scale,w_200.png 200w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_350.png 350w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_455.png 455w,
+                    ./src/assets/woodblock/g_block_qdfanw_c_scale,w_538.png 538w"
+                    src="./src/assets/woodblock/g_block.png"
+                    alt="wood block with a g">
+              </picture>
+              
+              <picture class="conclusion_biblia__hand">
+                  <source
+                          sizes="(min-width: 350px)  25vw,
+                    (min-width:1420px) 25vw"
+                          srcset="
+                  ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_200.avif 200w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_358.avif 358w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_481.avif 481w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_513.avif 513w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  25vw,
+                    (min-width:1420px) 25vw"
+                    srcset="
+                  ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_200.png 200w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_358.png 358w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_481.png 481w,
+                    ./src/assets/plantin_hand/hand_eekqdi_c_scale,w_513.png 513w"
+                    src="./src/assets/plantin_hand/hand.png"
+                    alt="Plantin's hand">
+              </picture>
+
+              <picture class="conclusion_biblia__click_icon">
+                  <source
+                          sizes="(min-width: 350px)  45vw,
+                    (min-width:1420px) 45vw"
+                          srcset="
+                  ./src/assets/icons/click/click_z5p5la_c_scale,w_200.avif 200w,
+                    ./src/assets/icons/click/click_z5p5la_c_scale,w_512.avif 512w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  45vw,
+                    (min-width:1420px) 45vw"
+                    srcset="
+                  ./src/assets/icons/click/click_z5p5la_c_scale,w_200.png 200w,
+                    ./src/assets/icons/click/click_z5p5la_c_scale,w_512.png 512w"
+                    src="./src/assets/icons/click/click.png"
+                    alt="clicking icon">
+              </picture>
+      </div>
+      <picture class="conclusion_biblia__date_icon">
+                  <source
+                          sizes="(min-width: 350px)  30vw,
+                    (min-width:1420px) 30vw"
+                          srcset="
+                  ./src/assets/icons/date/1568_lipgov_c_scale,w_200.avif 200w,
+                    ./src/assets/icons/date/1568_lipgov_c_scale,w_512.avif 512w"
+                          type="image/avif">
+                    <img
+                    sizes="(min-width: 350px)  30vw,
+                    (min-width:1420px) 30vw"
+                    srcset="
+                  ./src/assets/icons/date/1568_lipgov_c_scale,w_200.png 200w,
+                    ./src/assets/icons/date/1568_lipgov_c_scale,w_512.png 512w"
+                    src="./src/assets/icons/date/1568.png"
+                    alt="Stamp of the date 1568-73">
+      </picture>
+      <div class="conclusion_biblia__text">
             <p>
               Impossible! The Biblia Polyglotta weighs 48 kilograms, how could something so monumental fit in your hand? This giant work, like my others, made knowledge more accessible. Imagine such a creation in your tiny phone!
               Ah, you carry that remarkable 'phone' in your hand but 
-              <span class="conclusion_biblia__text__title bold">Let’s see what I have in my hand. </span>
+              <span class="conclusion_biblia__text__title strong">Let’s see what I have in my hand. </span>
             </p>
-            </div>
+    </div>
      
         
     </div>
@@ -537,7 +636,7 @@
         These blocks were the soul of his illustrations, carved with meticulous care to bring entire books to life.
       </p>
       <div class="woodblocks__question">
-      <p class="bold">How many woodblocks do you think they have in the museum? </p>
+      <p class="strong">How many woodblocks do you think they have in the museum? </p>
       <img class="woodblocks__question__arrow" src="./src/assets/arrow.svg" alt="Arrow icon"/>
     </div>
 
@@ -604,15 +703,15 @@
       <h2 class="learn__h2" >What did we learn?</h2>
       <div class="learn__biblia">
       <img class="learn__biblia__img" src="./src/assets/learn_biblia.svg" alt="opened biblia with a frame"/>
-      <p class="learn__biblia__title bold">Biblia Polygllota</p>
-      <button class="more bold">More</button>
+      <p class="learn__biblia__title strong">Biblia Polygllota</p>
+      <button class="more strong">More</button>
     </div>
     <div>
-      <p class="learn__wood bold">Wood Printing</p>
+      <p class="learn__wood strong">Wood Printing</p>
       <button>More</button>
     </div>
     <div>
-      <p class="learn__octo bold">Octo Missae</p>
+      <p class="learn__octo strong">Octo Missae</p>
       <button>More</button>
     </div>
   </div>
@@ -621,7 +720,7 @@
       <div class="bye__text">
     <h2> Bye Plantin</h2>
     <p class="bye__text__p">Thank you, Plantin, for bringing history to life and letting us glimpse your extraordinary world. Curious to explore more? Step into the legacy of Plantin’s workshop and uncover the masterpieces that shaped centuries of knowledge and art.</p>
-    <button class="bye__button bold">Go to Museum Website</button>
+    <button class="bye__button strong">Go to Museum Website</button>
     </div>
     <div class="bye__imgs">
       <img class="bye__imgs__garden" src="./src/assets/garden_end.svg" alt="museum's garden"/>
@@ -635,7 +734,7 @@
         <img class="nature__footer_right" src="./src/assets/tree_footer_right.svg" alt="leafs"/>
 
       <nav>
-        <ul class="footer__nav bold">
+        <ul class="footer__nav strong">
           <li><a href="#">Biblia</a></li>
           <li><a href="#">Wood Block</a></li>
           <li><a href="#">Octo Missae</a></li>

@@ -66,6 +66,7 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
     event.preventDefault();
   } else {
     document.querySelector(".biblia__second_page").style.display = "block";
+    document.querySelector(".biblia__submit").style.display = "none";
     event.preventDefault(); 
   }
 });
@@ -193,7 +194,32 @@ const bibleStamps = () => {
     );
 };
  
+const woodBlock = () => {
+  document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
+    .forEach(element => {
+      element.addEventListener("click", () => {
+        gsap.to(".conclusion_biblia__g_woodblock", {
+          rotation: 360,
+          y: 500,
+          duration: 0.5,
+          ease: "power1.out"
+        });
 
+        // gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: ".conclusion_biblia__g_woodblock",
+        //     start: "top 90%",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   }
+        // }).fromTo(
+        //   ".conclusion_biblia__g_woodblock",
+        //   { y: 500 }, 
+        //   { y: "+=200", duration: 1, ease: "power1.out" } 
+        // );
+      });
+    });
+};
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -246,6 +272,7 @@ const init = () => {
 
   showMessages();
   bibleStamps();
+  woodBlock();
 }
 
 
