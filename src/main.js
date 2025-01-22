@@ -48,16 +48,16 @@ function getY(event) {
   return event.offsetY;
 }
 
-const clearForm = () =>{
+const clearForm = () => {
   document.querySelector(".biblia__retry").style.display = "block";
-document.getElementById("clearButton").addEventListener("click", () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  hasDrawing = false;
-  document.querySelector(".biblia__second_page").style.display = "none";
-  document.querySelector(".biblia__submit").style.display = "none";
-  document.querySelector(".biblia__write").style.display = "block";
-  document.querySelector(".biblia__retry").style.display = "none";
-});
+  document.getElementById("clearButton").addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasDrawing = false;
+    document.querySelector(".biblia__second_page").style.display = "none";
+    document.querySelector(".biblia__submit").style.display = "none";
+    document.querySelector(".biblia__write").style.display = "block";
+    document.querySelector(".biblia__retry").style.display = "none";
+  });
 }
 
 document.getElementById("signatureForm").addEventListener("submit", (event) => {
@@ -68,7 +68,7 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
     document.querySelector(".biblia__second_page").style.display = "block";
     document.querySelector(".biblia__submit").style.display = "none";
     document.querySelector(".after__bible").style.display = "block";
-    event.preventDefault(); 
+    event.preventDefault();
   }
 });
 
@@ -142,8 +142,8 @@ const showMessages = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".messages",
-      start: "top 50%", 
-      end: "bottom 70%", 
+      start: "top 50%",
+      end: "bottom 70%",
       scrub: 1,
     },
   });
@@ -194,7 +194,7 @@ const bibleStamps = () => {
       }
     );
 };
- 
+
 const woodBlock = () => {
   document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
     .forEach(element => {
@@ -206,18 +206,18 @@ const woodBlock = () => {
           ease: "power1.out"
         });
 
-        // gsap.timeline({
-        //   scrollTrigger: {
-        //     trigger: ".conclusion_biblia__g_woodblock",
-        //     start: "top 90%",
-        //     end: "bottom top",
-        //     scrub: true,
-        //   }
-        // }).fromTo(
-        //   ".conclusion_biblia__g_woodblock",
-        //   { y: 500 }, 
-        //   { y: "+=200", duration: 1, ease: "power1.out" } 
-        // );
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: ".conclusion_biblia__g_woodblock",
+            start: "top 90%",
+            end: "bottom top",
+            scrub: true,
+          }
+        }).fromTo(
+          ".conclusion_biblia__g_woodblock",
+          { y: 500 },
+          { y: "+=200", duration: 1, ease: "power1.out" }
+        );
       });
     });
 };
@@ -225,10 +225,11 @@ const woodBlock = () => {
 const dateIcon = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".conclusion_biblia",
+      trigger: ".conclusion_biblia__date_icon",
       start: "top 80%",
       end: "bottom top",
       scrub: true,
+      markers: true
     },
   });
 
