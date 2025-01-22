@@ -67,6 +67,7 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
   } else {
     document.querySelector(".biblia__second_page").style.display = "block";
     document.querySelector(".biblia__submit").style.display = "none";
+    document.querySelector(".after__bible").style.display = "block";
     event.preventDefault(); 
   }
 });
@@ -221,6 +222,45 @@ const woodBlock = () => {
     });
 };
 
+const dateIcon = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".conclusion_biblia",
+      start: "top 80%",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+
+  tl.fromTo(
+    ".conclusion_biblia__date_icon",
+    { opacity: 0, scale: 0.8 },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1.5,
+      ease: "power1.out",
+    }
+  ).to(".conclusion_biblia__date_icon", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 1.5,
+    ease: "power1.out",
+  });
+};
+
+const toggleAnswer = () => {
+  const question = document.querySelector(".woodblocks__question");
+  const answer = document.querySelector(".woodblocks__answer");
+
+  if (question && answer) {
+    question.addEventListener("click", () => {
+      answer.style.display = answer.style.display === "block" ? "none" : "block";
+    });
+  }
+};
+
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -273,6 +313,8 @@ const init = () => {
   showMessages();
   bibleStamps();
   woodBlock();
+  dateIcon();
+  toggleAnswer();
 }
 
 

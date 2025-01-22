@@ -444,11 +444,6 @@ h1 {
   margin-block-start: 3vh;
 }
 
-.conclusion_biblia {
-  /* margin-block-start: -35vh; */
-  display: grid;
-  justify-items: center;
-}
 
 .conclusion_biblia__text {
   background-image: url(../assets/background_final_bible.svg);
@@ -476,6 +471,8 @@ h1 {
   grid-row: 1;
   justify-self: end;
   margin-block-end: -5vh;
+  opacity: 0;
+  z-index: 100;
 }
 
 .conclusion_biblia__clicking_portrait {
@@ -507,6 +504,76 @@ h1 {
 .conclusion_biblia__click_icon {
   align-self: center;
   justify-self: start;
+}
+
+.conclusion_biblia {
+  margin-block-start: -30vh;
+  display: grid;
+  justify-items: center;
+}
+
+.after__bible {
+  display: none;
+}
+
+.woodblocks__question {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  display: flex;
+}
+
+.woodblocks__question__wrapper {
+  padding-inline: 2vh;
+  border: 5px solid var(--color-yellow);
+  margin-block: 5vh;
+  inline-size: 85vw;
+}
+
+.woodblocks__question__arrow {
+  margin-inline-start: 2vw;
+}
+
+.woodblocks__answer {
+  display: none;
+}
+
+.woodblocks__img {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  margin-block-start: 5vh;
+}
+
+.woodblocks__img>* {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.woodblocks__img__leaf_icon {
+  justify-self: end;
+  margin-inline-end: 2vh;
+}
+
+.woodblocks__img__carving_icon {
+  align-self: end;
+  justify-self: start;
+}
+
+.woodblocks p:nth-of-type(2) {
+  margin-block-start: 5vh;
+}
+
+.woodblocks{
+  margin-inline: 7vw;
+}
+
+.comics__background>h2{
+  inline-size: 80vw;
+}
+
+.comics__background {
+  margin: 0;
+  background-image: url(../assets/background_tilting.svg);
 }
 
 /* 450 to phone */
