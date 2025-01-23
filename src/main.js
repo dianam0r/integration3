@@ -8,32 +8,33 @@ const $navList = document.querySelector('.nav__list');
 const $iconLink = document.querySelector('#iconlink');
 const listItems = $navList.querySelectorAll("li a");
 
+const timeline = () => {
+  const timeline = document.querySelector(".timeline__line");
+  const timelineWidth = timeline.offsetWidth;
+  const amountToScroll = timelineWidth - window.innerWidth;
+  console.log(timeline.offsetWidth);
 
-const timeline = () =>{
-const timeline = document.querySelector(".timeline__line");
-const timelineWidth = timeline.offsetWidth;
-const amountToScroll = timelineWidth - window.innerWidth;
-console.log(timeline.offsetWidth);
+  
 
-let tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".timeline",
-    start: "top 20%",
-    end: "+=" + amountToScroll,
-    pin: true,
-    scrub: 1,
-    markers: true,
-  },
-});
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".timeline",
+      start: "top 20%",
+      end: "+=" + amountToScroll,
+      pin: true,
+      scrub: 1,
+      markers: true,
+    },
+  });
 
-// tl.to(".timeline",
-//   {
-//     x: -amountToScroll,
-//     duration: 20,
-//     ease: "none",
+  tl.to(".timeline",
+    {
+      x: -amountToScroll,
+      duration: 20,
+      ease: "none",
 
-//   }
-// )
+    }
+  )
 }
 
 function startDrawing(event) {
@@ -356,35 +357,131 @@ if (window.DeviceOrientationEvent) {
   window.addEventListener(
     "deviceorientation",
     (event) => {
-      const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-      const leftToRight = event.gamma; // gamma: left to right
-      const frontToBack = event.beta; // beta: front back motion
+      const leftToRight = event.gamma; // left to right
 
-      handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+      handleOrientationEvent(leftToRight);
     },
-    true // Use capture mode
+    true
   );
 }
-const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
+
+const handleOrientationEvent = (leftToRight) => {
   const container = document.querySelector(".comics__options");
+  const h2 = document.querySelector(".comics__background h2");
 
   if (container) {
-    const maxMovement = window.innerWidth / 2;
-    const movement = Math.max(-maxMovement, Math.min(leftToRight * 2, maxMovement));
+    const maxMovement = window.innerWidth * 4;
+    let movement = leftToRight * 5;
+    movement = Math.max(-maxMovement, Math.min(movement, maxMovement));
+
     container.style.transform = `translateX(${movement}px)`;
     container.style.transition = "transform 0.1s ease";
-  }
 
-  console.log("FrontToBack (beta):", frontToBack);
-  console.log("LeftToRight (gamma):", leftToRight);
-  console.log("RotateDegrees (alpha):", rotateDegrees);
+
+    if (movement > 0) {
+      console.log("You are tilting to the left.");
+    } else if (movement < 0) {
+      console.log("You are tilting to the right.");
+    } else {
+      console.log("You are holding the device level.");
+    }}
+
+  const options = document.querySelectorAll(".comics__options img");
+  const centerX = window.innerWidth / 2;
+
+  const resultsTitle = document.querySelector(".comics__results__title");
+  const resultsP = document.querySelector(".comics__results__p");
+
+  options.forEach((option) => {
+    const optionRect = option.getBoundingClientRect();
+    const optionCenterX = optionRect.left + optionRect.width / 2;
+
+    if (Math.abs(centerX - optionCenterX) < 50) { // Adjust 50 for sensitivity
+      // Update results text based on the centered option
+      if (option.classList.contains("comics__options__1")) {
+        resultsTitle.textContent = "Not Exactly...";
+        resultsP.textContent = "";
+      } else if (option.classList.contains("comics__options__2")) {
+        resultsTitle.textContent =
+          "Exactly! "
+        resultsP.textContent =" These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
+      } else if (option.classList.contains("comics__options__3")) {
+        resultsTitle.textContent = "G for good try but try again.";
+        resultsP.textContent ="";
+      } else if (option.classList.contains("comics__options__4")) {
+        resultsTitle.textContent = "Not Exactly...";
+        resultsP.textContent = "";
+      }else {
+        resultsTitle.textContent = "";
+        resultsP.textContent = "";
+      }
+    }
+  });
+}
+
+const canvasDrag = document.getElementById("canvasDrag");
+const ctxDrag = canvasDrag.getContext("2d");
+
+const img1 = new Image();
+const img2 = new Image();
+
+img1.src = "./src/assets/trying_music.svg";
+img2.src = "./src/assets/music_old.svg";
+
+const dragElement = document.querySelector(".dragElement");
+
+img1.onload = img2.onload = () => {
+  drawOverlayImages();
 };
 
+Draggable.create(".dragElement", {
+  type: "x",
+  bounds: canvasDrag,
+  onDrag: function () {
+    const dragLocation = dragElement.getBoundingClientRect();
+    const canvasLocation = canvasDrag.getBoundingClientRect();
+    // position of drag relative to canvas
+    const relativeX = dragLocation.left + dragLocation.width / 2 - canvasLocation.left;
+    updateCanvas(relativeX);
+  },
+});
 
+function updateCanvas(lineX) {
+  lineX = Math.max(0, Math.min(lineX, canvasDrag.width));
+
+  ctxDrag.clearRect(0, 0, canvasDrag.width, canvasDrag.height);
+
+  // Clip the canvas to show img2 only up to lineX (left side)
+  ctxDrag.save();
+  ctxDrag.beginPath();
+  ctxDrag.rect(0, 0, lineX, canvasDrag.height);
+  ctxDrag.clip();
+
+  ctxDrag.drawImage(img2, 0, 0, canvasDrag.width, canvasDrag.height);
+  ctxDrag.restore();
+
+  ctxDrag.save();
+  ctxDrag.beginPath();
+  ctxDrag.rect(lineX, 0, canvasDrag.width - lineX, canvasDrag.height);
+  ctxDrag.clip();
+
+  ctxDrag.drawImage(img1, 0, 0, canvasDrag.width, canvasDrag.height);
+  ctxDrag.restore();
+}
+
+
+function drawOverlayImages() {
+  const initialLineX = canvasDrag.width / 2;
+  updateCanvas(initialLineX);
+}
 
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(Draggable);
+
+  
+
 
   $navButton.classList.remove('hidden');
   $navList.classList.add("hidden");
@@ -437,8 +534,11 @@ const init = () => {
   woodBlock();
   // dateIcon();
   toggleAnswer();
+  timeline();
 }
 
 
 
 init();
+
+// what is happeniong now is tilting everything to the left alpha 90 beta 0 gamma - 90 and therefor containerRect.left: -610 and containerRect.right: 680 and then if u tilt everything to the right alpha 90 beta - 180 gamma - 90 and then containerRect.left: -430 and containerRect.right: 860. and then when it;s up alpha 0 beta 90 gamma 0 then containerRect.left: -430 and containerRect.right: 860. and what I want happening is when tilting everything to the left alpha 90 beta 0 gamma - 90 and therefor containerRect.left: -1000 containerRect.right: 200. and then if u tilt everything to the right alpha 90 beta - 180 gamma - 90 and then containerRect.left: -430 and containerRect.right: 860 and then when it;s up alpha 0 beta 90 gamma 0 then containerRect.left: -430 and containerRect.right: 860. 

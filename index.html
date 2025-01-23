@@ -696,30 +696,87 @@
             </div>
           </div>
           <p class="comics__instructions">  Tilt your phone</p>
+          <p class="comics__results__title strong"></p>
+          <p class="comics__results__p"></p>
           </div>
         </div>
 
         <div class="timeline">
-
+          <div class="timeline__before">
+          <p>In the 1960s, the woodblocks were systematically cataloged, with their printed images compiled into five volumes previously accessible only in the museum's reading room. However, earlier treatments with toxic anti-woodworm products posed preservation challenges, limiting physical access.</p>
+          <h2>1960</h2>
+        </div>
           <div class="timeline__line"></div>
-            
-        </div>
-
-        <!-- <div class="beggining_music">
-          <img class="beggining_music__plantin" src="./src/assets/plantin.svg" alt="Portrait of Plantin"/>
-          <img class="beggining_music__book_icon" src="./src/assets/book_icon.png" alt="Yellow Book seal"  width="66"
-                    widths={[250, 350, 500, 750]}
-                    format="avif"
-                    sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-                />
-            <p  class="beggining_music__p">I already answered some things now I have a question for you ...how does music sound nowadays?
-            Because when I printed Octo Missae , 
-            music was like this.
+          <div class="timeline__now">
+            <h2>Now</h2>
+            <p>Today, the digitized collection ensures these historical treasures can be admired without handling risks, preserving their legacy for future generations. These blocks, the foundation of 16th-century publishing, continue to inspire globally. Now digitized, they are celebrated through webinars, events, and initiatives like #WoodblockWednesday. Visitors can delve into their intricate beauty and historical significance through the Plantin-Moretus Museum's exhibitions and online database. 
             </p>
-            <img class="beggining_music__date" src="./src/assets/1578.svg" alt="1578 stamp"/>
+          </div>
         </div>
 
-        <div class="music">
+       
+        
+        <div class="beggining_music">
+
+          <img class="beggining_music__music_sheet" src = "./src/assets/trying_music.svg" alt="instagram icon"/>
+
+          <div class="beggining_music__portrait_words">
+            <div class="beggining_music__plantin">
+                <picture class="beggining_music__plantin__portrait">
+                    <source
+                            sizes="(min-width: 350px)  75vw,
+                      (min-width:1420px) 75vw"
+                            srcset="
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
+                            type="image/avif">
+                      <img
+                      sizes="(min-width: 350px)  75vw,
+                      (min-width:1420px) 75vw"
+                      srcset="
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.png 422w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.png 526w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.png 620w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.png 872w"
+                      src="./src/assets/plantin/plantin.png"
+                      alt="Portrait of Plantin">
+                </picture>
+
+                <picture class="beggining_music__plantin__book_icon">
+                    <source
+                            sizes="(min-width: 350px)  20vw,
+                      (min-width:1420px) 20vw"
+                            srcset="
+                    ./src/assets/icons/book/book_icon_pwevqe.avif 85w"
+                            type="image/avif">
+                      <img
+                      sizes="(min-width: 350px)  20vw,
+                      (min-width:1420px) 20vw"
+                      srcset="
+                    ./src/assets/icons/book/book_icon_pwevqe.png 85w"
+                      src="./src/assets/icons/book/book_icon.png"
+                      alt="Icon of a book">
+                </picture>
+                          
+
+            </div>
+            
+
+            <div class="beggining_music__text">
+                <p>I already answered some things now I have a question for you ...how does music sound nowadays?
+              Because when I printed Octo Missae , 
+              music was like this.
+              </p>
+            </div>
+
+            
+              <img class="beggining_music__date" src="./src/assets/1578.svg" alt="1578 stamp"/>
+          </div>
+        </div>
+
+      <!--  <div class="music">
           <h2  class="music__h2"> The first musical work printed by Plantin’s press</h2>
             <p class="music__p">Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
       The publication was massive, measuring 55 by 40 cm, designed so all choir singers could read it together.</p>
@@ -756,6 +813,13 @@
         </div>
         </div> -->
         </div>
+
+        <div class="grid">
+        <canvas id="canvasDrag" width="600" height="400"></canvas>
+        <img class="dragElement" src="./src/assets/drag.svg" alt="instagram icon"/>
+        </div>
+
+        
     </main>
 
     <footer>
@@ -796,7 +860,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-    <script defer src="https://unpkg.com/split-type"></script>
     <script type="module" src="/src/main.js"></script>
   </body>
 
