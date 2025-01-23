@@ -166,7 +166,7 @@ mm.add("(min-width: 350px)", () => {
 });
 
 const showMessages = () => {
-  const messages = gsap.utils.toArray(".messages > div"); // Select all message divs
+  const messages = gsap.utils.toArray(".messages > div");
 
   const tl = gsap.timeline({
     scrollTrigger: {
