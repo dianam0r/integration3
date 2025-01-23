@@ -94,15 +94,15 @@ guessForm.addEventListener("submit", (event) => {
   }
 });
 
-// let tiltSquare = document.getElementById("tiltSquare");
+let tiltSquare = document.getElementById("tiltSquare");
 
-// window.addEventListener("deviceorientation", function (event) {
-//   const gamma = event.gamma; 
+window.addEventListener("deviceorientation", function (event) {
+  const gamma = event.gamma; 
 
-//   let movement = gamma * 2; 
-//   let windowWidth = window.innerWidth;
+  let movement = gamma * 2; 
+  let windowWidth = window.innerWidth;
 
-//   let newLeft = Math.max(0, Math.min(windowWidth - 100, windowWidth / 2 + movement));
+  let newLeft = Math.max(0, Math.min(windowWidth - 100, windowWidth / 2 + movement));
 
-//   tiltSquare.style.left = newLeft + "px";
-// });
+  tiltSquare.style.left = newLeft + "px";
+});

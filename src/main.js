@@ -8,6 +8,34 @@ const $navList = document.querySelector('.nav__list');
 const $iconLink = document.querySelector('#iconlink');
 const listItems = $navList.querySelectorAll("li a");
 
+
+const timeline = () =>{
+const timeline = document.querySelector(".timeline__line");
+const timelineWidth = timeline.offsetWidth;
+const amountToScroll = timelineWidth - window.innerWidth;
+console.log(timeline.offsetWidth);
+
+let tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".timeline",
+    start: "top 20%",
+    end: "+=" + amountToScroll,
+    pin: true,
+    scrub: 1,
+    markers: true,
+  },
+});
+
+// tl.to(".timeline",
+//   {
+//     x: -amountToScroll,
+//     duration: 20,
+//     ease: "none",
+
+//   }
+// )
+}
+
 function startDrawing(event) {
   isDrawing = true;
   hasDrawing = true;
@@ -67,7 +95,8 @@ document.getElementById("signatureForm").addEventListener("submit", (event) => {
   } else {
     document.querySelector(".biblia__second_page").style.display = "block";
     document.querySelector(".biblia__submit").style.display = "none";
-    document.querySelector(".after__bible").style.display = "block";
+    document.querySelector(".after__biblia").style.display = "block";
+    timeline();
     event.preventDefault();
   }
 });
@@ -199,28 +228,81 @@ const woodBlock = () => {
   document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
     .forEach(element => {
       element.addEventListener("click", () => {
-        gsap.to(".conclusion_biblia__g_woodblock", {
-          rotation: 360,
-          y: 500,
-          duration: 0.5,
-          ease: "power1.out"
-        });
+        const timeline = gsap.timeline();
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: ".conclusion_biblia__g_woodblock",
-            start: "top 90%",
-            end: "bottom top",
-            scrub: true,
-          }
-        }).fromTo(
+        timeline.fromTo(
           ".conclusion_biblia__g_woodblock",
-          { y: 500 },
-          { y: "+=200", duration: 1, ease: "power1.out" }
+          { rotation: 0, y: 0, opacity: 1 },
+          {
+            rotation: 360,
+            y: 585,
+            duration: 0.5,
+            ease: "power1.out",
+          }
+        );
+
+        timeline.fromTo(
+          ".conclusion_biblia__g_woodblock",
+          { opacity: 1 },
+          { opacity: 0, duration: 0.1 },
+          "+=0"
+        );
+
+        timeline.fromTo(
+          ".g_woodblock2__flex",
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 0.1,
+            onStart: () => {
+              document.querySelector(".g_woodblock2__flex").style.display = "flex";
+            }
+          },
+          "-=0.2"
         );
       });
     });
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".g_woodblock2__flex",
+      start: "top 50%",
+      end: "bottom 20%",
+      scrub: true,
+    }
+  }).fromTo(
+    ".g_woodblock2__flex",
+    {
+      y: 0,
+      scale: 1
+    },
+    {
+      y: "+=460",
+      scale: 1.8,
+      rotation: 365,
+      duration: 1,
+      ease: "power1.out"
+    }
+  ).to(
+    ".g_woodblock2__flex",
+    {
+      opacity: 0,
+      duration: 0.2,
+      ease: "power1.out"
+    }
+  )
+    .to(
+      ".grid__g",
+      {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power1.out"
+      },
+      "-=0.3"
+    )
+    ;
 };
+
 
 const dateIcon = () => {
   const tl = gsap.timeline({
@@ -229,7 +311,6 @@ const dateIcon = () => {
       start: "top 0%",
       end: "bottom 50%",
       scrub: true,
-      markers: true
     },
   });
 
@@ -253,13 +334,53 @@ const dateIcon = () => {
 const toggleAnswer = () => {
   const question = document.querySelector(".woodblocks__question");
   const answer = document.querySelector(".woodblocks__answer");
+  const arrow = document.querySelector(".woodblocks__question__arrow");
 
-  if (question && answer) {
+  if (question && answer && arrow) {
     question.addEventListener("click", () => {
-      answer.style.display = answer.style.display === "block" ? "none" : "block";
+      // Toggle display of the answer
+      if (answer.style.display === "block") {
+        answer.style.display = "none"; // Close the answer
+        arrow.classList.remove("woodblocks__question__arrow--open");
+        arrow.classList.add("woodblocks__question__arrow--close");
+      } else {
+        answer.style.display = "block"; // Open the answer
+        arrow.classList.remove("woodblocks__question__arrow--close");
+        arrow.classList.add("woodblocks__question__arrow--open");
+      }
     });
   }
 };
+
+if (window.DeviceOrientationEvent) {
+  window.addEventListener(
+    "deviceorientation",
+    (event) => {
+      const rotateDegrees = event.alpha; // alpha: rotation around z-axis
+      const leftToRight = event.gamma; // gamma: left to right
+      const frontToBack = event.beta; // beta: front back motion
+
+      handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+    },
+    true // Use capture mode
+  );
+}
+const handleOrientationEvent = (frontToBack, leftToRight, rotateDegrees) => {
+  const container = document.querySelector(".comics__options");
+
+  if (container) {
+    const maxMovement = window.innerWidth / 2;
+    const movement = Math.max(-maxMovement, Math.min(leftToRight * 2, maxMovement));
+    container.style.transform = `translateX(${movement}px)`;
+    container.style.transition = "transform 0.1s ease";
+  }
+
+  console.log("FrontToBack (beta):", frontToBack);
+  console.log("LeftToRight (gamma):", leftToRight);
+  console.log("RotateDegrees (alpha):", rotateDegrees);
+};
+
+
 
 
 const init = () => {
@@ -314,7 +435,7 @@ const init = () => {
   showMessages();
   bibleStamps();
   woodBlock();
-  dateIcon();
+  // dateIcon();
   toggleAnswer();
 }
 
