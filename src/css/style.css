@@ -79,6 +79,10 @@ button {
   outline: none;
 }
 
+nav{
+  z-index: 5;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -568,11 +572,6 @@ h1 {
   margin-block-start: 8vh;
 }
 
-.comics__background>h2,
-.woodblocks {
-  margin-inline: 7vw;
-}
-
 .comics__background>h2 {
   inline-size: 80vw;
   color: inherit;
@@ -680,9 +679,9 @@ h1 {
   /* Hide scrollbar (optional) */
 }
 
-/* .after__biblia {
+.after__biblia {
   display: none;
-} */
+}
 
 .grid {
   display: grid;
@@ -787,7 +786,7 @@ h1 {
   margin-block-end: 10vh;
 }
 
-.beggining_music{
+.beggining_music {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -799,44 +798,81 @@ h1 {
   grid-column: 1;
 }
 
-/* 
-.timeline__after {
+.learn__h2,
+.music__text__h2 {
+  color: inherit;
+}
+
+.music__text__p {
+  inline-size: 80vw;
+}
+
+
+.music__text,
+.comics__background>h2,
+.woodblocks {
+  margin-inline: 7vw;
+}
+
+.learn__biblia__title,
+.learn__wood__title,
+.learn__octo__title {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-size: var(--fs-lg);
+}
+
+.learn>* {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  inline-size: 200vw;
+  align-items: center;
 }
 
-.timeline__now {
+.bye__button,
+.more {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-size: var(--fs-md);
+  color: inherit;
+  border: 5px solid var(--color-yellow);
+  padding: 1vh;
+}
+
+.bye__text__p {
+  inline-size: 75vw;
+}
+
+.bye__text {
+  margin-inline-start: 5vw;
+}
+
+.bye__imgs__entrance {
+  margin-inline-start: -9vw;
+}
+
+.bye__imgs {
+  background-image: url(../assets/background__bye.svg);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  block-size: 90vh;
+}
+
+.footer__nav>li {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-size: var(--fs-md);
+  color: inherit;
+  border-bottom: 5px solid var(--color-yellow);
+}
+
+footer {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: end;
-  inline-size: 67vw;
-  grid-row: 2;
-  grid-column: 3;
-} */
-
-/* 
-
-
-.timeline__before {
-  inline-size: 67vw;
-  margin-inline-start: 3vh;
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.timeline__before__line {
-  grid-row: 1/3;
-  grid-column: 1/4;
-  align-self: center;
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: 1fr 60vw 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: 5vh;
-} */
+  align-items: flex-start;
+  border-top: 5px solid var(--color-yellow);
+}
+
+@media screen and (min-width: 400px) {
+ 
+}
 
 /* 450 to phone */

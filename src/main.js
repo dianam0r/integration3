@@ -1,110 +1,90 @@
+// sign form
 const canvas = document.getElementById("signatureCanvas");
 const ctx = canvas.getContext("2d");
 let isDrawing = false;
 let hasDrawing = false;
 
+// menu
 const $navButton = document.querySelector('.nav__button');
 const $navList = document.querySelector('.nav__list');
 const $iconLink = document.querySelector('#iconlink');
-const listItems = $navList.querySelectorAll("li a");
 
-const timeline = () => {
-  const timeline = document.querySelector(".timeline__line");
-  const timelineWidth = timeline.offsetWidth;
-  const amountToScroll = timelineWidth - window.innerWidth;
-  console.log(timeline.offsetWidth);
+// drag music
+const canvasDrag = document.getElementById("canvasDrag");
+const ctxDrag = canvasDrag.getContext("2d");
+const dragElement = document.querySelector(".dragElement");
+const img1 = new Image();
+const img2 = new Image();
 
+// slide
+const carousel = document.querySelector('.carousel');
+const slides = Array.from(carousel.querySelectorAll('.slide'));
+const prevButton = carousel.querySelector('.carousel__button.prev');
+const nextButton = carousel.querySelector('.carousel__button.next');
+let currentIndex = 0;
+
+const menu = (mm) => {
   
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".timeline",
-      start: "top 20%",
-      end: "+=" + amountToScroll,
-      pin: true,
-      scrub: 1,
-      markers: true,
-    },
-  });
-
-  tl.to(".timeline",
+  mm.add(
     {
-      x: -amountToScroll,
-      duration: 20,
-      ease: "none",
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(max-width: 1023px)"
+    },
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
 
+      if (isMobile) {
+        console.log("Mobile menu initialized");
+
+        $navButton.classList.remove('hidden');
+        $navList.classList.add("hidden");
+
+        // Add event listeners for mobile behavior
+        $navButton.addEventListener("click", toggleNavigation);
+
+        window.addEventListener("keyup", (e) => {
+          if (e.key === "Escape") {
+            $navButton.focus();
+            closeNavigation();
+          }
+        });
+      }
+
+      if (isDesktop) {
+
+        $navButton.classList.add('hidden');
+        $navList.classList.remove("hidden");
+
+        $navButton.removeEventListener("click", toggleNavigation);
+      }
+
+      return () => {
+        console.log("Cleaning up menu behavior for", isMobile ? "mobile" : "desktop");
+      };
     }
-  )
-}
+  );
+};
 
-function startDrawing(event) {
-  isDrawing = true;
-  hasDrawing = true;
-  ctx.beginPath();
-  ctx.moveTo(getX(event), getY(event));
-  document.querySelector(".biblia__submit").style.display = "block";
-  document.querySelector(".biblia__write").style.display = "none";
-  clearForm();
-}
-function draw(event) {
-  if (!isDrawing) return;
+const openNavigation = () => {
+  $navButton.setAttribute("aria-expanded", "true");
+  $iconLink.setAttribute("xlink:href", "#close");
+  $navList.classList.remove("hidden");
+};
 
-  ctx.lineTo(getX(event), getY(event));
-  ctx.strokeStyle = "#BD2B54";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  if (!hasDrawing) return;
-}
+const closeNavigation = () => {
+  $navButton.setAttribute("aria-expanded", "false");
+  $iconLink.setAttribute("xlink:href", "#navicon");
+  $navList.classList.add("hidden");
+};
 
-function stopDrawing() {
-  isDrawing = false;
-  ctx.closePath();
-}
+const toggleNavigation = () => {
+  const open = $navButton.getAttribute("aria-expanded");
+  open === "false" ? openNavigation() : closeNavigation();
+};
 
-function getX(event) {
-  if (event.type.includes("touch")) {
-    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
-    return event.touches[0].clientX - rect.left; // Adjust for canvas offset
-  }
-  return event.offsetX;
-}
 
-function getY(event) {
-  if (event.type.includes("touch")) {
-    const rect = canvas.getBoundingClientRect(); // Get canvas bounds
-    return event.touches[0].clientY - rect.top; // Adjust for canvas offset
-  }
-  return event.offsetY;
-}
-
-const clearForm = () => {
-  document.querySelector(".biblia__retry").style.display = "block";
-  document.getElementById("clearButton").addEventListener("click", () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hasDrawing = false;
-    document.querySelector(".biblia__second_page").style.display = "none";
-    document.querySelector(".biblia__submit").style.display = "none";
-    document.querySelector(".biblia__write").style.display = "block";
-    document.querySelector(".biblia__retry").style.display = "none";
-  });
-}
-
-document.getElementById("signatureForm").addEventListener("submit", (event) => {
-  if (!hasDrawing) {
-    alert("You must sign before submitting the form.");
-    event.preventDefault();
-  } else {
-    document.querySelector(".biblia__second_page").style.display = "block";
-    document.querySelector(".biblia__submit").style.display = "none";
-    document.querySelector(".after__biblia").style.display = "block";
-    timeline();
-    event.preventDefault();
-  }
-});
-
-let mm = gsap.matchMedia();
-
-mm.add("(min-width: 350px)", () => {
+const intro = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".intro",
@@ -115,56 +95,48 @@ mm.add("(min-width: 350px)", () => {
     },
   });
 
-  tl.to(".intro", {
-    opacity: 0,
-    duration: 1,
-    ease: "power1.out",
-  })
-    .to(
-      ".stroll",
-      {
-        opacity: 1,
-        duration: 1,
-        ease: "power1.out",
-      },
-      "<"
-    )
-    .to(
-      ".intro__plantin",
-      {
-        marginBottom: 0,
-        y: -300,
-        duration: 1,
-        ease: "power1.out",
-      },
-      "<"
-    )
-  tl.to(".stroll", {
-    opacity: 0,
-    duration: 1,
-    ease: "power1.out",
-  })
-  tl.to(".hello_there", {
-    opacity: 1,
-    duration: 1,
-    ease: "power1.out",
-  })
-  tl.to(".intro__plantin__writing_icon, .intro__plantin__post_it", {
-    opacity: 0,
-    duration: 1,
-    ease: "power1.out",
-  },
-    "<")
-    .to(
-      ".intro__plantin",
-      {
-        x: -20,
-        duration: 1,
-        ease: "power1.out",
-      },
-      "<"
-    );
-});
+  tl.fromTo(".intro", { 
+    opacity: 1 }, 
+    { opacity: 0, 
+      duration: 1, 
+      ease: "power1.out" });
+
+  tl.fromTo(
+    ".stroll",
+    { opacity: 0 },
+    { opacity: 1, duration: 5, ease: "power1.out" },
+    "<"
+  );
+
+  tl.fromTo(
+    ".intro__plantin",
+    { marginBottom: "20px", y: 0 },
+    { marginBottom: 0, y: -300, duration: 1, ease: "power1.out" },
+    "<"
+  );
+
+  tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
+
+  tl.fromTo(
+    ".hello_there",
+    { opacity: 0 },
+    { opacity: 1, duration: 1, ease: "power1.out" }
+  );
+
+  tl.fromTo(
+    ".intro__plantin__writing_icon, .intro__plantin__post_it",
+    { opacity: 1 },
+    { opacity: 0, duration: 1, ease: "power1.out" },
+    "<"
+  );
+
+  tl.fromTo(
+    ".intro__plantin",
+    { x: 0 },
+    { x: -20, duration: 1, ease: "power1.out" },
+    "<"
+  );
+};
 
 const showMessages = () => {
   const messages = gsap.utils.toArray(".messages > div");
@@ -182,12 +154,7 @@ const showMessages = () => {
     tl.fromTo(
       message,
       { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power1.out",
-      }
+      { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
     );
   });
 };
@@ -205,27 +172,124 @@ const bibleStamps = () => {
   tl.fromTo(
     [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
     { opacity: 0, scale: 0.8 },
-    {
-      opacity: 1,
-      scale: 1,
-      duration: 1.5,
-      ease: "power1.out",
-      stagger: 0.5,
-    }
-  )
-    .to(
-      [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
-      {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1.5,
-        ease: "power1.out",
-        stagger: 0.5,
-      }
-    );
+    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out", stagger: 0.5 }
+  ).fromTo(
+    [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out", stagger: 0.5 }
+  );
+};
+
+// form
+const signForm = () =>{
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("touchstart", startDrawing);
+  canvas.addEventListener("touchmove", draw);
+  canvas.addEventListener("touchend", stopDrawing);
+  submit();
+}
+
+const startDrawing = (event) => {
+  isDrawing = true;
+  hasDrawing = true;
+  ctx.beginPath();
+  ctx.moveTo(getX(event), getY(event));
+  document.querySelector(".biblia__submit").style.display = "block";
+  document.querySelector(".biblia__write").style.display = "none";
+  clearForm();
+}
+
+const draw = (event) => {
+  if (!isDrawing) return;
+
+  ctx.lineTo(getX(event), getY(event));
+  ctx.strokeStyle = "#BD2B54";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  if (!hasDrawing) return;
+}
+
+const stopDrawing = () => {
+  isDrawing = false;
+  ctx.closePath();
+}
+
+const getX = (event) => {
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); 
+    return event.touches[0].clientX - rect.left; 
+  }
+  return event.offsetX;
+}
+
+const getY = (event) => {
+  if (event.type.includes("touch")) {
+    const rect = canvas.getBoundingClientRect(); 
+    return event.touches[0].clientY - rect.top; 
+  }
+  return event.offsetY;
+}
+
+const clearForm = () => {
+  document.querySelector(".biblia__retry").style.display = "block";
+  document.getElementById("clearButton").addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasDrawing = false;
+    document.querySelector(".biblia__second_page").style.display = "none";
+    document.querySelector(".biblia__submit").style.display = "none";
+    document.querySelector(".biblia__write").style.display = "block";
+    document.querySelector(".biblia__retry").style.display = "none";
+  });
+}
+
+const submit = () =>{
+document.getElementById("signatureForm").addEventListener("submit", (event) => {
+  if (!hasDrawing) {
+    alert("You must sign before submitting the form.");
+    event.preventDefault();
+  } else {
+    document.querySelector(".biblia__second_page").style.display = "block";
+    document.querySelector(".biblia__submit").style.display = "none";
+    document.querySelector(".after__biblia").style.display = "block";
+    timeline();
+    dateIcon();
+    woodBlock();
+    musicSheetAppear();
+    event.preventDefault();
+  }
+});
+}
+
+const dateIcon = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".biblia__second_page",
+      start: "top 10%",
+      end: "bottom 10%",
+      scrub: true,
+    },
+  });
+
+  tl.fromTo(
+    ".conclusion_biblia__date_icon",
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out" }
+  ).fromTo(
+    ".conclusion_biblia__date_icon",
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out" }
+  );
 };
 
 const woodBlock = () => {
+  clickWoodblock();
+  fallingWoodblock();
+};
+
+const clickWoodblock = () =>{
   document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
     .forEach(element => {
       element.addEventListener("click", () => {
@@ -263,73 +327,33 @@ const woodBlock = () => {
         );
       });
     });
+}
 
+const fallingWoodblock = () => {
   gsap.timeline({
     scrollTrigger: {
       trigger: ".g_woodblock2__flex",
       start: "top 50%",
       end: "bottom 20%",
       scrub: true,
-    }
-  }).fromTo(
-    ".g_woodblock2__flex",
-    {
-      y: 0,
-      scale: 1
     },
-    {
-      y: "+=460",
-      scale: 1.8,
-      rotation: 365,
-      duration: 1,
-      ease: "power1.out"
-    }
-  ).to(
-    ".g_woodblock2__flex",
-    {
-      opacity: 0,
-      duration: 0.2,
-      ease: "power1.out"
-    }
-  )
-    .to(
-      ".grid__g",
-      {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power1.out"
-      },
-      "-=0.3"
+  })
+    .fromTo(
+      ".g_woodblock2__flex",
+      { y: 0, scale: 1, opacity: 1 },
+      { y: "+=460", scale: 1.8, rotation: 365, duration: 1, ease: "power1.out" }
     )
-    ;
-};
-
-
-const dateIcon = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".after__bible",
-      start: "top 0%",
-      end: "bottom 50%",
-      scrub: true,
-    },
-  });
-
-  tl.fromTo(
-    ".conclusion_biblia__date_icon",
-    { opacity: 0, scale: 0.8 },
-    {
-      opacity: 1,
-      scale: 1,
-      duration: 1.5,
-      ease: "power1.out",
-    }
-  ).to(".conclusion_biblia__date_icon", {
-    opacity: 0,
-    scale: 0.8,
-    duration: 1.5,
-    ease: "power1.out",
-  });
+    .fromTo(
+      ".g_woodblock2__flex",
+      { opacity: 1 },
+      { opacity: 0, duration: 0.2, ease: "power1.out" }
+    )
+    .fromTo(
+      ".grid__g",
+      { opacity: 0 },
+      { opacity: 1, duration: 0.2, ease: "power1.out" },
+      "-=0.3"
+    );
 };
 
 const toggleAnswer = () => {
@@ -339,7 +363,6 @@ const toggleAnswer = () => {
 
   if (question && answer && arrow) {
     question.addEventListener("click", () => {
-      // Toggle display of the answer
       if (answer.style.display === "block") {
         answer.style.display = "none"; // Close the answer
         arrow.classList.remove("woodblocks__question__arrow--open");
@@ -353,65 +376,54 @@ const toggleAnswer = () => {
   }
 };
 
+const tilting = () =>{
+
 if (window.DeviceOrientationEvent) {
   window.addEventListener(
     "deviceorientation",
     (event) => {
-      const leftToRight = event.gamma; // left to right
-
+      const leftToRight = event.gamma;
       handleOrientationEvent(leftToRight);
     },
     true
   );
 }
+}
 
 const handleOrientationEvent = (leftToRight) => {
   const container = document.querySelector(".comics__options");
-  const h2 = document.querySelector(".comics__background h2");
+  const options = document.querySelectorAll(".comics__options img");
+  const centerX = window.innerWidth / 2;
+  const resultsTitle = document.querySelector(".comics__results__title");
+  const resultsP = document.querySelector(".comics__results__p");
 
   if (container) {
     const maxMovement = window.innerWidth * 4;
     let movement = leftToRight * 5;
     movement = Math.max(-maxMovement, Math.min(movement, maxMovement));
-
     container.style.transform = `translateX(${movement}px)`;
     container.style.transition = "transform 0.1s ease";
-
-
-    if (movement > 0) {
-      console.log("You are tilting to the left.");
-    } else if (movement < 0) {
-      console.log("You are tilting to the right.");
-    } else {
-      console.log("You are holding the device level.");
-    }}
-
-  const options = document.querySelectorAll(".comics__options img");
-  const centerX = window.innerWidth / 2;
-
-  const resultsTitle = document.querySelector(".comics__results__title");
-  const resultsP = document.querySelector(".comics__results__p");
+  }
 
   options.forEach((option) => {
     const optionRect = option.getBoundingClientRect();
     const optionCenterX = optionRect.left + optionRect.width / 2;
 
-    if (Math.abs(centerX - optionCenterX) < 50) { // Adjust 50 for sensitivity
-      // Update results text based on the centered option
+    if (Math.abs(centerX - optionCenterX) < 50) { 
       if (option.classList.contains("comics__options__1")) {
         resultsTitle.textContent = "Not Exactly...";
         resultsP.textContent = "";
       } else if (option.classList.contains("comics__options__2")) {
         resultsTitle.textContent =
           "Exactly! "
-        resultsP.textContent =" These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
+        resultsP.textContent = " These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
       } else if (option.classList.contains("comics__options__3")) {
         resultsTitle.textContent = "G for good try but try again.";
-        resultsP.textContent ="";
+        resultsP.textContent = "";
       } else if (option.classList.contains("comics__options__4")) {
         resultsTitle.textContent = "Not Exactly...";
         resultsP.textContent = "";
-      }else {
+      } else {
         resultsTitle.textContent = "";
         resultsP.textContent = "";
       }
@@ -419,19 +431,57 @@ const handleOrientationEvent = (leftToRight) => {
   });
 }
 
-const canvasDrag = document.getElementById("canvasDrag");
-const ctxDrag = canvasDrag.getContext("2d");
+const timeline = () => {
+  const timeline = document.querySelector(".timeline__line");
+  const timelineWidth = timeline.offsetWidth;
+  const amountToScroll = timelineWidth - window.innerWidth;
 
-const img1 = new Image();
-const img2 = new Image();
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".timeline",
+      start: "top 20%",
+      end: "+=" + amountToScroll,
+      pin: true,
+      scrub: 1,
+    },
+  });
 
+  tl.fromTo(
+    ".timeline",
+    { x: 0 },
+    { x: -amountToScroll, duration: 20, ease: "none" }
+  );
+};
+
+const musicSheetAppear = () => {
+  const begginingMusic = document.querySelector(".beggining_music__music_sheet");
+  const musicWidth = begginingMusic.offsetWidth;
+  const amountToScroll = musicWidth - window.innerWidth;
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".beggining_music",
+      start: "top 20%",
+      end: "+=" + amountToScroll,
+      pin: true,
+      scrub: 1,
+      markers: true,
+    },
+  });
+
+  tl.fromTo(
+    ".beggining_music",
+    { x: 0 },
+    { x: -amountToScroll, duration: 20, ease: "none" }
+  );
+};
+
+
+const dragMusic = () =>{
 img1.src = "./src/assets/trying_music.svg";
 img2.src = "./src/assets/music_old.svg";
-
-const dragElement = document.querySelector(".dragElement");
-
 img1.onload = img2.onload = () => {
-  drawOverlayImages();
+  overlayImages();
 };
 
 Draggable.create(".dragElement", {
@@ -440,18 +490,17 @@ Draggable.create(".dragElement", {
   onDrag: function () {
     const dragLocation = dragElement.getBoundingClientRect();
     const canvasLocation = canvasDrag.getBoundingClientRect();
-    // position of drag relative to canvas
     const relativeX = dragLocation.left + dragLocation.width / 2 - canvasLocation.left;
-    updateCanvas(relativeX);
+    cutImages(relativeX);
   },
 });
+}
 
-function updateCanvas(lineX) {
+const cutImages = (lineX)=> {
   lineX = Math.max(0, Math.min(lineX, canvasDrag.width));
 
   ctxDrag.clearRect(0, 0, canvasDrag.width, canvasDrag.height);
 
-  // Clip the canvas to show img2 only up to lineX (left side)
   ctxDrag.save();
   ctxDrag.beginPath();
   ctxDrag.rect(0, 0, lineX, canvasDrag.height);
@@ -469,76 +518,49 @@ function updateCanvas(lineX) {
   ctxDrag.restore();
 }
 
-
-function drawOverlayImages() {
+const overlayImages = () => {
   const initialLineX = canvasDrag.width / 2;
-  updateCanvas(initialLineX);
+  cutImages(initialLineX);
 }
+
+const slideLearn = () =>{
+  nextButton.addEventListener('click', showNextSlide);
+  prevButton.addEventListener('click', showPrevSlide);
+  updateSlide();
+}
+
+const updateSlide = () => {
+  slides.forEach((slide, index) => {
+    slide.style.display = index === currentIndex ? 'block' : 'none';
+  });
+}
+
+const showNextSlide = ()=> {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlide();
+}
+
+const showPrevSlide = () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlide();
+}
+
 
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(Draggable);
+  const mm = gsap.matchMedia();
 
-  
-
-
-  $navButton.classList.remove('hidden');
-  $navList.classList.add("hidden");
-
-  const openNavigation = () => {
-    $navButton.setAttribute("aria-expanded", "true");
-    $iconLink.setAttribute("xlink:href", "#close");
-    $navList.classList.remove("hidden");
-  }
-
-  const closeNavigation = () => {
-    $navButton.setAttribute("aria-expanded", "false");
-    $iconLink.setAttribute("xlink:href", "#navicon");
-    $navList.classList.add("hidden");
-  }
-
-  const toggleNavigation = () => {
-    const open = $navButton.getAttribute("aria-expanded");
-    open === "false" ? openNavigation() : closeNavigation();
-  }
-
-
-  const handleBlur = () => {
-    //if (!event.relatedTarget || !$navList.contains(event.relatedTarget)) {
-    closeNavigation();
-    //}
-  }
-
-  $navButton.addEventListener("click", toggleNavigation);
-
-  listItems[listItems.length - 1].addEventListener("blur", handleBlur);
-
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Escape") {
-      $navButton.focus();
-      closeNavigation();
-    }
-  });
-
-  canvas.addEventListener("mousedown", startDrawing);
-  canvas.addEventListener("mousemove", draw);
-  canvas.addEventListener("mouseup", stopDrawing);
-  canvas.addEventListener("mouseout", stopDrawing);
-  canvas.addEventListener("touchstart", startDrawing);
-  canvas.addEventListener("touchmove", draw);
-  canvas.addEventListener("touchend", stopDrawing);
-
+  menu(mm);
+  intro();
   showMessages();
   bibleStamps();
-  woodBlock();
-  // dateIcon();
+  signForm();
   toggleAnswer();
-  timeline();
-}
-
-
+  tilting();
+  dragMusic();
+  slideLearn();
+};
 
 init();
-
-// what is happeniong now is tilting everything to the left alpha 90 beta 0 gamma - 90 and therefor containerRect.left: -610 and containerRect.right: 680 and then if u tilt everything to the right alpha 90 beta - 180 gamma - 90 and then containerRect.left: -430 and containerRect.right: 860. and then when it;s up alpha 0 beta 90 gamma 0 then containerRect.left: -430 and containerRect.right: 860. and what I want happening is when tilting everything to the left alpha 90 beta 0 gamma - 90 and therefor containerRect.left: -1000 containerRect.right: 200. and then if u tilt everything to the right alpha 90 beta - 180 gamma - 90 and then containerRect.left: -430 and containerRect.right: 860 and then when it;s up alpha 0 beta 90 gamma 0 then containerRect.left: -430 and containerRect.right: 860. 

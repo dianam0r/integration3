@@ -149,9 +149,8 @@
 
         <div class="intro__plantin">
               <picture class="intro__plantin__portrait_1">
-                  <source
-                          sizes="(min-width: 350px)  75vw,
-                    (min-width:1420px) 75vw"
+                  <source sizes="(min-width:1420px) 40vw, (min-width: 350px)  75vw
+                    "
                           srcset="
                   ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
                     ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
@@ -159,8 +158,7 @@
                     ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
                           type="image/avif">
                     <img
-                    sizes="(min-width: 350px)  75vw,
-                    (min-width:1420px) 75vw"
+                    sizes="(min-width:1420px) 40vw, (min-width: 350px)  75vw"
                     srcset="
                   ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.png 422w,
                     ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.png 526w,
@@ -517,7 +515,6 @@
           
         </div>
         <div class="after__biblia">
-        
         <div class="conclusion_biblia">
           <div class="conclusion_biblia__clicking_portrait">
             
@@ -776,32 +773,43 @@
           </div>
         </div>
 
-      <!--  <div class="music">
-          <h2  class="music__h2"> The first musical work printed by Plantin’s press</h2>
-            <p class="music__p">Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
+        <div class="music">
+          <div class="music__text">
+          <h2  class="music__text__h2"> The first musical work printed by Plantin’s press</h2>
+            <p class="music__text__p">Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
       The publication was massive, measuring 55 by 40 cm, designed so all choir singers could read it together.</p>
-                <img class="music__musicsheet" src="./src/assets/music_sheet.svg" alt="music sheet from then and now"/>
+          </div> 
+          <div class="grid">
+        <canvas id="canvasDrag" width="600" height="400"></canvas>
+        <img class="dragElement" src="./src/assets/drag.svg" alt="instagram icon"/>
+        </div>
 
-    </div>
+        </div>
 
-        <div class="learn hidden">
+        <div class="learn">
           <h2 class="learn__h2" >What did we learn?</h2>
-          <div class="learn__biblia">
-          <img class="learn__biblia__img" src="./src/assets/learn_biblia.svg" alt="opened biblia with a frame"/>
-          <p class="learn__biblia__title strong">Biblia Polygllota</p>
-          <button class="more strong">More</button>
-        </div>
-        <div>
-          <p class="learn__wood strong">Wood Printing</p>
-          <button>More</button>
-        </div>
-        <div>
-          <p class="learn__octo strong">Octo Missae</p>
-          <button>More</button>
-        </div>
+          <div class="carousel">
+            <button class="carousel__button prev" >&#8592;</button>
+            <ul>
+              <li class="learn__biblia slide">
+              <img class="learn__biblia__img" src="./src/assets/learn_biblia.svg" alt="opened biblia with a frame"/>
+              <p class="learn__biblia__title strong">Biblia Polygllota</p>
+              <button class="more strong">More</button>
+              </li>
+              <li class="learn__wood slide">
+                <p class="learn__wood__title strong">Wood Printing</p>
+                <button class="more strong">More</button>
+              </li>
+              <li class="learn__octo slide">
+                <p class="learn__octo__title strong">Octo Missae</p>
+                <button class="more strong">More</button>
+              </li>
+            </ul>
+           <button class="carousel__button next">&#8594;</button>
+          </div>
       </div>
 
-        <div class="bye hidden">
+       <div class="bye">
           <div class="bye__text">
         <h2> Bye Plantin</h2>
         <p class="bye__text__p">Thank you, Plantin, for bringing history to life and letting us glimpse your extraordinary world. Curious to explore more? Step into the legacy of Plantin’s workshop and uncover the masterpieces that shaped centuries of knowledge and art.</p>
@@ -811,15 +819,9 @@
           <img class="bye__imgs__garden" src="./src/assets/garden_end.svg" alt="museum's garden"/>
           <img class="bye__imgs__entrance" src="./src/assets/entrance_end.svg" alt="museum's entrance"/>
         </div>
-        </div> -->
+        </div>
         </div>
 
-        <div class="grid">
-        <canvas id="canvasDrag" width="600" height="400"></canvas>
-        <img class="dragElement" src="./src/assets/drag.svg" alt="instagram icon"/>
-        </div>
-
-        
     </main>
 
     <footer>
