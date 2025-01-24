@@ -24,7 +24,7 @@ const nextButton = carousel.querySelector('.carousel__button.next');
 let currentIndex = 0;
 
 const menu = (mm) => {
-  
+
 
   mm.add(
     {
@@ -95,11 +95,14 @@ const intro = () => {
     },
   });
 
-  tl.fromTo(".intro", { 
-    opacity: 1 }, 
-    { opacity: 0, 
-      duration: 1, 
-      ease: "power1.out" });
+  tl.fromTo(".intro", {
+    opacity: 1
+  },
+    {
+      opacity: 0,
+      duration: 1,
+      ease: "power1.out"
+    });
 
   tl.fromTo(
     ".stroll",
@@ -181,7 +184,7 @@ const bibleStamps = () => {
 };
 
 // form
-const signForm = () =>{
+const signForm = () => {
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", stopDrawing);
@@ -219,16 +222,16 @@ const stopDrawing = () => {
 
 const getX = (event) => {
   if (event.type.includes("touch")) {
-    const rect = canvas.getBoundingClientRect(); 
-    return event.touches[0].clientX - rect.left; 
+    const rect = canvas.getBoundingClientRect();
+    return event.touches[0].clientX - rect.left;
   }
   return event.offsetX;
 }
 
 const getY = (event) => {
   if (event.type.includes("touch")) {
-    const rect = canvas.getBoundingClientRect(); 
-    return event.touches[0].clientY - rect.top; 
+    const rect = canvas.getBoundingClientRect();
+    return event.touches[0].clientY - rect.top;
   }
   return event.offsetY;
 }
@@ -245,22 +248,22 @@ const clearForm = () => {
   });
 }
 
-const submit = () =>{
-document.getElementById("signatureForm").addEventListener("submit", (event) => {
-  if (!hasDrawing) {
-    alert("You must sign before submitting the form.");
-    event.preventDefault();
-  } else {
-    document.querySelector(".biblia__second_page").style.display = "block";
-    document.querySelector(".biblia__submit").style.display = "none";
-    document.querySelector(".after__biblia").style.display = "block";
-    timeline();
-    dateIcon();
-    woodBlock();
-    musicSheetAppear();
-    event.preventDefault();
-  }
-});
+const submit = () => {
+  document.getElementById("signatureForm").addEventListener("submit", (event) => {
+    if (!hasDrawing) {
+      alert("You must sign before submitting the form.");
+      event.preventDefault();
+    } else {
+      document.querySelector(".biblia__second_page").style.display = "block";
+      document.querySelector(".biblia__submit").style.display = "none";
+      document.querySelector(".after__biblia").style.display = "block";
+      timeline();
+      dateIcon();
+      woodBlock();
+      musicSheetAppear();
+      event.preventDefault();
+    }
+  });
 }
 
 const dateIcon = () => {
@@ -289,7 +292,7 @@ const woodBlock = () => {
   fallingWoodblock();
 };
 
-const clickWoodblock = () =>{
+const clickWoodblock = () => {
   document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
     .forEach(element => {
       element.addEventListener("click", () => {
@@ -376,18 +379,18 @@ const toggleAnswer = () => {
   }
 };
 
-const tilting = () =>{
+const tilting = () => {
 
-if (window.DeviceOrientationEvent) {
-  window.addEventListener(
-    "deviceorientation",
-    (event) => {
-      const leftToRight = event.gamma;
-      handleOrientationEvent(leftToRight);
-    },
-    true
-  );
-}
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener(
+      "deviceorientation",
+      (event) => {
+        const leftToRight = event.gamma;
+        handleOrientationEvent(leftToRight);
+      },
+      true
+    );
+  }
 }
 
 const handleOrientationEvent = (leftToRight) => {
@@ -409,7 +412,7 @@ const handleOrientationEvent = (leftToRight) => {
     const optionRect = option.getBoundingClientRect();
     const optionCenterX = optionRect.left + optionRect.width / 2;
 
-    if (Math.abs(centerX - optionCenterX) < 50) { 
+    if (Math.abs(centerX - optionCenterX) < 50) {
       if (option.classList.contains("comics__options__1")) {
         resultsTitle.textContent = "Not Exactly...";
         resultsP.textContent = "";
@@ -443,6 +446,8 @@ const timeline = () => {
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
+      markers: true,
+      pinSpacing: false
     },
   });
 
@@ -465,7 +470,7 @@ const musicSheetAppear = () => {
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
-      markers: true,
+      markers: false,
     },
   });
 
@@ -477,26 +482,26 @@ const musicSheetAppear = () => {
 };
 
 
-const dragMusic = () =>{
-img1.src = "./src/assets/trying_music.svg";
-img2.src = "./src/assets/music_old.svg";
-img1.onload = img2.onload = () => {
-  overlayImages();
-};
+const dragMusic = () => {
+  img1.src = "./src/assets/trying_music.svg";
+  img2.src = "./src/assets/music_old.svg";
+  img1.onload = img2.onload = () => {
+    overlayImages();
+  };
 
-Draggable.create(".dragElement", {
-  type: "x",
-  bounds: canvasDrag,
-  onDrag: function () {
-    const dragLocation = dragElement.getBoundingClientRect();
-    const canvasLocation = canvasDrag.getBoundingClientRect();
-    const relativeX = dragLocation.left + dragLocation.width / 2 - canvasLocation.left;
-    cutImages(relativeX);
-  },
-});
+  Draggable.create(".dragElement", {
+    type: "x",
+    bounds: canvasDrag,
+    onDrag: function () {
+      const dragLocation = dragElement.getBoundingClientRect();
+      const canvasLocation = canvasDrag.getBoundingClientRect();
+      const relativeX = dragLocation.left + dragLocation.width / 2 - canvasLocation.left;
+      cutImages(relativeX);
+    },
+  });
 }
 
-const cutImages = (lineX)=> {
+const cutImages = (lineX) => {
   lineX = Math.max(0, Math.min(lineX, canvasDrag.width));
 
   ctxDrag.clearRect(0, 0, canvasDrag.width, canvasDrag.height);
@@ -523,7 +528,7 @@ const overlayImages = () => {
   cutImages(initialLineX);
 }
 
-const slideLearn = () =>{
+const slideLearn = () => {
   nextButton.addEventListener('click', showNextSlide);
   prevButton.addEventListener('click', showPrevSlide);
   updateSlide();
@@ -535,7 +540,7 @@ const updateSlide = () => {
   });
 }
 
-const showNextSlide = ()=> {
+const showNextSlide = () => {
   currentIndex = (currentIndex + 1) % slides.length;
   updateSlide();
 }
