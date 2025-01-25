@@ -1,8 +1,8 @@
 // sign form
-// const canvas = document.getElementById("signatureCanvas");
-// const ctx = canvas.getContext("2d");
-// let isDrawing = false;
-// let hasDrawing = false;
+const canvas = document.getElementById("signatureCanvas");
+const ctx = canvas.getContext("2d");
+let isDrawing = false;
+let hasDrawing = false;
 
 // menu
 const $navButton = document.querySelector('.nav__button');
@@ -401,11 +401,12 @@ const submit = () => {
     } else {
       document.querySelector(".biblia__second_page").style.display = "block";
       document.querySelector(".biblia__submit").style.display = "none";
-      document.querySelector(".after__biblia").style.display = "block";
-      timeline();
-      dateIcon();
-      woodBlock();
-      musicSheetAppear();
+      document.querySelector(".biblia__phone").style.display = "flex";
+      // document.querySelector(".after__biblia").style.display = "block";
+      // timeline();
+      // dateIcon();
+      // woodBlock();
+      // musicSheetAppear();
       event.preventDefault();
     }
   });
@@ -703,8 +704,8 @@ const init = () => {
   menu(mm);
   intro(mm);
   showMessages(mm);
-  // bibleStamps();
-  // signForm();
+  bibleStamps();
+  signForm();
   // toggleAnswer();
   // tilting();
   // dragMusic();
