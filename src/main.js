@@ -9,6 +9,17 @@ const $navButton = document.querySelector('.nav__button');
 const $navList = document.querySelector('.nav__list');
 const $iconLink = document.querySelector('#iconlink');
 
+//tilting woodblocks
+const container = document.querySelector(".comics__options");
+const options = document.querySelectorAll(".comics__options img");
+const centerX = window.innerWidth / 2;
+const resultsTitle = document.querySelector(".comics__results__title");
+const resultsP = document.querySelector(".comics__results__p");
+const slides = document.querySelectorAll('.comics__options li');
+let currentIndex = 0;
+let isTilting = false;
+
+
 // drag music
 // const canvasDrag = document.getElementById("canvasDrag");
 // const ctxDrag = canvasDrag.getContext("2d");
@@ -415,7 +426,8 @@ const submit = (mm) => {
             woodBlock();
             // timeline();
             // dateIcon();
-            
+            toggleAnswer();
+            tilting();
             // musicSheetAppear();
             event.preventDefault();
           }
@@ -559,59 +571,135 @@ const toggleAnswer = () => {
 };
 
 const tilting = () => {
-
+  update();
   if (window.DeviceOrientationEvent) {
     window.addEventListener(
       "deviceorientation",
       (event) => {
         const leftToRight = event.gamma;
-        handleOrientationEvent(leftToRight);
+        const frontToBack = event.beta;
+        const twist = event.alpha;
+        handleOrientationEvent(leftToRight, frontToBack, twist);
       },
       true
     );
   }
-}
+};
 
-const handleOrientationEvent = (leftToRight) => {
-  const container = document.querySelector(".comics__options");
-  const options = document.querySelectorAll(".comics__options img");
-  const centerX = window.innerWidth / 2;
-  const resultsTitle = document.querySelector(".comics__results__title");
-  const resultsP = document.querySelector(".comics__results__p");
+const update = () => {
+  slides.forEach((slide, index) => {
+    slide.style.display = index === currentIndex ? 'block' : 'none';
+  });
+  checkSlideContent();
+};
 
-  if (container) {
-    const maxMovement = window.innerWidth * 4;
-    let movement = leftToRight * 5;
-    movement = Math.max(-maxMovement, Math.min(movement, maxMovement));
-    container.style.transform = `translateX(${movement}px)`;
-    container.style.transition = "transform 0.1s ease";
+const next = () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  update();
+};
+
+const prev = () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  update();
+};
+
+const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
+  if (!isTilting) {
+    if (leftToRight > 15 && frontToBack >= 90 && frontToBack <= 105 && twist < 308 && twist > 270) {
+      console.log("left");
+      isTilting = true;
+      prev();
+    } else if (leftToRight < -15 && frontToBack >= 90 && frontToBack <= 108 && twist > 86 && twist < 109) {
+      console.log("right");
+      isTilting = true;
+      next();
+    }
   }
 
-  options.forEach((option) => {
-    const optionRect = option.getBoundingClientRect();
-    const optionCenterX = optionRect.left + optionRect.width / 2;
+  if (Math.abs(leftToRight) < 5 && Math.abs(frontToBack - 90) < 5 && Math.abs(twist) < 5) {
+    isTilting = false;
+  }
+};
 
-    if (Math.abs(centerX - optionCenterX) < 50) {
-      if (option.classList.contains("comics__options__1")) {
-        resultsTitle.textContent = "Not Exactly...";
-        resultsP.textContent = "";
-      } else if (option.classList.contains("comics__options__2")) {
-        resultsTitle.textContent =
-          "Exactly! "
-        resultsP.textContent = " These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
-      } else if (option.classList.contains("comics__options__3")) {
-        resultsTitle.textContent = "G for good try but try again.";
-        resultsP.textContent = "";
-      } else if (option.classList.contains("comics__options__4")) {
-        resultsTitle.textContent = "Not Exactly...";
-        resultsP.textContent = "";
-      } else {
+const checkSlideContent = () => {
+  const currentSlide = slides[currentIndex];
+  if (currentSlide.classList.contains('comics__options__1')) {
+    resultsTitle.textContent = "Not Nature...";
+    resultsP.textContent = "";
+  } else if (currentSlide.classList.contains('comics__options__2')) {
+    resultsTitle.textContent = "Long People Yes!";
+    resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
+  } else if (currentSlide.classList.contains('comics__options__3')) {
+    resultsTitle.textContent = "G for good try but no";
+    resultsP.textContent = "";
+  } else if (currentSlide.classList.contains('comics__options__4')) {
+    resultsTitle.textContent = "Not Exactly...";
+    resultsP.textContent = "";
+  }
+};
+
+
+const dragWoodblock = () => {
+  document.querySelectorAll(".comics__options__1, .comics__options__2, .comics__options__3, .comics__options__4").forEach(option => {
+    const rect = option.getBoundingClientRect();
+    option.dataset.originalX = rect.left;
+    option.dataset.originalY = rect.top;
+  });
+
+  Draggable.create(".comics__options__1, .comics__options__2, .comics__options__3, .comics__options__4", {
+    bounds: ".comics__options",
+    type: "x,y",
+    onDragEnd: function () {
+      const squareRect = document.querySelector(".comics__options__square").getBoundingClientRect();
+      const draggedRect = this.target.getBoundingClientRect();
+
+
+      const isInside = (
+        draggedRect.left >= squareRect.left &&
+        draggedRect.right <= squareRect.right &&
+        draggedRect.top >= squareRect.top &&
+        draggedRect.bottom <= squareRect.bottom
+      );
+
+      // document.querySelectorAll(".comics__options__1, .comics__options__2, .comics__options__3, .comics__options__4").forEach(option => {
+      //   if (option !== this.target) {
+      //     option.style.transform = `translate(0, 0)`;
+      //   }
+      // });
+
+      if (!isInside) {
+        console.log("out")
         resultsTitle.textContent = "";
         resultsP.textContent = "";
+      } else {
+        if (isInside) {
+          if (this.target.classList.contains("comics__options__1")) {
+            console.log("1");
+            resultsTitle.textContent = "Not Exactly...";
+            resultsP.textContent = "";
+          } else if (this.target.classList.contains("comics__options__2")) {
+            console.log("2");
+            resultsTitle.textContent = "Exactly!";
+            resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
+          } else if (this.target.classList.contains("comics__options__3")) {
+            console.log("3");
+            resultsTitle.textContent = "G for good try but try again.";
+            resultsP.textContent = "";
+          } else if (this.target.classList.contains("comics__options__4")) {
+            console.log("4");
+            resultsTitle.textContent = "Not Exactly...";
+            resultsP.textContent = "";
+          }
+        } else {
+          console.log("out");
+          resultsTitle.textContent = "";
+          resultsP.textContent = "";
+        }
       }
+
     }
   });
-}
+};
 
 const timeline = () => {
   const timeline = document.querySelector(".timeline__line");
@@ -727,7 +815,7 @@ const showPrevSlide = () => {
   updateSlide();
 }
 
-let insideCount = 0; // Counter to track the number of times isInside is true
+let insideCount = 0;
 
 const dragPhone = () => {
   Draggable.create(".biblia__second_page, .biblia__first_page", {
@@ -737,15 +825,13 @@ const dragPhone = () => {
     onDragEnd: function () {
       const phoneRect = document.querySelector(".biblia__phone").getBoundingClientRect();
       const draggedRect = this.target.getBoundingClientRect();
-      console.log(phoneRect);
-      console.log(draggedRect);
+
 
       const isInside =
         draggedRect.bottom >= phoneRect.bottom &&
         draggedRect.left > phoneRect.left;
 
       if (!isInside) {
-        console.log("out");
       } else {
         gsap.to(this.target, { scale: 0, duration: 0.5 });
         insideCount++;
@@ -755,9 +841,10 @@ const dragPhone = () => {
           document.querySelector(".biblia__phone").style.display = "none";
           document.querySelector(".biblia__pages").classList.remove("relative_pages");
           woodBlock();
+          dragWoodblock();
           // timeline();
           // dateIcon();
-          
+
           // musicSheetAppear();
         }
       }
@@ -777,9 +864,6 @@ const init = () => {
   showMessages(mm);
   bibleStamps();
   signForm(mm);
-
-  // toggleAnswer();
-  // tilting();
   // dragMusic();
   // slideLearn();
 };
