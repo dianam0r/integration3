@@ -1231,6 +1231,7 @@ footer {
     grid-row: 1/3;
     align-self: center;
     margin-inline: 0vw;
+    overflow: hidden;
   }
 
   .biblia__second__background {
@@ -1248,19 +1249,131 @@ footer {
     margin-block-start: -25vh;
     inline-size: 100vw;
     block-size: 150vh;
-    
+    overflow: hidden;
   }
 
-  .biblia__open_biblia{
+  .biblia__open_biblia {
     z-index: 3;
   }
 
-  .biblia__phone{
+  .biblia__phone {
     flex-direction: column;
     align-items: center;
-    margin-block-start: 40vh;
+    margin-block-start: 130vh;
     block-size: 30vh;
+    position: relative;
     overflow: hidden;
+  }
+
+  .absolute {
+    position: absolute;
+  }
+
+  .absolute_second_page {
+    position: absolute;
+    left: 60vw;
+    margin: 0;
+  }
+
+  .relative_pages {
+    block-size: 0vh;
+  }
+
+  .conclusion_biblia__text {
+    background-image: none;
+    inline-size: 43vw;
+  }
+
+  .conclusion_biblia__background {
+    background-image: url(/integration3/src/assets/conclusion_biblia_background.png);
+    background-position: center top;
+    background-size: 41vw 42vh;
+    background-repeat: no-repeat;
+    padding: 5vh;
+    grid-column: 1/3;
+    grid-row: 1/3;
+    align-self: end;
+    justify-self: end;
+    margin-block-end: -8vh;
+    margin-inline-end: -4vw;
+  }
+
+  .conclusion_biblia {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    inline-size: 60vw;
+    block-size: 85vh;
+    justify-self: center;
+  }
+
+  .conclusion_biblia__clicking_portrait {
+    grid-column: 1/3;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .conclusion_biblia__date_icon {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .conclusion_biblia__hand {
+    margin-inline-start: 8vw;
+    margin-block-end: 2.5vw;
+  }
+
+  .conclusion_biblia__g_woodblock {
+    margin-block-start: 20vh;
+    margin-inline-start: 3vw;
+  }
+
+  .conclusion_biblia__click_icon {
+    justify-self: center;
+    margin-inline-end: 9vw;
+  }
+
+  .woodblocks__first_text {
+    inline-size: 50vw;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .woodblocks__question__wrapper {
+    padding-inline: 0;
+    border: none;
+    margin-block: 0;
+    inline-size: 40vw;
+    font-size: var(--fs-md);
+    color: var(--color-yellow);
+  }
+
+  .woodblocks__answer {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-body-brown);
+    font-size: var(--fs-body);
+  }
+
+  .woodblocks__question__arrow {
+    display: none;
+  }
+
+  .woodblocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .woodblocks__second_text {
+    inline-size: 50vw;
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .woodblocks__img{
+    grid-row: 1/3;
+    grid-column:1/3;
+    align-self: center;
   }
 }
 

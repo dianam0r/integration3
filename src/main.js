@@ -225,7 +225,7 @@ const intro = (mm) => {
 };
 
 const showMessages = (mm) => {
-  
+
   mm.add(
     {
       isDesktop: "(min-width: 1024px)",
@@ -329,7 +329,7 @@ const bibleStamps = () => {
 };
 
 // form
-const signForm = () => {
+const signForm = (mm) => {
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", stopDrawing);
@@ -337,7 +337,7 @@ const signForm = () => {
   canvas.addEventListener("touchstart", startDrawing);
   canvas.addEventListener("touchmove", draw);
   canvas.addEventListener("touchend", stopDrawing);
-  submit();
+  submit(mm);
 }
 
 const startDrawing = (event) => {
@@ -393,23 +393,56 @@ const clearForm = () => {
   });
 }
 
-const submit = () => {
-  document.getElementById("signatureForm").addEventListener("submit", (event) => {
-    if (!hasDrawing) {
-      alert("You must sign before submitting the form.");
-      event.preventDefault();
-    } else {
-      document.querySelector(".biblia__second_page").style.display = "block";
-      document.querySelector(".biblia__submit").style.display = "none";
-      document.querySelector(".biblia__phone").style.display = "flex";
-      // document.querySelector(".after__biblia").style.display = "block";
-      // timeline();
-      // dateIcon();
-      // woodBlock();
-      // musicSheetAppear();
-      event.preventDefault();
+const submit = (mm) => {
+
+  mm.add(
+    {
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(min-width: 300px) and (max-width:450px)"
+    },
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
+
+      if (isMobile) {
+        document.getElementById("signatureForm").addEventListener("submit", (event) => {
+          if (!hasDrawing) {
+            alert("You must sign before submitting the form.");
+            event.preventDefault();
+          } else {
+            document.querySelector(".biblia__second_page").style.display = "block";
+            document.querySelector(".biblia__submit").style.display = "none";
+            document.querySelector(".after__biblia").style.display = "block";
+            woodBlock();
+            // timeline();
+            // dateIcon();
+            
+            // musicSheetAppear();
+            event.preventDefault();
+          }
+        });
+      }
+
+      if (isDesktop) {
+        document.getElementById("signatureForm").addEventListener("submit", (event) => {
+          if (!hasDrawing) {
+            alert("You must sign before submitting the form.");
+            event.preventDefault();
+          } else {
+            document.querySelector(".biblia__second_page").style.display = "block";
+            document.querySelector(".biblia__submit").style.display = "none";
+            document.querySelector(".biblia__phone").style.display = "flex";
+            document.querySelector(".biblia__pages").classList.add("relative_pages");
+            document.querySelector(".biblia__first_page").classList.add("absolute");
+            document.querySelector(".biblia__second_page").classList.add("absolute_second_page");
+            dragPhone();
+            event.preventDefault();
+          }
+        });
+      }
+
+      return;
     }
-  });
+  );
 }
 
 const dateIcon = () => {
@@ -694,6 +727,44 @@ const showPrevSlide = () => {
   updateSlide();
 }
 
+let insideCount = 0; // Counter to track the number of times isInside is true
+
+const dragPhone = () => {
+  Draggable.create(".biblia__second_page, .biblia__first_page", {
+    bounds: ".biblia__phone",
+    type: "x,y",
+    edgeResistance: 0.65,
+    onDragEnd: function () {
+      const phoneRect = document.querySelector(".biblia__phone").getBoundingClientRect();
+      const draggedRect = this.target.getBoundingClientRect();
+      console.log(phoneRect);
+      console.log(draggedRect);
+
+      const isInside =
+        draggedRect.bottom >= phoneRect.bottom &&
+        draggedRect.left > phoneRect.left;
+
+      if (!isInside) {
+        console.log("out");
+      } else {
+        gsap.to(this.target, { scale: 0, duration: 0.5 });
+        insideCount++;
+
+        if (insideCount === 2) {
+          document.querySelector(".after__biblia").style.display = "block";
+          document.querySelector(".biblia__phone").style.display = "none";
+          document.querySelector(".biblia__pages").classList.remove("relative_pages");
+          woodBlock();
+          // timeline();
+          // dateIcon();
+          
+          // musicSheetAppear();
+        }
+      }
+    }
+  });
+};
+
 
 
 const init = () => {
@@ -705,7 +776,8 @@ const init = () => {
   intro(mm);
   showMessages(mm);
   bibleStamps();
-  signForm();
+  signForm(mm);
+
   // toggleAnswer();
   // tilting();
   // dragMusic();
