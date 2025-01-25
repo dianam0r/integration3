@@ -81,8 +81,6 @@ html {
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
 }
 
-
-
 .intro__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -733,7 +731,7 @@ a {
     margin-inline-start: -35vh;
   }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 1024px) {
 
   .intro__plants__phone {
     display: none;

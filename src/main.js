@@ -1,8 +1,8 @@
 // sign form
-const canvas = document.getElementById("signatureCanvas");
-const ctx = canvas.getContext("2d");
-let isDrawing = false;
-let hasDrawing = false;
+// const canvas = document.getElementById("signatureCanvas");
+// const ctx = canvas.getContext("2d");
+// let isDrawing = false;
+// let hasDrawing = false;
 
 // menu
 const $navButton = document.querySelector('.nav__button');
@@ -10,37 +10,36 @@ const $navList = document.querySelector('.nav__list');
 const $iconLink = document.querySelector('#iconlink');
 
 // drag music
-const canvasDrag = document.getElementById("canvasDrag");
-const ctxDrag = canvasDrag.getContext("2d");
-const dragElement = document.querySelector(".dragElement");
-const img1 = new Image();
-const img2 = new Image();
+// const canvasDrag = document.getElementById("canvasDrag");
+// const ctxDrag = canvasDrag.getContext("2d");
+// const dragElement = document.querySelector(".dragElement");
+
+// instead of src with array is metalink imgs in the public
+// const img1 = new Image();
+// const img2 = new Image();
 
 // slide
-const carousel = document.querySelector('.carousel');
-const slides = Array.from(carousel.querySelectorAll('.slide'));
-const prevButton = carousel.querySelector('.carousel__button.prev');
-const nextButton = carousel.querySelector('.carousel__button.next');
-let currentIndex = 0;
+// const carousel = document.querySelector('.carousel');
+// const slides = Array.from(carousel.querySelectorAll('.slide'));
+// const prevButton = carousel.querySelector('.carousel__button.prev');
+// const nextButton = carousel.querySelector('.carousel__button.next');
+// let currentIndex = 0;
 
 const menu = (mm) => {
-
 
   mm.add(
     {
       isDesktop: "(min-width: 1024px)",
-      isMobile: "(max-width: 1023px)"
+      isMobile: "(min-width: 300px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
 
       if (isMobile) {
-        console.log("Mobile menu initialized");
 
         $navButton.classList.remove('hidden');
         $navList.classList.add("hidden");
 
-        // Add event listeners for mobile behavior
         $navButton.addEventListener("click", toggleNavigation);
 
         window.addEventListener("keyup", (e) => {
@@ -59,11 +58,10 @@ const menu = (mm) => {
         $navButton.removeEventListener("click", toggleNavigation);
       }
 
-      return () => {
-        console.log("Cleaning up menu behavior for", isMobile ? "mobile" : "desktop");
-      };
+      return;
     }
   );
+
 };
 
 const openNavigation = () => {
@@ -84,83 +82,230 @@ const toggleNavigation = () => {
 };
 
 
-const intro = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".intro",
-      start: "top 10%",
-      end: "+=500",
-      pin: ".intro__grid",
-      scrub: true,
-    },
-  });
-
-  tl.fromTo(".intro", {
-    opacity: 1
-  },
+const intro = (mm) => {
+  mm.add(
     {
-      opacity: 0,
-      duration: 1,
-      ease: "power1.out"
-    });
-
-  tl.fromTo(
-    ".stroll",
-    { opacity: 0 },
-    { opacity: 1, duration: 5, ease: "power1.out" },
-    "<"
-  );
-
-  tl.fromTo(
-    ".intro__plantin",
-    { marginBottom: "20px", y: 0 },
-    { marginBottom: 0, y: -300, duration: 1, ease: "power1.out" },
-    "<"
-  );
-
-  tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
-
-  tl.fromTo(
-    ".hello_there",
-    { opacity: 0 },
-    { opacity: 1, duration: 1, ease: "power1.out" }
-  );
-
-  tl.fromTo(
-    ".intro__plantin__writing_icon, .intro__plantin__post_it",
-    { opacity: 1 },
-    { opacity: 0, duration: 1, ease: "power1.out" },
-    "<"
-  );
-
-  tl.fromTo(
-    ".intro__plantin",
-    { x: 0 },
-    { x: -20, duration: 1, ease: "power1.out" },
-    "<"
-  );
-};
-
-const showMessages = () => {
-  const messages = gsap.utils.toArray(".messages > div");
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".messages",
-      start: "top 50%",
-      end: "bottom 70%",
-      scrub: 1,
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(min-width: 300px)"
     },
-  });
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
 
-  messages.forEach((message) => {
-    tl.fromTo(
-      message,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
-    );
-  });
+      if (isMobile) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro",
+            start: "top 10%",
+            end: "+=500",
+            pin: ".intro__grid",
+            scrub: true,
+          },
+        });
+
+        tl.fromTo(".intro__flex, .intro__scroll_div", {
+          opacity: 1
+        },
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+          });
+
+        tl.fromTo(
+          ".stroll",
+          { opacity: 0 },
+          { opacity: 1, duration: 5, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(
+          ".intro__plantin",
+          { marginBottom: "20px", y: 0 },
+          { marginBottom: 0, y: -300, duration: 1, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
+
+        tl.fromTo(
+          ".hello_there",
+          { opacity: 0 },
+          { opacity: 1, duration: 1, ease: "power1.out" }
+        );
+
+        tl.fromTo(
+          ".intro__plantin__writing_icon, .intro__plantin__post_it",
+          { opacity: 1 },
+          { opacity: 0, duration: 1, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(
+          ".intro__plantin",
+          { x: 0 },
+          { x: -20, duration: 1, ease: "power1.out" },
+          "<"
+        );
+
+      }
+
+      if (isDesktop) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro__grid",
+            start: "top 10%",
+            end: "+=600",
+            pin: ".intro__grid",
+            scrub: true,
+          },
+        });
+
+        tl.fromTo(".intro__flex, .intro__scroll_div", {
+          opacity: 1
+        },
+          {
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+          });
+
+        tl.fromTo(
+          ".intro__plantin__post_it, .intro__plantin__book_icon, .intro__plantin__writing_icon",
+          { opacity: 0 },
+          { opacity: 1, duration: 5, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(
+          ".stroll",
+          { opacity: 0 },
+          { opacity: 1, duration: 5, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(
+          ".intro__plantin",
+          { y: "0%" },
+          { y: "5vh", duration: 5, ease: "power1.out" },
+          "<"
+        );
+
+
+        tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
+
+
+        tl.fromTo(
+          ".hello_there",
+          { opacity: 0 },
+          { opacity: 1, duration: 1, ease: "power1.out" }
+        );
+
+        tl.fromTo(
+          ".intro__plantin",
+          { x: 0 },
+          { x: "20vw", duration: 1, ease: "power1.out" },
+          "<"
+        );
+
+        tl.fromTo(
+          ".intro__plantin__post_it, .intro__plantin__book_icon, .intro__plantin__writing_icon",
+          { opacity: 1 },
+          { opacity: 0, duration: 1, ease: "power1.out" },
+          "<"
+        );
+
+      }
+
+
+      return;
+    }
+  );
+
+
 };
+
+const showMessages = (mm) => {
+  
+  mm.add(
+    {
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(min-width: 300px)"
+    },
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
+
+      if (isMobile) {
+        const messages = gsap.utils.toArray(".messages > div");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".messages",
+            start: "top 50%",
+            end: "bottom 70%",
+            scrub: 1,
+          },
+        });
+
+        messages.forEach((message) => {
+          tl.fromTo(
+            message,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
+          );
+        });
+      }
+
+      if (isDesktop) {
+        const messages = gsap.utils.toArray(".messages > div");
+        const plantin = document.querySelector(".messaging__plantin");
+
+        const plantinTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".messaging",
+            start: "top 50%",
+            end: "+=30vh",
+            scrub: 1,
+            markers: true,
+          },
+        });
+
+        plantinTl.fromTo(
+          plantin,
+          { x: "-100%" },
+          { x: "0%", duration: 1, ease: "power1.out" }
+        );
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".messages",
+            start: "top 50%",
+            end: "bottom 70%",
+            scrub: 1,
+          },
+        });
+
+        messages.forEach((message, index) => {
+          tl.fromTo(
+            message,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
+          )
+            .to(
+              plantin,
+              { y: `+=${40 * (index + 1)}`, duration: 0.5, ease: "power1.out" },
+              "<"
+            );
+        });
+      }
+
+      return;
+    }
+  );
+
+};
+
+
+
 
 const bibleStamps = () => {
   const tl = gsap.timeline({
@@ -446,7 +591,6 @@ const timeline = () => {
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
-      markers: true,
       pinSpacing: false
     },
   });
@@ -470,7 +614,6 @@ const musicSheetAppear = () => {
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
-      markers: false,
     },
   });
 
@@ -558,14 +701,14 @@ const init = () => {
   const mm = gsap.matchMedia();
 
   menu(mm);
-  intro();
-  showMessages();
-  bibleStamps();
-  signForm();
-  toggleAnswer();
-  tilting();
-  dragMusic();
-  slideLearn();
+  intro(mm);
+  showMessages(mm);
+  // bibleStamps();
+  // signForm();
+  // toggleAnswer();
+  // tilting();
+  // dragMusic();
+  // slideLearn();
 };
 
 init();
