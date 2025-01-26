@@ -3,35 +3,39 @@ const canvas = document.getElementById("signatureCanvas");
 const ctx = canvas.getContext("2d");
 let isDrawing = false;
 let hasDrawing = false;
+const $submit = document.querySelector('.biblia__submit');
 
 // menu
-const $navButton = document.querySelector('.nav__button');
-const $navList = document.querySelector('.nav__list');
+const $navButton = document.querySelector('.nav__buttons__icons');
+const $navList = document.querySelector('.header__nav__list');
 const $iconLink = document.querySelector('#iconlink');
+const $menuClosedIcon = document.querySelector('.icons__closed');
+const $menuOpenIcon = document.querySelector('.icons__opened');
+const $menuWoodblock = document.querySelector('#nav__list li:nth-child(2) a');
+const $menuOctomissae = document.querySelector('#nav__list li:nth-child(3) a');
+const $menuBiblia = document.querySelector('#nav__list li:nth-child(1) a');
+const $headerNav = document.querySelector('.header__nav')
 
 //tilting woodblocks
 const container = document.querySelector(".comics__options");
 const options = document.querySelectorAll(".comics__options img");
+const optionsTilt = document.querySelectorAll('.comics__options li');
 const centerX = window.innerWidth / 2;
 const resultsTitle = document.querySelector(".comics__results__title");
 const resultsP = document.querySelector(".comics__results__p");
-const slides = document.querySelectorAll('.comics__options li');
-let currentIndex = 0;
 let isTilting = false;
 
 
 // drag music
-// const canvasDrag = document.getElementById("canvasDrag");
-// const ctxDrag = canvasDrag.getContext("2d");
 const dragElement = document.querySelector(".grid_container__slider_line");
 
 
 // slide
-// const carousel = document.querySelector('.carousel');
-// const slides = Array.from(carousel.querySelectorAll('.slide'));
-// const prevButton = carousel.querySelector('.carousel__button.prev');
-// const nextButton = carousel.querySelector('.carousel__button.next');
-// let currentIndex = 0;
+const carousel = document.querySelector('.carousel');
+const slides = Array.from(carousel.querySelectorAll('.slide'));
+const prevButton = carousel.querySelector('.carousel__button.prev');
+const nextButton = carousel.querySelector('.carousel__button.next');
+let currentIndex = 0;
 
 const menu = (mm) => {
 
@@ -56,6 +60,41 @@ const menu = (mm) => {
             closeNavigation();
           }
         });
+
+        $menuBiblia.addEventListener('click', () => {
+          closeNavigation();
+        })
+
+        $menuWoodblock.addEventListener('click', () => {
+          closeNavigation();
+          document.querySelector(".biblia__pages__second_page").style.display = "block";
+          // document.querySelector(".biblia__submit").style.display = "none";
+          document.querySelector(".after__biblia").style.display = "block";
+          woodBlock();
+          timeline();
+          // dateIcon();
+          toggleAnswer();
+          tilting();
+          musicSheetAppear();
+          slideLearn();
+          gsap.to(window, { duration: 1, scrollTo: "#woodblock" });
+        })
+
+        $menuOctomissae.addEventListener('click', () => {
+          closeNavigation();
+          document.querySelector(".biblia__pages__second_page").style.display = "block";
+          // document.querySelector(".biblia__submit").style.display = "none";
+          document.querySelector(".after__biblia").style.display = "block";
+          woodBlock();
+          timeline();
+          // dateIcon();
+          toggleAnswer();
+          tilting();
+          musicSheetAppear();
+          slideLearn();
+          gsap.to(window, { duration: 1, scrollTo: "#octomissae" });
+        })
+
       }
 
       if (isDesktop) {
@@ -76,12 +115,21 @@ const openNavigation = () => {
   $navButton.setAttribute("aria-expanded", "true");
   $iconLink.setAttribute("xlink:href", "#close");
   $navList.classList.remove("hidden");
+  $navList.classList.add("nav__list--styling");
+  $menuOpenIcon.classList.remove("hidden");
+  $menuClosedIcon.classList.add("hidden");
+  $headerNav.classList.add("background_color");
 };
+
 
 const closeNavigation = () => {
   $navButton.setAttribute("aria-expanded", "false");
   $iconLink.setAttribute("xlink:href", "#navicon");
+  $navList.classList.remove("nav__list--styling");
   $navList.classList.add("hidden");
+  $menuOpenIcon.classList.add("hidden");
+  $menuClosedIcon.classList.remove("hidden");
+  $headerNav.classList.remove("background_color");
 };
 
 const toggleNavigation = () => {
@@ -102,7 +150,7 @@ const intro = (mm) => {
       if (isMobile) {
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".intro",
+            trigger: ".intro__grid__intro",
             start: "top 10%",
             end: "+=500",
             pin: ".intro__grid",
@@ -243,11 +291,11 @@ const showMessages = (mm) => {
       let { isMobile, isDesktop } = context.conditions;
 
       if (isMobile) {
-        const messages = gsap.utils.toArray(".messages > div");
+        const messages = gsap.utils.toArray(".messaging__messages > div");
 
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".messages",
+            trigger: ".messaging__messages",
             start: "top 50%",
             end: "bottom 70%",
             scrub: 1,
@@ -264,7 +312,7 @@ const showMessages = (mm) => {
       }
 
       if (isDesktop) {
-        const messages = gsap.utils.toArray(".messages > div");
+        const messages = gsap.utils.toArray(".messaging__messages > div");
         const plantin = document.querySelector(".messaging__plantin");
 
         const plantinTl = gsap.timeline({
@@ -285,7 +333,7 @@ const showMessages = (mm) => {
 
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".messages",
+            trigger: ".messaging__messages",
             start: "top 50%",
             end: "bottom 70%",
             scrub: 1,
@@ -312,9 +360,6 @@ const showMessages = (mm) => {
 
 };
 
-
-
-
 const bibleStamps = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -326,11 +371,11 @@ const bibleStamps = () => {
   });
 
   tl.fromTo(
-    [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
+    [".biblia__photos__biblia_icon", ".biblia__photos__octo_icon", ".biblia__photos__location_icon"],
     { opacity: 0, scale: 0.8 },
     { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out", stagger: 0.5 }
   ).fromTo(
-    [".biblia__bibli_icon", ".biblia__octo_icon", ".biblia__location_icon"],
+    [".biblia__photos__biblia_icon", ".biblia__photos__octo_icon", ".biblia__photos__location_icon"],
     { opacity: 1, scale: 1 },
     { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out", stagger: 0.5 }
   );
@@ -354,7 +399,7 @@ const startDrawing = (event) => {
   ctx.beginPath();
   ctx.moveTo(getX(event), getY(event));
   document.querySelector(".biblia__submit").style.display = "block";
-  document.querySelector(".biblia__write").style.display = "none";
+  document.querySelector(".biblia__submit__write").style.display = "none";
   clearForm();
 }
 
@@ -394,9 +439,9 @@ const clearForm = () => {
   document.getElementById("clearButton").addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     hasDrawing = false;
-    document.querySelector(".biblia__second_page").style.display = "none";
+    document.querySelector(".biblia__pages__second_page").style.display = "none";
     document.querySelector(".biblia__submit").style.display = "none";
-    document.querySelector(".biblia__write").style.display = "block";
+    document.querySelector(".biblia__submit__write").style.display = "block";
     document.querySelector(".biblia__retry").style.display = "none";
   });
 }
@@ -417,7 +462,7 @@ const submit = (mm) => {
             alert("You must sign before submitting the form.");
             event.preventDefault();
           } else {
-            document.querySelector(".biblia__second_page").style.display = "block";
+            document.querySelector(".biblia__pages__second_page").style.display = "block";
             document.querySelector(".biblia__submit").style.display = "none";
             document.querySelector(".after__biblia").style.display = "block";
             woodBlock();
@@ -438,12 +483,12 @@ const submit = (mm) => {
             alert("You must sign before submitting the form.");
             event.preventDefault();
           } else {
-            document.querySelector(".biblia__second_page").style.display = "block";
+            document.querySelector(".biblia__pages__second_page").style.display = "block";
             document.querySelector(".biblia__submit").style.display = "none";
             document.querySelector(".biblia__phone").style.display = "flex";
             document.querySelector(".biblia__pages").classList.add("relative_pages");
-            document.querySelector(".biblia__first_page").classList.add("absolute");
-            document.querySelector(".biblia__second_page").classList.add("absolute_second_page");
+            document.querySelector(".biblia__pages__first_page").classList.add("absolute");
+            document.querySelector(".biblia__pages__second_page").classList.add("absolute_second_page");
             dragPhone();
             event.preventDefault();
           }
@@ -458,7 +503,7 @@ const submit = (mm) => {
 const dateIcon = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".biblia__second_page",
+      trigger: ".biblia__pages__second_page",
       start: "top 10%",
       end: "bottom 10%",
       scrub: true,
@@ -482,7 +527,7 @@ const woodBlock = () => {
 };
 
 const clickWoodblock = () => {
-  document.querySelectorAll(".conclusion_biblia__hand, .conclusion_biblia__g_woodblock, .conclusion_biblia__click_icon")
+  document.querySelectorAll(".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon")
     .forEach(element => {
       element.addEventListener("click", () => {
         const timeline = gsap.timeline();
@@ -506,13 +551,13 @@ const clickWoodblock = () => {
         );
 
         timeline.fromTo(
-          ".g_woodblock2__flex",
+          ".g_woodblock__flex",
           { opacity: 0 },
           {
             opacity: 1,
             duration: 0.1,
             onStart: () => {
-              document.querySelector(".g_woodblock2__flex").style.display = "flex";
+              document.querySelector(".g_woodblock__flex").style.display = "flex";
             }
           },
           "-=0.2"
@@ -524,19 +569,19 @@ const clickWoodblock = () => {
 const fallingWoodblock = () => {
   gsap.timeline({
     scrollTrigger: {
-      trigger: ".g_woodblock2__flex",
+      trigger: ".g_woodblock__flex",
       start: "top 50%",
       end: "bottom 20%",
       scrub: true,
     },
   })
     .fromTo(
-      ".g_woodblock2__flex",
+      ".g_woodblock__flex",
       { y: 0, scale: 1, opacity: 1 },
       { y: "+=460", scale: 1.8, rotation: 365, duration: 1, ease: "power1.out" }
     )
     .fromTo(
-      ".g_woodblock2__flex",
+      ".g_woodblock__flex",
       { opacity: 1 },
       { opacity: 0, duration: 0.2, ease: "power1.out" }
     )
@@ -549,8 +594,8 @@ const fallingWoodblock = () => {
 };
 
 const toggleAnswer = () => {
-  const question = document.querySelector(".woodblocks__question");
-  const answer = document.querySelector(".woodblocks__answer");
+  const question = document.querySelector(".woodblocks__question__text");
+  const answer = document.querySelector(".woodblocks__question__answer");
   const arrow = document.querySelector(".woodblocks__question__arrow");
 
   if (question && answer && arrow) {
@@ -567,6 +612,9 @@ const toggleAnswer = () => {
     });
   }
 };
+
+
+
 
 const tilting = () => {
   update();
@@ -585,19 +633,19 @@ const tilting = () => {
 };
 
 const update = () => {
-  slides.forEach((slide, index) => {
-    slide.style.display = index === currentIndex ? 'block' : 'none';
+  optionsTilt.forEach((option, index) => {
+    option.style.display = index === currentIndex ? 'block' : 'none';
   });
-  checkSlideContent();
+  checkOptionContent();
 };
 
 const next = () => {
-  currentIndex = (currentIndex + 1) % slides.length;
+  currentIndex = (currentIndex + 1) % optionsTilt.length;
   update();
 };
 
 const prev = () => {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  currentIndex = (currentIndex - 1 + optionsTilt.length) % optionsTilt.length;
   update();
 };
 
@@ -619,18 +667,18 @@ const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
   }
 };
 
-const checkSlideContent = () => {
-  const currentSlide = slides[currentIndex];
-  if (currentSlide.classList.contains('comics__options__1')) {
+const checkOptionContent = () => {
+  const currentOption = optionsTilt[currentIndex];
+  if (currentOption.classList.contains('comics__options__1')) {
     resultsTitle.textContent = "Not Nature...";
     resultsP.textContent = "";
-  } else if (currentSlide.classList.contains('comics__options__2')) {
+  } else if (currentOption.classList.contains('comics__options__2')) {
     resultsTitle.textContent = "Long People Yes!";
     resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
-  } else if (currentSlide.classList.contains('comics__options__3')) {
+  } else if (currentOption.classList.contains('comics__options__3')) {
     resultsTitle.textContent = "G for good try but no";
     resultsP.textContent = "";
-  } else if (currentSlide.classList.contains('comics__options__4')) {
+  } else if (currentOption.classList.contains('comics__options__4')) {
     resultsTitle.textContent = "Not Exactly...";
     resultsP.textContent = "";
   }
@@ -802,7 +850,7 @@ const showPrevSlide = () => {
 let insideCount = 0;
 
 const dragPhone = () => {
-  Draggable.create(".biblia__second_page, .biblia__first_page", {
+  Draggable.create(".biblia__pages__second_page, .biblia__pages__first_page", {
     bounds: ".biblia__phone",
     type: "x,y",
     edgeResistance: 0.65,
