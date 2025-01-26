@@ -54,6 +54,8 @@ h1 {
   margin: 0;
 }
 
+.grid__then,
+.grid__now,
 .comics__results__title,
 h2 {
   color: var(--color-yellow);
@@ -699,17 +701,22 @@ h1 {
   display: none;
 }
 
-.grid {
+.grid_container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  inline-size: 100vw;
 }
 
-.grid>* {
+.grid_container>* {
   grid-column: 1;
   grid-row: 1;
 }
+
+.grid_container__slider_line {
+  position: absolute;
+}
+
+
 
 .comics__results__p {
   inline-size: 84vw;
@@ -732,6 +739,7 @@ h1 {
   margin-block-end: 5vw;
 }
 
+.grid__then,
 .timeline__before>h2 {
   color: var(--color-body-brown);
 }
@@ -1565,40 +1573,83 @@ footer {
   .music {
     background-image: url(../assets/background_music.png);
     background-repeat: no-repeat;
-    background-size: 100vw auto;
+    background-size: cover;
     inline-size: 100vw;
+    background-position: top left;
+    block-size: 200vh;
+    padding-block: 55vh;
+    margin-block: -50vh;
   }
 
   .music__text__p {
     inline-size: 40vw;
   }
 
-  #canvasDrag,
-  .grid__canvas{
-    width: 100vw;
-    height: auto;
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+
   }
 
- .new_music {
-   width: 100%;
-   /* Image takes full width of the container */
-   height: auto;
-   /* Maintain aspect ratio */
-   max-width: 600px;
-   /* Optional: Limit the maximum width */
-   display: block;
-   /* Avoid inline element spacing issues */
- }
+  .grid__now {
+    align-self: end;
+  }
 
- .img-container {
-   width: 100%;
-   /* Container scales with the page */
-   max-width: 800px;
-   /* Optional: Limit the container size */
-   margin: 0 auto;
-   /* Center the images */
- }
+  .not_computer {
+    display: none;
+  }
 
+  .carousel>ul {
+    display: flex;
+    justify-content: space-between;
+    inline-size: 90vw;
+    padding: 0;
+  }
+
+  .slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .bye {
+    margin-block-start: 20vh;
+  }
+
+  .bye__text__p {
+    margin-block: 5vh;
+    inline-size: 48vw;
+  }
+
+  .footer__info {
+    display: flex;
+    justify-content: space-between;
+    inline-size: 90vw;
+    align-self: center;
+    margin-block-end: 10vh;
+  }
+
+  .footer__info__contacts {
+    text-align: end;
+  }
+
+  .footer__info__right {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+  }
+
+  .footer__nav>li {
+    line-height: 7vh;
+  }
 }
 
 /* 450 to phone */

@@ -21,9 +21,9 @@ let isTilting = false;
 
 
 // drag music
-const canvasDrag = document.getElementById("canvasDrag");
-const ctxDrag = canvasDrag.getContext("2d");
-const dragElement = document.querySelector(".dragElement");
+// const canvasDrag = document.getElementById("canvasDrag");
+// const ctxDrag = canvasDrag.getContext("2d");
+const dragElement = document.querySelector(".grid_container__slider_line");
 
 
 // slide
@@ -426,6 +426,7 @@ const submit = (mm) => {
             toggleAnswer();
             tilting();
             musicSheetAppear();
+            slideLearn();
             event.preventDefault();
           }
         });
@@ -745,61 +746,34 @@ const musicSheetAppear = () => {
   );
 };
 
-// instead of src with array is metalink imgs in the public
-// const img1 = new Image();
-const img1 = document.createElement('img');
-const img2 = document.createElement('img');
-
-
 const dragMusic = () => {
-  
-  img1.src = './public/trying_music.svg';
-  img1.classList.add('new_music')
-  img2.src = "./public/music_old.svg";
-  img1.onload = img2.onload = () => {
-    overlayImages();
-  };
+  const dragElement = document.querySelector(".grid_container__slider_line");
+  const container1 = document.querySelector(".grid");
+  const imageElement = document.querySelector(".grid_container__new.slider-image");
+  const imageElement2 = document.querySelector(".grid_container__old.slider-image");
 
-  // Draggable.create(".dragElement", {
-  //   type: "x",
-  //   bounds: canvasDrag,
-  //   onDrag: function () {
-  //     const dragLocation = dragElement.getBoundingClientRect();
-  //     const canvasLocation = canvasDrag.getBoundingClientRect();
-  //     const relativeX = dragLocation.left + dragLocation.width / 2 - canvasLocation.left;
-  //     cutImages(relativeX);
-  //   },
-  // });
-}
+  Draggable.create(".grid_container__slider_line", {
+    type: "x",
+    bounds: (".grid"),
+    onDrag: function () {
+      const dragLocation = dragElement.getBoundingClientRect();
+      const container1Location = container1.getBoundingClientRect();
 
-const cutImages = (lineX) => {
-  lineX = Math.max(0, Math.min(lineX, canvasDrag.width));
+      // Calculate relativeX
+      const relativeX = dragLocation.left + dragLocation.width / 2 - container1Location.left;
 
-  ctxDrag.clearRect(0, 0, canvasDrag.width, canvasDrag.height);
+      // Calculate the percentage of the container width
+      const containerWidth = container1.offsetWidth;
+      const visiblePercentage = Math.max(0, Math.min(1, relativeX / containerWidth)) * 100;
 
-  ctxDrag.save();
-  ctxDrag.beginPath();
-  ctxDrag.rect(0, 0, lineX, canvasDrag.height);
-  ctxDrag.clip();
+      // Update the clip-path for the first image
+      imageElement.style.clipPath = `inset(0 ${100 - visiblePercentage}% 0 0)`;
 
-  ctxDrag.drawImage(img2, 0, 0, canvasDrag.width, canvasDrag.height);
-  ctxDrag.restore();
-
-  ctxDrag.save();
-  ctxDrag.beginPath();
-  ctxDrag.rect(lineX, 0, canvasDrag.width - lineX, canvasDrag.height);
-  ctxDrag.clip();
-
-  ctxDrag.drawImage(img1, 0, 0, canvasDrag.width, canvasDrag.height);
-  ctxDrag.restore();
-}
-
-const overlayImages = () => {
-  const initialLineX = canvasDrag.width / 2;
-  cutImages(initialLineX);
-}
-
-
+      // Update the clip-path for the second image (reverse effect)
+      imageElement2.style.clipPath = `inset(0 0 0 ${visiblePercentage}%)`;
+    }
+  });
+};
 
 
 
@@ -853,7 +827,6 @@ const dragPhone = () => {
           woodBlock();
           dragWoodblock();
           // dateIcon();
-
           musicSheetAppear();
         }
       }
@@ -874,7 +847,6 @@ const init = () => {
   bibleStamps();
   signForm(mm);
   dragMusic();
-  // slideLearn();
 };
 
 init();
