@@ -703,6 +703,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  inline-size: 100vw;
 }
 
 .grid>* {
@@ -1550,28 +1551,53 @@ footer {
 
   .beggining_music__portrait_words {
     inline-size: 50vw;
+    margin-inline-start: 5vw;
   }
 
   .beggining_music__plantin {
     inline-size: auto;
   }
 
-  /* .beggining_music__portrait_words {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr 1fr 1fr;
+  .beggining_music__date {
+    margin-block-start: -12vh;
+  }
+
+  .music {
+    background-image: url(../assets/background_music.png);
+    background-repeat: no-repeat;
+    background-size: 100vw auto;
     inline-size: 100vw;
-    z-index: 3;
-  } 
-    
-    .beggining_music__date {
-      margin-block-start: -7vh;
-      margin-inline-end: 4vw;
-      justify-self: end;
-      grid-row: 3;
-      grid-column: 1;
-    }
-  */
+  }
+
+  .music__text__p {
+    inline-size: 40vw;
+  }
+
+  #canvasDrag,
+  .grid__canvas{
+    width: 100vw;
+    height: auto;
+  }
+
+ .new_music {
+   width: 100%;
+   /* Image takes full width of the container */
+   height: auto;
+   /* Maintain aspect ratio */
+   max-width: 600px;
+   /* Optional: Limit the maximum width */
+   display: block;
+   /* Avoid inline element spacing issues */
+ }
+
+ .img-container {
+   width: 100%;
+   /* Container scales with the page */
+   max-width: 800px;
+   /* Optional: Limit the container size */
+   margin: 0 auto;
+   /* Center the images */
+ }
 
 }
 
