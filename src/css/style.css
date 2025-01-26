@@ -580,6 +580,20 @@ h1 {
   align-items: center;
 }
 
+/* .comics__options__1{
+  margin-inline-start: -7vw;
+}
+
+.comics__options__2 {
+  margin-block-start: 5vh;
+  margin-inline-start: -8vw;
+}
+
+.comics__options__3 {
+  margin-block-start: 2vh;
+  margin-inline-start: -8vw;
+} */
+
 .g_woodblock2__flex {
   display: flex;
   justify-content: center;
@@ -637,13 +651,15 @@ h1 {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   margin-block-start: 5vh;
+  justify-items: center;
 }
 
 .comics__options__grid>* {
   grid-column: 1;
   grid-row: 1;
-  justify-items: center;
-  justify-self: center;
+  align-items: center;
+  padding: 0;
+
 }
 
 .comics__options {
@@ -665,7 +681,7 @@ h1 {
   background: linear-gradient(to right, #6E3F00, #DD8C21);
 }
 
-.timeline {
+.timeline__with_text {
   block-size: 100vh;
   inline-size: 200vw;
   overflow-x: scroll;
@@ -676,7 +692,6 @@ h1 {
 
 .timeline::-webkit-scrollbar {
   display: none;
-  /* Hide scrollbar (optional) */
 }
 
 .biblia__phone,
@@ -879,6 +894,11 @@ footer {
 .inside {
   grid-row: 1;
   grid-column: 2;
+}
+
+.comics__options__square {
+  justify-self: center;
+  width: 80vw;
 }
 
 @media screen and (min-width: 1024px) {
@@ -1422,11 +1442,6 @@ footer {
   }
 
 
-
-  .comics__options__square {
-    justify-self: center;
-  }
-
   .comics__options {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -1455,6 +1470,108 @@ footer {
     grid-row: 2;
     grid-column: 3;
   }
+
+  .timeline__before {
+    /* margin-inline-start: 5vw; */
+    inline-size: 50vw;
+    /* margin-block-end: 5vw; */
+  }
+
+  .timeline__line {
+    inline-size: 100vw;
+  }
+
+  .timeline__with_text {
+    inline-size: 100vw;
+    block-size: auto;
+  }
+
+  .timeline__now {
+    inline-size: 50vw;
+  }
+
+  .timeline___seals {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin-inline: 5vw;
+  }
+
+  .timeline___seals__right {
+    grid-column: 3;
+  }
+
+  .timeline___seals__right,
+  .timeline___seals__left {
+    display: flex;
+    gap: 10vw;
+    block-size: 20vh;
+  }
+
+  .timeline___seals__wood_day,
+  .timeline___seals__carving {
+    align-self: end;
+  }
+
+  .timeline___seals__scan,
+  .timeline___seals__nature {
+    align-self: start;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    margin-block: 10vh;
+
+  }
+
+  .timeline>* {
+    grid-column: 1;
+    grid-row: 1;
+
+  }
+
+  .beggining_music__text {
+    background-image: url(../assets/conclusion_biblia_text_background/conclusion_biblia_background_computer.png);
+    background-size: 34vw 22vh;
+    display: flex;
+    inline-size: 34vw;
+    block-size: 22vh;
+    justify-content: center;
+  }
+
+  .beggining_music__text>p {
+    align-self: center;
+    inline-size: 29vw;
+    block-size: 15vh;
+    padding-inline: 0;
+  }
+
+  .beggining_music__portrait_words {
+    inline-size: 50vw;
+  }
+
+  .beggining_music__plantin {
+    inline-size: auto;
+  }
+
+  /* .beggining_music__portrait_words {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr 1fr;
+    inline-size: 100vw;
+    z-index: 3;
+  } 
+    
+    .beggining_music__date {
+      margin-block-start: -7vh;
+      margin-inline-end: 4vw;
+      justify-self: end;
+      grid-row: 3;
+      grid-column: 1;
+    }
+  */
 
 }
 

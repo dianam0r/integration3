@@ -424,7 +424,7 @@ const submit = (mm) => {
             document.querySelector(".biblia__submit").style.display = "none";
             document.querySelector(".after__biblia").style.display = "block";
             woodBlock();
-            // timeline();
+            timeline();
             // dateIcon();
             toggleAnswer();
             tilting();
@@ -672,14 +672,16 @@ const dragWoodblock = () => {
         resultsTitle.textContent = "";
         resultsP.textContent = "";
       } else {
+
+
         if (isInside) {
           if (this.target.classList.contains("comics__options__1")) {
             console.log("1");
-            resultsTitle.textContent = "Not Exactly...";
+            resultsTitle.textContent = "Not Nature...";
             resultsP.textContent = "";
           } else if (this.target.classList.contains("comics__options__2")) {
             console.log("2");
-            resultsTitle.textContent = "Exactly!";
+            resultsTitle.textContent = "Long People Yes!";
             resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
           } else if (this.target.classList.contains("comics__options__3")) {
             console.log("3");
@@ -842,7 +844,6 @@ const dragPhone = () => {
           document.querySelector(".biblia__pages").classList.remove("relative_pages");
           woodBlock();
           dragWoodblock();
-          // timeline();
           // dateIcon();
 
           // musicSheetAppear();
