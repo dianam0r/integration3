@@ -55,8 +55,8 @@ h1 {
   margin: 0;
 }
 
-.grid__then,
-.grid__now,
+.music__grid__then,
+.music__grid__now,
 .comics__results__title,
 h2 {
   color: var(--color-yellow);
@@ -567,7 +567,7 @@ h1 {
   display: none;
 }
 
-.woodblocks__img__phone {
+.woodblocks__img__g {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -575,7 +575,7 @@ h1 {
   margin-block-start: 5vh;
 }
 
-.woodblocks__img__phone>* {
+.woodblocks__img__g>* {
   grid-column: 1;
   grid-row: 1;
 }
@@ -632,7 +632,7 @@ h1 {
   opacity: 0;
 }
 
-.woodblocks__img__grid {
+.woodblocks__img__g__grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -640,12 +640,12 @@ h1 {
   justify-items: center;
 }
 
-.woodblocks__img__grid>* {
+.woodblocks__img__g__grid>* {
   grid-column: 1;
   grid-row: 1;
 }
 
-.grid__g {
+.g__grid__g {
   opacity: 0;
 }
 
@@ -694,7 +694,7 @@ h1 {
 
 }
 
-.comics__options {
+.options__grid__options {
   display: flex;
 }
 
@@ -731,18 +731,18 @@ h1 {
   display: none;
 }
 
-.grid_container {
+.music__grid__container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
 }
 
-.grid_container>* {
+.music__grid__container>* {
   grid-column: 1;
   grid-row: 1;
 }
 
-.grid_container__slider_line {
+.music__grid_container__slider_line {
   position: absolute;
 }
 
@@ -769,13 +769,13 @@ h1 {
   margin-block-end: 5vw;
 }
 
-.grid__then,
+.music__grid__then,
 .timeline__before>h2 {
   color: var(--color-body-brown);
 }
 
 
-.beggining_music__plantin {
+.beggining_music__portrait_words__plantin {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -787,7 +787,8 @@ h1 {
   margin-inline-start: 5vw;
 }
 
-.beggining_music__plantin__portrait {
+
+.plantin__portrait {
   grid-column: 1/3;
   grid-row: 1/3;
 }
@@ -799,7 +800,7 @@ h1 {
   margin-block-start: -3vh;
 }
 
-.beggining_music__text {
+.beggining_music__portrait_words__text {
   background-image: url(../assets/background_platin_talking.svg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -812,7 +813,7 @@ h1 {
   margin-inline-end: 6vh;
 }
 
-.beggining_music__date {
+.beggining_music__portrait_words__date {
   margin-block-start: -7vh;
   margin-inline-end: 4vw;
   justify-self: end;
@@ -820,7 +821,7 @@ h1 {
   grid-column: 1;
 }
 
-.beggining_music__text>p {
+.beggining_music__portrait_words__text>p {
   inline-size: 60vw;
   padding-inline: 5vw;
 }
@@ -936,7 +937,7 @@ footer {
   grid-column: 2;
 }
 
-.comics__options__square {
+.comics__options__grid__square {
   justify-self: center;
   width: 80vw;
 }
@@ -1469,11 +1470,12 @@ footer {
     margin-block-start: 10vh;
   }
 
-  .woodblocks__img__phone {
+  .woodblocks__img__g {
     grid-column: 1/5;
     grid-row: 1/5;
     align-self: center;
     z-index: 3;
+    justify-self: center;
   }
 
 
@@ -1495,7 +1497,7 @@ footer {
   }
 
 
-  .comics__options {
+  .options__grid__options {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -1560,13 +1562,13 @@ footer {
     block-size: 20vh;
   }
 
-  .timeline___seals__wood_day,
-  .timeline___seals__carving {
+  .timeline___seals__right__nature,
+  .timeline___seals__left__carving {
     align-self: end;
   }
 
-  .timeline___seals__scan,
-  .timeline___seals__nature {
+  .timeline___seals__right__scan,
+  .timeline___seals__right__nature {
     align-self: start;
   }
 
@@ -1585,7 +1587,7 @@ footer {
 
   }
 
-  .beggining_music__text {
+  .beggining_music__portrait_words__text {
     background-image: url(../assets/conclusion_biblia_text_background/conclusion_biblia_background_computer.png);
     background-size: 34vw 22vh;
     display: flex;
@@ -1594,7 +1596,7 @@ footer {
     justify-content: center;
   }
 
-  .beggining_music__text>p {
+  .beggining_music__portrait_words__text>p {
     align-self: center;
     inline-size: 29vw;
     block-size: 15vh;
@@ -1606,11 +1608,11 @@ footer {
     margin-inline-start: 5vw;
   }
 
-  .beggining_music__plantin {
+  .beggining_music__portrait_words__plantin {
     inline-size: auto;
   }
 
-  .beggining_music__date {
+  .beggining_music__portrait_words__date {
     margin-block-start: -12vh;
   }
 
@@ -1629,14 +1631,14 @@ footer {
     inline-size: 40vw;
   }
 
-  .grid {
+  .music__grid {
     display: flex;
     flex-direction: column;
     gap: 5vh;
 
   }
 
-  .grid__now {
+  .music__grid__now {
     align-self: end;
   }
 
@@ -1644,7 +1646,7 @@ footer {
     display: none;
   }
 
-  .carousel>ul {
+  .learn__carousel>ul {
     display: flex;
     justify-content: space-between;
     inline-size: 90vw;

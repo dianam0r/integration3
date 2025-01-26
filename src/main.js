@@ -27,11 +27,11 @@ let isTilting = false;
 
 
 // drag music
-const dragElement = document.querySelector(".grid_container__slider_line");
+const dragElement = document.querySelector(".music__grid_container__slider_line");
 
 
 // slide
-const carousel = document.querySelector('.carousel');
+const carousel = document.querySelector('.learn__carousel');
 const slides = Array.from(carousel.querySelectorAll('.slide'));
 const prevButton = carousel.querySelector('.carousel__button.prev');
 const nextButton = carousel.querySelector('.carousel__button.next');
@@ -586,7 +586,7 @@ const fallingWoodblock = () => {
       { opacity: 0, duration: 0.2, ease: "power1.out" }
     )
     .fromTo(
-      ".grid__g",
+      ".g__grid__g",
       { opacity: 0 },
       { opacity: 1, duration: 0.2, ease: "power1.out" },
       "-=0.3"
@@ -696,7 +696,7 @@ const dragWoodblock = () => {
     bounds: ".comics__options",
     type: "x,y",
     onDragEnd: function () {
-      const squareRect = document.querySelector(".comics__options__square").getBoundingClientRect();
+      const squareRect = document.querySelector(".comics__options__grid__square").getBoundingClientRect();
       const draggedRect = this.target.getBoundingClientRect();
 
 
@@ -795,14 +795,14 @@ const musicSheetAppear = () => {
 };
 
 const dragMusic = () => {
-  const dragElement = document.querySelector(".grid_container__slider_line");
-  const container1 = document.querySelector(".grid");
-  const imageElement = document.querySelector(".grid_container__new.slider-image");
-  const imageElement2 = document.querySelector(".grid_container__old.slider-image");
+  const dragElement = document.querySelector(".music__grid_container__slider_line");
+  const container1 = document.querySelector(".music__grid");
+  const imageElement = document.querySelector(".music__grid__container__new.slider-image");
+  const imageElement2 = document.querySelector(".music__grid__container__old.slider-image");
 
-  Draggable.create(".grid_container__slider_line", {
+  Draggable.create(".music__grid_container__slider_line", {
     type: "x",
-    bounds: (".grid"),
+    bounds: (".music__grid"),
     onDrag: function () {
       const dragLocation = dragElement.getBoundingClientRect();
       const container1Location = container1.getBoundingClientRect();
