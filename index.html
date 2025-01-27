@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/favicon/plantin.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Who's That?</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/normalize.css">
     <link rel="stylesheet" href="./src/css/style.css">
   </head>
@@ -15,7 +16,7 @@
   <body>
 
     <header class="header">
-
+      
       <!-- <div class="intro__plants">
         <div class="intro__plants__phone">
               <picture class="plants__phone__left">
@@ -59,7 +60,9 @@
         </div>
       </div> -->
 
-      <nav class="header__nav">
+      <!-- <nav class="header__nav">
+
+        <h2 class="hidden">Header Navigation</h2>
 
         <div class="header__nav__buttons">
           <a href="#intro"> 
@@ -94,431 +97,434 @@
         
         <button class="header__nav__tickets not_phone strong"><a href="#">Tickets</a></button>
 
-      </nav>
+      </nav> -->
     </header>
 
     <main>
 
-      <div id="intro" class="intro__grid"> 
-        
-        <div class="intro__grid__intro">
-            <div class="intro__flex">
-                <h1>Who’s That?</h1>
-                <p class="intro__flex__p">Let’s walk through <span class="yellow strong"> Plantin’s Garden. </span> <br>
-                This interactive story brings Christophe Plantin's legacy to life, the first in a series for the Plantin-Moretus Museum.</p>
-            </div>
+      <!-- <article class="biblia_article">
 
-            <div class="intro__scroll_div">
-              <div class="intro__scroll">
-                <picture class="intro__scroll__mouse_icon">
-                  <source sizes="(min-width:1024px) 5vw, (min-width: 320px)  75vw"
-                          srcset="
-                    ./src/assets/scroll/scroll_efsbj4_c_scale,w_200.avif 200w,
-                    ./src/assets/scroll/scroll_efsbj4_c_scale,w_513.avif 513w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/scroll/scroll_syavey_c_scale,w_200.png"
-                    alt="Portrait of Plantin">
-                </picture>
-                <svg width="95" height="48" viewBox="0 0 95 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 3L46.8625 21L73 3" stroke="#DD8C21" stroke-width="5"/>
-          <path d="M16 21L46.7125 44L79 21" stroke="#DD8C21" stroke-width="5"/>
-                </svg>
-              </div>
-            </div>
-
-            <div class="intro__plantin">
-
-              <picture class="intro__plantin__portrait">
-                  <source sizes="(min-width:1024px) 30vw, (min-width: 320px)  75vw"
-                          srcset="
-                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/plantin/plantin.png"
-                    alt="Portrait of Plantin">
-              </picture>
-              
-              <div class="intro__plantin__post_it">
-                <p>Business Publisher</p>
-              </div>
-
-              <picture class="intro__plantin__book_icon">
-                  <source sizes="(min-width:1024px) 7vw, (min-width: 320px)  20vw"
-                          srcset="
-                  ./src/assets/icons/book/book_go9wxe_c_scale,w_200.avif 200w,
-                  ./src/assets/icons/book/book_go9wxe_c_scale,w_512.avif 512w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/icons/book/book_icon.png"
-                    alt="Icon of a book">
-              </picture>
-                    
-              <picture class="intro__plantin__writing_icon">
-                  <source
-                          sizes="(min-width:1024px) 6vw, (min-width: 320px)  18vw"
-                    
-                          srcset="
-                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
-                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/icons/ink/ink_icon.png"
-                    alt="Icon of ink with a pen feather">
-              </picture>    
-
-            </div>
-
-        </div>
-
-        <div class="stroll">
-            <div class="stroll__text">
-              <h2> A stroll with Christophe Plantin</h2>
-              <p>Could it really be Christophe Plantin himself reading peacefully
-                  in the garden he once cherished? What are you doing here? Could you tell us a bit about yourself?</p>
-            </div>
-        </div>
-
-        <div class="hello_there">
-          <div class="hello_there__text">
-            <h2> Hello there! </h2>
-            <p>I’ve returned from the afterlife to my garden for a moment of reading peace. 
-            <br>What a serendipitous rencontre, 
-            let us delve into those wonders.</p>
-          </div>
-          <picture class="hello_there__writing_icon">
-                  <source
-                          sizes="(min-width:1024px) 10vw,(min-width: 320px)  18vw"
-                     
-                          srcset="
-                  ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
-                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/icons/ink/ink_icon.png"
-                    alt="Icon of ink with a pen feather">
-          </picture>        
-        </div>
-
-      </div>
-  
-      <div class="messaging">
-
-        <div class="messaging__plantin not_phone">
-              <picture class="messaging__plantin__portrait">
-                  <source sizes="(min-width:1024px) 30vw, (min-width: 320px)  75vw"
-                          srcset="
-                  ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
-                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
-                          type="image/avif">
-                    <img
-                    sizes="320px"
-                    src="./src/assets/plantin/plantin.png"
-                    alt="Portrait of Plantin">
-              </picture>
-        </div>
-
-        <div class="messaging__messages">
-
-          <div class="messages__first">
-            <div class="messages__first__background">
-              <div class="messages__first__text">
-                <p>
-                  Let me check the meaning of that word 
-                  real quick on my phone
-                <br>  What does “serendipitous rencontre” mean? 
-                </p> 
-              </div>
-            </div>
-          <p> <span class="strong">Read</span> 9:40 PM</p>
-          </div>
-
-          <div class="messages__second">
-            <div class="messages__second__background">
-              <div class="messages__second__text">
-                <p>
-            What is this... phone? <br>
-          Some kind of dictionary📖?
-            </p> 
-              </div>
-            </div>
-          <p> <span class="strong">Read</span> 9:42 PM</p>
-          </div>
-
-          <div class="messages__third">
-            <div class="messages__third__background">
-              <div class="messages__third__text">
-                <p>
-            Sort of, it’s for finding word meanings and other things such as reading any book in 
-            any language. 🇵🇹 🇳🇱 🇱🇻 🇺🇸
-            </p> 
-              </div>
-            </div>
-          <p> <span class="strong">Read</span> 9:44 PM</p>
-          </div>
-
-          <div class="messages__fourth">
-            <div class="messages__fourth__background">
-              <div class="messages__fourth__text">
-                <p>
-            Any book? In any language? 
-      Could you, perhaps, read one of my books on it? 📚
-
-            </p> 
-              </div>
-            </div>
-          <p> <span class="strong">Read</span> 9:46 PM</p>
-          </div>
-
-          <div class="messages__fifth">
-            <div class="messages__fifth__background">
-              <div class="messages__fifth__text">
-                <p>
-            Humm...Oh I can check your bible! <br>
-      Let’s see what information we have about it.
-
-            </p> 
-              </div>
-            </div>
-          <p> <span class="strong">Read</span> 9:48 PM</p>
-          </div>
-
-        </div>  
-
-      </div>
-
-      <div id="biblia" class="biblia">
+        <section id="intro" class="intro__grid"> 
           
-          <div class="biblia__photos">
+          <div class="intro__grid__intro">
+              <div class="intro__flex">
+                  <h1>Who’s That?</h1>
+                  <p class="intro__flex__p">Let’s walk through <span class="yellow strong"> Plantin’s Garden. </span> <br>
+                  This interactive story brings Christophe Plantin's legacy to life, the first in a series for the Plantin-Moretus Museum.</p>
+              </div>
 
-            <picture class="biblia__photos__plantin_page">
-                      <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  45vw"
-                     
-                              srcset="
-                        ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_278.avif 278w,
-                      ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_394.avif 394w,
-                        ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_401.avif 401w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/bible/page_right/page_right.png"
-                        alt="Old page of a book plantin printed">
-            </picture> 
+              <div class="intro__scroll_div">
+                <div class="intro__scroll">
+                  <picture class="intro__scroll__mouse_icon">
+                    <source sizes="(min-width:1024px) 5vw, (min-width: 320px)  75vw"
+                            srcset="
+                      ./src/assets/scroll/scroll_efsbj4_c_scale,w_200.avif 200w,
+                      ./src/assets/scroll/scroll_efsbj4_c_scale,w_513.avif 513w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/scroll/scroll_syavey_c_scale,w_200.png"
+                      alt="Portrait of Plantin">
+                  </picture>
+                  <svg width="95" height="48" viewBox="0 0 95 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 3L46.8625 21L73 3" stroke="#DD8C21" stroke-width="5"/>
+            <path d="M16 21L46.7125 44L79 21" stroke="#DD8C21" stroke-width="5"/>
+                  </svg>
+                </div>
+              </div>
 
-            <picture class="biblia__photos__atlas">
-                      <source sizes="(min-width:1024px) 40vw,(min-width: 320px)  55vw"
+              <div class="intro__plantin">
+
+                <picture class="intro__plantin__portrait">
+                    <source sizes="(min-width:1024px) 30vw, (min-width: 320px)  75vw"
+                            srcset="
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/plantin/plantin.png"
+                      alt="Portrait of Plantin">
+                </picture>
+                
+                <div class="intro__plantin__post_it">
+                  <p>Business Publisher</p>
+                </div>
+
+                <picture class="intro__plantin__book_icon">
+                    <source sizes="(min-width:1024px) 7vw, (min-width: 320px)  20vw"
+                            srcset="
+                    ./src/assets/icons/book/book_go9wxe_c_scale,w_200.avif 200w,
+                    ./src/assets/icons/book/book_go9wxe_c_scale,w_512.avif 512w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/icons/book/book_icon.png"
+                      alt="Icon of a book">
+                </picture>
                       
-                              srcset="
-                        ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_200.avif 200w,
-                      ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_321.avif 321w,
-                        ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_481.avif 481w,
-                        ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_668.avif 668w,
-                        ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_738.avif 738w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/bible/atlas/page_right.png"
-                        alt="old atlas">
-            </picture> 
-
-            <picture class="biblia__photos__open_biblia">
-                      <source sizes="(min-width:1024px) 30vw,(min-width: 320px)  50vw"
+                <picture class="intro__plantin__writing_icon">
+                    <source
+                            sizes="(min-width:1024px) 6vw, (min-width: 320px)  18vw"
                       
-                              srcset="
-                        ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_294.avif 294w,
-                      ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_370.avif 370w,
-                      ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_441.avif 441w,
-                      ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_513.avif 513w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/bible/open_bible/open_bible.png"
-                        alt="open biblia">
-            </picture> 
+                            srcset="
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
+                      ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/icons/ink/ink_icon.png"
+                      alt="Icon of ink with a pen feather">
+                </picture>    
 
-            <picture class="biblia__photos__music_sheet">
-                      <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  50vw"
-                      
-                              srcset="
-                        ./src/assets/bible/music/music__sheet_eezije_c_scale,w_190.avif 190w,
-                      ./src/assets/bible/music/music__sheet_eezije_c_scale,w_276.avif 276w,
-                      ./src/assets/bible/music/music__sheet_eezije_c_scale,w_344.avif 344w,
-                      ./src/assets/bible/music/music__sheet_eezije_c_scale,w_410.avif 410w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/bible/music/music__sheet.png"
-                        alt="music sheet">
-            </picture> 
-
-            <picture class="biblia__photos__octo_icon">
-                      <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  25vw"
-                      
-                              srcset="
-                        ./src/assets/icons/music_bible/music_bible_gw65of_c_scale,w_190.avif 190w,
-                      ./src/assets/icons/music_bible/music_bible_gw65of_c_scale,w_510.avif 510w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/icons/music_bible/music_bible.png"
-                        alt="octo missae seal">
-            </picture>
-
-            <picture class="biblia__photos__location_icon">
-                      <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  18vw"
-                      
-                              srcset="
-                        ./src/assets/icons/location/location_xor31l_c_scale,w_190.avif 190w,
-                      ./src/assets/icons/location/location_xor31l_c_scale,w_512.avif 512w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/icons/location/location.png"
-                        alt="location icon">
-            </picture> 
-
-            <picture class="biblia__photos__biblia_icon">
-                      <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  25vw"
-                      
-                              srcset="
-                        ./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_200.avif 200w,
-                      ./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_520.avif 520w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_200.png"
-                        alt="biblia seal">
-            </picture> 
+              </div>
 
           </div>
 
-          <div class="biblia__pages">
+          <div class="stroll">
+              <div class="stroll__text">
+                <h2> A stroll with Christophe Plantin</h2>
+                <p>Could it really be Christophe Plantin himself reading peacefully
+                    in the garden he once cherished? What are you doing here? Could you tell us a bit about yourself?</p>
+              </div>
+          </div>
 
-            <div class="biblia__pages__first_page">
-              <div class="first_page__background">
-                <div class="first_page__text">
-                  <p>
-                  It was printed in <br>
-                  <span class="biblia__big_text strong"> 8 parts</span> 
-                  <ul> 
-                    <li>4 from the Old Testament </li>
-                  <li>1 from the New Testament</li>
-                  <li>3 with commentary</li>
-                  </ul>
-                  </p>
-                  <p>
-                  The text was in <span class="biblia__big_text strong"> 5 languages: </span>
-                <ol> <li>Latin</li>
-                  <li>Greek</li>
-                  <li>Hebrew</li>
-                  <li>Chaldean</li>
-                  <li>Syriac.</li>
-                  </ol>
-                  </p>
-                  <p>
-                  A truly monumental masterpiece, commissioned by King Philip II himself. 
-                  </p>
+          <div class="hello_there">
+            <div class="hello_there__text">
+              <h2> Hello there! </h2>
+              <p>I’ve returned from the afterlife to my garden for a moment of reading peace. 
+              <br>What a serendipitous rencontre, 
+              let us delve into those wonders.</p>
+            </div>
+            <picture class="hello_there__writing_icon">
+                    <source
+                            sizes="(min-width:1024px) 10vw,(min-width: 320px)  18vw"
+                      
+                            srcset="
+                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
+                      ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/icons/ink/ink_icon.png"
+                      alt="Icon of ink with a pen feather">
+            </picture>        
+          </div>
 
-                  <form id="signatureForm">
-                  <label for="signature" class="strong">Sign here as <br>
-                    King Philip II to continue</label>
-                    <div class="biblia__form">
-                      <div class="biblia__form__writing">
-                        <button type="button" id="clearButton">
-                          <picture class="biblia__retry">
-                                    <source sizes="(min-width:1024px) 5vw,(min-width: 320px)  15vw"
+        </section>
+    
+        <section class="messaging">
+
+          <div class="messaging__plantin not_phone">
+                <picture class="messaging__plantin__portrait">
+                    <source sizes="(min-width:1024px) 30vw, (min-width: 320px)  75vw"
+                            srcset="
+                    ./src/assets/plantin/plantin_ausjxo_c_scale,w_422.avif 422w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_526.avif 526w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_620.avif 620w,
+                      ./src/assets/plantin/plantin_ausjxo_c_scale,w_872.avif 872w"
+                            type="image/avif">
+                      <img
+                      sizes="320px"
+                      src="./src/assets/plantin/plantin.png"
+                      alt="Portrait of Plantin">
+                </picture>
+          </div>
+
+          <div class="messaging__messages">
+
+            <div class="messages__first">
+              <div class="messages__first__background">
+                <div class="messages__first__text">
+                  <p>
+                    Let me check the meaning of that word 
+                    real quick on my phone
+                  <br>  What does “serendipitous rencontre” mean? 
+                  </p> 
+                </div>
+              </div>
+            <p> <span class="strong">Read</span> 9:40 PM</p>
+            </div>
+
+            <div class="messages__second">
+              <div class="messages__second__background">
+                <div class="messages__second__text">
+                  <p>
+              What is this... phone? <br>
+            Some kind of dictionary📖?
+              </p> 
+                </div>
+              </div>
+            <p> <span class="strong">Read</span> 9:42 PM</p>
+            </div>
+
+            <div class="messages__third">
+              <div class="messages__third__background">
+                <div class="messages__third__text">
+                  <p>
+              Sort of, it’s for finding word meanings and other things such as reading any book in 
+              any language. 🇵🇹 🇳🇱 🇱🇻 🇺🇸
+              </p> 
+                </div>
+              </div>
+            <p> <span class="strong">Read</span> 9:44 PM</p>
+            </div>
+
+            <div class="messages__fourth">
+              <div class="messages__fourth__background">
+                <div class="messages__fourth__text">
+                  <p>
+              Any book? In any language? 
+        Could you, perhaps, read one of my books on it? 📚
+
+              </p> 
+                </div>
+              </div>
+            <p> <span class="strong">Read</span> 9:46 PM</p>
+            </div>
+
+            <div class="messages__fifth">
+              <div class="messages__fifth__background">
+                <div class="messages__fifth__text">
+                  <p>
+              Humm...Oh I can check your bible! <br>
+        Let’s see what information we have about it.
+
+              </p> 
+                </div>
+              </div>
+            <p> <span class="strong">Read</span> 9:48 PM</p>
+            </div>
+
+          </div>  
+
+        </section>
+
+        <section id="biblia" class="biblia">
+            
+            <div class="biblia__photos">
+
+              <picture class="biblia__photos__plantin_page">
+                        <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  45vw"
+                      
+                                srcset="
+                          ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_278.avif 278w,
+                        ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_394.avif 394w,
+                          ./src/assets/bible/page_right/page_right_gr9adk_c_scale,w_401.avif 401w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/bible/page_right/page_right.png"
+                          alt="Old page of a book plantin printed">
+              </picture> 
+
+              <picture class="biblia__photos__atlas">
+                        <source sizes="(min-width:1024px) 40vw,(min-width: 320px)  55vw"
+                        
+                                srcset="
+                          ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_200.avif 200w,
+                        ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_321.avif 321w,
+                          ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_481.avif 481w,
+                          ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_668.avif 668w,
+                          ./src/assets/bible/atlas/atlas_reo2xc_c_scale,w_738.avif 738w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/bible/atlas/page_right.png"
+                          alt="old atlas">
+              </picture> 
+
+              <picture class="biblia__photos__open_biblia">
+                        <source sizes="(min-width:1024px) 30vw,(min-width: 320px)  50vw"
+                        
+                                srcset="
+                          ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_294.avif 294w,
+                        ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_370.avif 370w,
+                        ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_441.avif 441w,
+                        ./src/assets/bible/open_bible/open_bible_tpwqe5_c_scale,w_513.avif 513w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/bible/open_bible/open_bible.png"
+                          alt="open biblia">
+              </picture> 
+
+              <picture class="biblia__photos__music_sheet">
+                        <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  50vw"
+                        
+                                srcset="
+                          ./src/assets/bible/music/music__sheet_eezije_c_scale,w_190.avif 190w,
+                        ./src/assets/bible/music/music__sheet_eezije_c_scale,w_276.avif 276w,
+                        ./src/assets/bible/music/music__sheet_eezije_c_scale,w_344.avif 344w,
+                        ./src/assets/bible/music/music__sheet_eezije_c_scale,w_410.avif 410w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/bible/music/music__sheet.png"
+                          alt="music sheet">
+              </picture> 
+
+              <picture class="biblia__photos__octo_icon">
+                        <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  25vw"
+                        
+                                srcset="
+                          ./src/assets/icons/music_bible/music_bible_gw65of_c_scale,w_190.avif 190w,
+                        ./src/assets/icons/music_bible/music_bible_gw65of_c_scale,w_510.avif 510w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/icons/music_bible/music_bible.png"
+                          alt="octo missae seal">
+              </picture>
+
+              <picture class="biblia__photos__location_icon">
+                        <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  18vw"
+                        
+                                srcset="
+                          ./src/assets/icons/location/location_xor31l_c_scale,w_190.avif 190w,
+                        ./src/assets/icons/location/location_xor31l_c_scale,w_512.avif 512w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/icons/location/location.png"
+                          alt="location icon">
+              </picture> 
+
+              <picture class="biblia__photos__biblia_icon">
+                        <source sizes="(min-width:1024px) 10vw,(min-width: 320px)  25vw"
+                        
+                                srcset="
+                          ./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_200.avif 200w,
+                        ./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_520.avif 520w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/icons/bible/stamps_biblia_2_lenzns_c_scale,w_200.png"
+                          alt="biblia seal">
+              </picture> 
+
+            </div>
+
+            <div class="biblia__pages">
+
+              <div class="biblia__pages__first_page">
+                <div class="first_page__background">
+                  <div class="first_page__text">
+                    <p>
+                    It was printed in <br>
+                    <span class="biblia__big_text strong"> 8 parts</span> 
+                    <ul> 
+                      <li>4 from the Old Testament </li>
+                    <li>1 from the New Testament</li>
+                    <li>3 with commentary</li>
+                    </ul>
+                    </p>
+                    <p>
+                    The text was in <span class="biblia__big_text strong"> 5 languages: </span>
+                  <ol> <li>Latin</li>
+                    <li>Greek</li>
+                    <li>Hebrew</li>
+                    <li>Chaldean</li>
+                    <li>Syriac.</li>
+                    </ol>
+                    </p>
+                    <p>
+                    A truly monumental masterpiece, commissioned by King Philip II himself. 
+                    </p>
+
+                    <form id="signatureForm">
+                    <label for="signature" class="strong">Sign here as <br>
+                      King Philip II to continue</label>
+                      <div class="biblia__form">
+                        <div class="biblia__form__writing">
+                          <button type="button" id="clearButton">
+                            <picture class="biblia__retry hidden">
+                                      <source sizes="(min-width:1024px) 5vw,(min-width: 320px)  15vw"
+                                      
+                                              srcset="
+                                        ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.avif 200w,
+                                      ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.avif 525w"
+                                              type="image/avif">
+                                        <img
+                                        sizes="320px"
+                                        src="./src/assets/icons/form_retry/retry.png"
+                                        alt="retry icon">
+                            </picture>
+                          </button>
+                          <canvas id="signatureCanvas" width="170" height="80"></canvas>  
+                        </div>
+
+                        <button type="submit">
+                          <picture class="biblia__submit hidden">
+                                    <source sizes="(min-width:1024px) 6vw,(min-width: 320px)  18vw"
                                     
                                             srcset="
-                                      ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_200.avif 200w,
-                                    ./src/assets/icons/form_retry/retry_clbjdy_c_scale,w_525.avif 525w"
+                                      ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.avif 200w,
+                                    ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.avif 513w"
                                             type="image/avif">
                                       <img
                                       sizes="320px"
-                                      src="./src/assets/icons/form_retry/retry.png"
-                                      alt="retry icon">
+                                      src="./src/assets/icons/submit/submit.png"
+                                      alt="submit icon">
+                          </picture>
+                          <picture class="biblia__submit__write">
+                                    <source sizes="(min-width:1024px) 6vw, (min-width: 320px)  18vw"
+                  
+                                            srcset="
+                                      ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.avif 200w,
+                                    ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.avif 863w,
+                                    ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.avif 1400w"
+                                            type="image/avif">
+                                      <img
+                                      sizes="320px"
+                                      src="./src/assets/icons/form_writing/writing_form.png"
+                                      alt="submit icon">
                           </picture>
                         </button>
-                        <canvas id="signatureCanvas" width="170" height="80"></canvas>  
                       </div>
 
-                      <button type="submit">
-                        <picture class="biblia__submit">
-                                  <source sizes="(min-width:1024px) 6vw,(min-width: 320px)  18vw"
-                                  
-                                          srcset="
-                                    ./src/assets/icons/submit/submit_at9lo0_c_scale,w_200.avif 200w,
-                                  ./src/assets/icons/submit/submit_at9lo0_c_scale,w_513.avif 513w"
-                                          type="image/avif">
-                                    <img
-                                    sizes="320px"
-                                    src="./src/assets/icons/submit/submit.png"
-                                    alt="submit icon">
-                        </picture>
-                        <picture class="biblia__submit__write">
-                                  <source sizes="(min-width:1024px) 6vw, (min-width: 320px)  18vw"
-                
-                                          srcset="
-                                    ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_200.avif 200w,
-                                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_863.avif 863w,
-                                  ./src/assets/icons/form_writing/writing_form_p2vt0a_c_scale,w_1400.avif 1400w"
-                                          type="image/avif">
-                                    <img
-                                    sizes="320px"
-                                    src="./src/assets/icons/form_writing/writing_form.png"
-                                    alt="submit icon">
-                        </picture>
-                      </button>
-                    </div>
-
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="biblia__pages__second_page">
-              <div class="second_page__background">
-                <div class="second_page__second_text">
-                  <p>
-                    Only 1,200 copies were made, each intended for influential figures like the Pope and the King of Spain. In the 16th-century Netherlands, books like this were not just tools of knowledge, they were instruments of power and influence. 
-                  </p> <p>The Biblia Polyglotta also symbolized the Catholic Church's intellectual and cultural authority during the Counter-Reformation, reinforcing its dominance through scholarly and artistic excellence.
-                  </p>
+              <div class="biblia__pages__second_page hidden">
+                <div class="second_page__background">
+                  <div class="second_page__second_text">
+                    <p>
+                      Only 1,200 copies were made, each intended for influential figures like the Pope and the King of Spain. In the 16th-century Netherlands, books like this were not just tools of knowledge, they were instruments of power and influence. 
+                    </p> <p>The Biblia Polyglotta also symbolized the Catholic Church's intellectual and cultural authority during the Counter-Reformation, reinforcing its dominance through scholarly and artistic excellence.
+                    </p>
+                  </div>
                 </div>
               </div>
+
             </div>
 
-          </div>
+            <div class="biblia__phone hidden">
+              <p>Drag the pages to the phone </p>
+              <picture class="biblia__phone__img">
+                        <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  25vw"
+                        
+                                srcset="
+                          ./src/assets/phone/phone_biblia_dkqxgm_c_scale,w_200.avif 200w,
+                        ./src/assets/phone/phone_biblia_dkqxgm_c_scale,w_512.avif 512w"
+                                type="image/avif">
+                          <img
+                          sizes="320px"
+                          src="./src/assets/phone/phone_biblia_yvdyza_c_scale,w_200.png"
+                          alt="phone">
+              </picture> 
+            </div>
 
-          <div class="biblia__phone">
-            <p>Drag the pages to the phone </p>
-            <picture class="biblia__phone__img">
-                      <source sizes="(min-width:1024px) 25vw,(min-width: 320px)  25vw"
-                      
-                              srcset="
-                        ./src/assets/phone/phone_biblia_dkqxgm_c_scale,w_200.avif 200w,
-                      ./src/assets/phone/phone_biblia_dkqxgm_c_scale,w_512.avif 512w"
-                              type="image/avif">
-                        <img
-                        sizes="320px"
-                        src="./src/assets/phone/phone_biblia_yvdyza_c_scale,w_200.png"
-                        alt="phone">
-            </picture> 
-          </div>
+        </section>
 
-      </div>
+      </article>
 
-      <div id="woodblock" class="after__biblia">
-
-        <div  class="conclusion_biblia">
+      <article class="woodblock_article hidden">
+        <section  class="conclusion_biblia">
 
           <div class="conclusion_biblia__clicking_portrait">
             
@@ -606,27 +612,9 @@
             </div>
           </div>  
 
-        </div>
+        </section>
 
-        <div class="g_woodblock__flex">
-          <picture class="g_woodblock">
-                        <source
-                                sizes="(min-width:1024px) 10vw,(min-width: 320px)  30vw"
-                          
-                                srcset="
-                        ./src/assets/woodblock/g_block_qdfanw_c_scale,w_200.avif 200w,
-                          ./src/assets/woodblock/g_block_qdfanw_c_scale,w_350.avif 350w,
-                          ./src/assets/woodblock/g_block_qdfanw_c_scale,w_455.avif 455w,
-                          ./src/assets/woodblock/g_block_qdfanw_c_scale,w_538.avif 538w"
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/woodblock/g_block.png"
-                          alt="wood block with a g">
-          </picture>
-        </div>
-
-        <div class="woodblocks">
+        <section class="woodblocks hidden">
           <div class="woodblocks__first_text">
             <p>
               These blocks were the soul of his illustrations, carved with meticulous care to bring entire books to life.
@@ -657,7 +645,7 @@
 
                 <picture class="g__grid__g">
                         <source
-                                sizes="(min-width:1024px) 65vw,(min-width: 320px)  180vw"
+                                sizes="(min-width:1024px) 37vw,(min-width: 320px)  180vw"
                           
                                 srcset="
                         ./src/assets/g_not_framed/g_not_framed_edn4zh_c_scale,w_200.avif 200w,
@@ -735,9 +723,9 @@
           </div>
           
           <p class="woodblocks__second_text">This extraordinary collection, preserved at the Plantin-Moretus Museum, showcases a significant contribution to 16th-century publishing and art, including works by renowned botanists like Dodoens, Clusius, and Lobelius.</p>
-        </div>
+        </section>
      
-        <div class="comics">
+        <section class="comics hidden">
           <div class="comics__background">
             <h2>Which of these do you think inspired the proportions used in comics?</h2>
             
@@ -752,7 +740,7 @@
                 <li class="comics__options__1"> 
                   <picture>
                         <source
-                                sizes="(min-width:1024px) 30vw,(min-width: 320px)  90vw"
+                                sizes="(min-width:1024px) 15vw,(min-width: 320px)  90vw"
                           
                                 srcset="
                         ./src/assets/tilting/nature/nature_hq1vvo_c_scale,w_200.avif 200w,
@@ -825,9 +813,9 @@
             <p class="comics__results__p"></p>
 
           </div>
-        </div>
+        </section>
  
-        <div class="timeline">
+        <section class="timeline hidden">
 
           <div class="timeline__with_text">
             <div class="timeline__before">
@@ -915,9 +903,11 @@
 
           </div>
 
-        </div>
+        </section>
+      </article>
 
-        <div class="beggining_music">
+      <article class="music_article hidden">
+        <section class="beggining_music">
 
           <picture class="beggining_music__music_sheet">
                         <source
@@ -963,7 +953,7 @@
 
             <picture class="beggining_music__portrait_words__date">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 10vw,(min-width: 320px)  75vw"
                               srcset="
                       ./src/assets/icons/date_music/1578_vowsik_c_scale,w_200.avif 200w,
                         ./src/assets/icons/date_music/1578_vowsik_c_scale,w_512.avif 512w"
@@ -976,9 +966,9 @@
 
           </div>
 
-        </div>
+        </section>
 
-        <div class="music">
+        <section class="music">
 
           <div class="music__text">
             <h2  class="music__text__h2"> The first musical work printed by Plantin’s press</h2>
@@ -987,7 +977,7 @@
           </div> 
 
           <div class="music__grid">
-            <p class="music__grid__then strong">Then</p>
+            <p class="music__grid__then strong">Then</p> -->
 
             <div class="music__grid__container">
               <svg class="music__grid__container__new slider-image" width="1240" height="217" viewBox="0 0 1240 217" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1020,7 +1010,7 @@
 </g>
               </svg>
 
-              <svg class="music__grid__container__old slider-image" width="1264" height="240" viewBox="0 0 1264 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="music__grid__container__old slider-image" width="1240" height="217" viewBox="0 0 1240 217" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g opacity="0.18">
 <path d="M1 190.158L1263 216.772" stroke="#623800" stroke-width="7"/>
 <path d="M1 147.662L1263 174.276" stroke="#623800" stroke-width="7"/>
@@ -1052,9 +1042,9 @@
 
               <div class="music__grid_container__slider_line"> 
 
-                <picture class="beggining_music__portrait_words__date">
+                <picture>
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 13vw,(min-width: 320px)  40vw"
                               srcset="
                       ./src/assets/drag/drag_qw36hx_c_scale,w_200.avif 200w,
                         ./src/assets/drag/drag_qw36hx_c_scale,w_268.avif 268w"
@@ -1066,15 +1056,17 @@
                 </picture>
 
               </div>
-
+<!-- 
             </div>
 
             <p class="music__grid__now strong">Now</p>
           </div>
 
-        </div>
+        </section>
+      </article>
 
-        <div class="learn">
+      <section class="end_section hidden">
+        <section class="learn">
           <h2 class="learn__h2" >What did we learn?</h2>
 
           <div class="learn__carousel">
@@ -1146,9 +1138,9 @@
 
           </div>
 
-        </div>
+        </section>
 
-        <div class="bye">
+        <section class="bye">
 
           <div class="bye__text">
             <h2> Bye Plantin</h2>
@@ -1188,9 +1180,8 @@
 
           </div>
 
-        </div>
-
-      </div>
+        </section>
+      </section> -->
 
     </main>
 
@@ -1254,6 +1245,7 @@
 
       <div class="footer__info">
         <nav>
+          <h2 class="hidden">Footer Navigation</h2>
           <ul class="footer__nav strong">
             <li><a href="#biblia">Biblia</a></li>
             <li><a href="#woodblock">Wood Block</a></li>
