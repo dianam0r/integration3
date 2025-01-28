@@ -1,4 +1,6 @@
-// // sign form
+const mm = gsap.matchMedia();
+
+// sign form
 const $canvas = document.getElementById("signatureCanvas");
 const ctx = $canvas.getContext("2d");
 let isDrawing = false;
@@ -8,6 +10,7 @@ const $bibliaPages = document.querySelector('.biblia__pages');
 const $bibliaPhone = document.querySelector('.biblia__phone');
 const $bibliaWrite = document.querySelector('.biblia__submit__write');
 const $retry = document.querySelector('.biblia__retry');
+const $formInstructions = document.querySelector('.form__field__instructions');
 
 // menu
 const $navButton = document.querySelector('.nav__buttons__icons');
@@ -84,7 +87,7 @@ const menu = (mm) => {
           $musicArticle.classList.remove("hidden");
           $endSection.classList.remove("hidden");
           woodBlock();
-          timeline();
+          timelineBeforeNow(mm);
           // dateIcon();
           toggleAnswer();
           tilting();
@@ -100,7 +103,7 @@ const menu = (mm) => {
           $musicArticle.classList.remove("hidden");
           $endSection.classList.remove("hidden");
           woodBlock();
-          timeline();
+          timelineBeforeNow(mm);
           // dateIcon();
           toggleAnswer();
           tilting();
@@ -427,21 +430,54 @@ const showMessages = (mm) => {
 const bibleStamps = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".biblia__photos",
+      trigger: ".biblia",
       start: "top 50%",
-      end: "bottom top",
+      end: "20% 30%",
       scrub: true,
     },
   });
 
+  // Animate the icons with staggered opacity and scale
   tl.fromTo(
-    [".biblia__photos__biblia_icon", ".biblia__photos__octo_icon", ".biblia__photos__location_icon"],
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out", stagger: 0.5 }
-  ).fromTo(
-    [".biblia__photos__biblia_icon", ".biblia__photos__octo_icon", ".biblia__photos__location_icon"],
+    [
+      ".biblia__photos__biblia_icon",
+      ".biblia__photos__octo_icon",
+      ".biblia__photos__location_icon",
+    ],
     { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out", stagger: 0.5 }
+    { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out", stagger: 0.5 },
+    "<"
+  ).fromTo(
+    [
+      ".biblia__photos__biblia_icon",
+      ".biblia__photos__octo_icon",
+      ".biblia__photos__location_icon",
+    ],
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out", stagger: 0.5 },
+    "<"
+  );
+
+  tl.fromTo(
+    ".biblia__photos__plantin_page",
+    { x: "-100%"},
+    { x: "0%", duration: 1.5, ease: "power1.out" },
+    "<"
+  ).fromTo(
+    ".biblia__photos__atlas",
+    { x: "100%"},
+    { x: "0%", duration: 1.5, ease: "power1.out" },
+    "<"
+  ).fromTo(
+    ".biblia__photos__open_biblia",
+    { x: "-100%"},
+    { x: "0%", duration: 1.5, ease: "power1.out" },
+    "<"
+  ).fromTo(
+    ".biblia__photos__music_sheet",
+    { x: "100%"},
+    { x: "0%", duration: 1.5, ease: "power1.out" },
+    "<"
   );
 };
 
@@ -535,8 +571,9 @@ const submit = (mm) => {
             $woodblockArticle.classList.remove("hidden");
             $musicArticle.classList.remove("hidden");
             $endSection.classList.remove("hidden");
+            $formInstructions.classList.add("hidden");
             woodBlock();
-            timeline();
+            timelineBeforeNow(mm);
             dateIcon();
             toggleAnswer();
             tilting();
@@ -560,6 +597,7 @@ const submit = (mm) => {
             $bibliaPhone.classList.remove("hidden");
             $bibliaPages.classList.add("relative_pages");
             $bibliaFirst.classList.add("absolute");
+            $formInstructions.classList.add("hidden");
             dragPhone();
             event.preventDefault();
           }
@@ -593,26 +631,58 @@ const dateIcon = () => {
 };
 
 const woodBlock = () => {
-  const $portraitWoodblock = document.querySelectorAll(".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon");
- 
-  $portraitWoodblock.forEach(element => {
-    element.addEventListener("click", () => {
-      const timeline = gsap.timeline();
+  let scrollTriggered = false;
 
-      timeline.fromTo(
+  // Scroll-triggered animation for .woodblock_article
+  const scrollTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".woodblock_article",
+      start: "top 75%", // Adjust as needed
+      end: "50% 50%",
+      scrub: true,
+      onLeave: () => (scrollTriggered = true), // Mark as triggered when leaving the section
+    },
+  });
+
+  scrollTimeline
+    .fromTo(
+      ".conclusion_biblia__clicking_portrait",
+      { x: "-100%", opacity: 0 }, // Starts off-screen to the left
+      { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } // Slides in smoothly
+    )
+    .fromTo(
+      ".conclusion_biblia__background",
+      { x: "100%", opacity: 0 }, 
+      { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" },
+      "<" 
+    );
+
+  const $portraitWoodblock = document.querySelectorAll(
+    ".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon"
+  );
+
+  $portraitWoodblock.forEach((element) => {
+    element.addEventListener("click", () => {
+      if (scrollTriggered) {
+        scrollTimeline.kill();
+      }
+
+      const tl = gsap.timeline();
+
+      tl.fromTo(
         ".clicking_portrait__g_woodblock",
         { rotation: 0, x: 0, y: 0, opacity: 1 },
         {
           rotation: 360,
-          x: "10px", 
-          y: "-10px",
-          yoyo: true, 
-          repeat:1,
+          x: "10vw",
+          y: "+=800",
+          yoyo: true,
           duration: 1,
           ease: "power1.out",
         }
       );
-      timeline.add(() => {
+
+      tl.add(() => {
         document.querySelector(".woodblocks").classList.remove("hidden");
         document.querySelector(".comics").classList.remove("hidden");
         document.querySelector(".timeline").classList.remove("hidden");
@@ -620,13 +690,12 @@ const woodBlock = () => {
         $endSection.classList.remove("hidden");
         fallingWoodblock();
         // dateIcon();
+        timelineBeforeNow(mm);
         musicSheetAppear();
       });
     });
   });
-
-  
-}
+};
 
 const fallingWoodblock = () => {
   gsap.timeline({
@@ -709,12 +778,16 @@ const prev = () => {
 };
 
 const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
+  const $comicsInstructions = document.querySelector('.comics__instructions');
   if (!isTilting) {
     if (leftToRight > 15 && frontToBack >= 90 && frontToBack <= 105 && twist < 308 && twist > 270) {
       isTilting = true;
+      
+      $comicsInstructions.textContent = "";
       prev();
     } else if (leftToRight < -15 && frontToBack >= 90 && frontToBack <= 108 && twist > 86 && twist < 109) {
       isTilting = true;
+      $comicsInstructions.textContent = "";
       next();
     }
   }
@@ -742,7 +815,6 @@ const checkOptionContent = () => {
 };
 
 const dragWoodblock = () => {
-
   document.querySelectorAll('.comics__options__1,.comics__options__2,.comics__options__3,.comics__options__4').forEach(option => {
     const rect = option.getBoundingClientRect();
     option.dataset.originalX = rect.left;
@@ -754,7 +826,7 @@ const dragWoodblock = () => {
     bounds: ".comics",
     type: "x,y",
     onDragEnd: function () {
-      const $squareRect = document.querySelector(".comics__options__grid__square").getBoundingClientRect();
+      const $squareRect = document.querySelector(".grid__square__img").getBoundingClientRect();
       const draggedRect = this.target.getBoundingClientRect();
 
       const isInside = (
@@ -806,50 +878,88 @@ const dragWoodblock = () => {
   });
 };
 
-const timeline = () => {
+const timelineBeforeNow = (mm) => {
   const $timeline = document.querySelector(".timeline__line");
   const timelineWidth = $timeline.offsetWidth;
   const amountToScroll = timelineWidth - window.innerWidth;
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".timeline",
-      start: "top 20%",
-      end: "+=" + amountToScroll,
-      pin: true,
-      scrub: 1,
-      pinSpacing: false
+  mm.add(
+    {
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(min-width: 300px) and (max-width:450px)"
     },
-  });
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
 
-  tl.fromTo(
-    ".timeline",
-    { x: 0 },
-    { x: -amountToScroll, duration: 20, ease: "none" }
+      if (isMobile) {
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".timeline",
+            start: "top 20%",
+            end: "+=" + amountToScroll,
+            pin: true,
+            scrub: 1,
+            pinSpacing: false,
+          },
+        });
+
+        tl.fromTo(
+          ".timeline",
+          { x: 0 },
+          { x: amountToScroll, duration: 20, ease: "none" }
+        );
+
+      }
+
+      if (isDesktop) {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: ".timeline",
+            start: "-40% 100%", 
+            end: "10% 25%",
+            scrub: true,
+          },
+        }).fromTo(
+          ".timeline___seals",
+          { x: "-100%", opacity: 0 }, // Starts off-screen to the left
+          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } // Slides in smoothly
+        );
+      }
+      return;
+    }
   );
 };
 
 const musicSheetAppear = () => {
-  const $begginingMusic = document.querySelector(".beggining_music__music_sheet");
+  const $begginingMusic = document.querySelector(".beggining_music");
   const musicWidth = $begginingMusic.offsetWidth;
   const amountToScroll = musicWidth - window.innerWidth;
+  console.log(musicWidth, window.innerWidth, amountToScroll)
 
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".beggining_music",
-      start: "top 20%",
+      start: "15% 40%",
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
+      markers: true,
+      pinSpacing:false,
     },
   });
 
   tl.fromTo(
-    ".beggining_music",
+    ".beggining_music__portrait_words",
     { x: 0 },
     { x: -amountToScroll, duration: 20, ease: "none" }
-  );
+  )
+    .fromTo(
+      ".music__grid__container",
+      { marginInlineStart: "0vw" },
+      { marginInlineStart: "0vw", duration: 20, ease: "none" }
+    ); 
 };
+
 
 const dragMusic = () => {
   const container1 = document.querySelector(".music__grid__container");
@@ -942,8 +1052,7 @@ const dragPhone = () => {
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(Draggable);
-  const mm = gsap.matchMedia();
-
+  
   menu(mm);
   intro(mm);
   showMessages(mm);
