@@ -48,7 +48,7 @@ ul {
   list-style: none;
 }
 
-h1 {
+.big__title {
   color: var(--color-yellow);
   font-size: var(--fs-h1);
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
@@ -58,6 +58,12 @@ h1 {
 .music__grid__then,
 .music__grid__now,
 .comics__results__title,
+.medium__title,
+.timeline__before__year,
+.timeline__now__year,
+.music__text__title,
+.learn__title,
+.bye__text__title,
 h2 {
   color: var(--color-yellow);
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
@@ -195,16 +201,17 @@ h1 {
   background-position: -27vw -7vh;
   background-repeat: no-repeat;
   padding-block-start: 10vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: 1fr;
+  grid-template-rows: 1fr; */
   block-size: 100vh;
 }
 
-.intro__grid>* {
+/* .intro__grid>* {
   grid-column: 1;
   grid-row: 1;
-}
+} */
 
 .intro__flex__p {
   inline-size: 77vw;
@@ -254,11 +261,8 @@ h1 {
   display: flex;
 }
 
-.intro__plantin__post_it>p {
-  background-image: url(../assets/underline_postit.svg);
-  background-repeat: no-repeat;
-  background-position: center 100%;
-  text-align: center;
+.intro__plantin__post_it__p {
+  text-align: start;
 }
 
 .intro__plantin__book_icon {
@@ -292,12 +296,12 @@ h1 {
   inline-size: 61vw;
 }
 
+
 .hello_there__writing_icon {
   align-self: end;
   margin-block-end: 2vh;
   margin-inline-end: -5vw;
 }
-
 
 
 
@@ -590,7 +594,7 @@ h1 {
   margin-block-start: 8vh;
 }
 
-.comics__background>h2 {
+.comics__background__title {
   inline-size: 80vw;
   color: inherit;
 }
@@ -748,7 +752,7 @@ h1 {
   margin-block-start: 5vw;
 }
 
-.timeline__now>h2 {
+.timeline__now__year {
   text-align: end;
 }
 
@@ -759,7 +763,7 @@ h1 {
 }
 
 .music__grid__then,
-.timeline__before>h2 {
+.timeline__before__year {
   color: var(--color-body-brown);
 }
 
@@ -802,17 +806,17 @@ h1 {
   margin-inline-end: 6vh;
 }
 
+.beggining_music__portrait_words__text>p {
+  inline-size: 60vw;
+  padding-inline: 5vw;
+}
+
 .beggining_music__portrait_words__date {
   margin-block-start: -7vh;
   margin-inline-end: 4vw;
   justify-self: end;
   grid-row: 3;
   grid-column: 1;
-}
-
-.beggining_music__portrait_words__text>p {
-  inline-size: 60vw;
-  padding-inline: 5vw;
 }
 
 .beggining_music__portrait_words {
@@ -843,8 +847,8 @@ h1 {
   grid-column: 1;
 }
 
-.learn__h2,
-.music__text__h2 {
+.learn__title,
+.music__text__title {
   color: inherit;
 }
 
@@ -854,7 +858,7 @@ h1 {
 
 
 .music__text,
-.comics__background>h2,
+.comics__background__title,
 .woodblocks {
   margin-inline: 7vw;
 }
@@ -1017,7 +1021,7 @@ footer {
     grid-row: 1;
   }
 
-  h1 {
+  .big__title {
     inline-size: max-content;
   }
 
@@ -1062,7 +1066,8 @@ footer {
 
   .intro__plantin__post_it>p {
     inline-size: min-content;
-    margin: 3vh;
+    margin-inline: 2vw;
+    margin-block: 2vh;
     background-position: center calc(50% + 0.1vh);
   }
 
@@ -1138,20 +1143,24 @@ footer {
   }
 
   .hello_there {
-    background-size: 32vw 24vh;
+    background-size: 34vw 24vh;
     background-image: url(../assets/intro_plantin_bck/background_platin_talking__computer.png);
-    background-position: center center;
-    inline-size: 32vw;
-    block-size: 24vh;
+    background-position: top center;
+    padding: 2vh;
+    display: flex;
   }
 
   .hello_there__text>p {
-    inline-size: 28vw;
-    padding: 0vw;
+    inline-size: 30vw;
   }
 
   .hello_there__text {
-    padding: 1vw;
+    inline-size: 33vw;
+    block-size: 26vh;
+    justify-self: center;
+    align-self: center;
+    padding-inline: 2vw;
+    padding-block: 1vh;
   }
 
   .hello_there__writing_icon {
@@ -1481,7 +1490,7 @@ footer {
     justify-self: end;
   }
 
-  .comics__background>h2 {
+  .comics__background__title {
     inline-size: 50vw;
     text-align: center;
   }
