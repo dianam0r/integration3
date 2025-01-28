@@ -1,4 +1,4 @@
-const mm = gsap.matchMedia();
+
 
 // sign form
 const $canvas = document.getElementById("signatureCanvas");
@@ -51,6 +51,10 @@ const nextButton = $carousel.querySelector('.carousel__button.next');
 
 let currentIndex = 0;
 
+const $portraitWoodblock = document.querySelectorAll(
+  ".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon"
+);
+const clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
 
 const menu = (mm) => {
 
@@ -483,8 +487,9 @@ const submit = (mm) => {
   const $signatureForm = document.getElementById("signatureForm");
   mm.add(
     {
-      isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 300px) and (max-width:480px)"
+      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 480px) and (max-width: 768px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -499,9 +504,8 @@ const submit = (mm) => {
             $submit.classList.add("hidden");
             $woodblockArticle.classList.remove("hidden");
             $formInstructions.classList.add("hidden");
-            woodBlock();
+            woodBlock(mm);
             dateIcon();
-
             event.preventDefault();
           }
         });
@@ -558,43 +562,83 @@ const dateIcon = () => {
   );
 };
 
-const woodBlock = () => {
+const woodBlock = (mm) => {
 
-  const $portraitWoodblock = document.querySelectorAll(
-    ".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon"
-  );
+  mm.add(
+    {
+      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 480px) and (max-width: 768px)",
+      isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
+    },
+    (context) => {
+      let { isMobile, isSmallerMobile } = context.conditions;
 
-  const clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
+      if (isSmallerMobile) {
+        $portraitWoodblock.forEach((element) => {
+          element.addEventListener("click", () => {
+            gsap.to(clickingWoodblock, {
+              y: "150vh",
+              rotation: 365,
+              duration: 3,
+              onComplete: () => {
+                // Fade out after the movement is complete
+                gsap.to(clickingWoodblock, {
+                  opacity: 0,
+                  duration: 1, // Adjust duration as needed
+                });
+              },
+            });
 
-  $portraitWoodblock.forEach((element) => {
-    element.addEventListener("click", () => {
-      gsap.to(clickingWoodblock, {
-        y: "150vh",
-        rotation: 365,
-        duration: 3,
-        onComplete: () => {
-          // Fade out after the movement is complete
-          gsap.to(clickingWoodblock, {
-            opacity: 0,
-            duration: 1, // Adjust duration as needed
+            document.querySelector(".woodblocks").classList.remove("hidden");
+            document.querySelector(".comics").classList.remove("hidden");
+            document.querySelector(".timeline").classList.remove("hidden");
+            $musicArticle.classList.remove("hidden");
+            $endSection.classList.remove("hidden");
+            // fallingWoodblock();
+            // dateIcon();
+            timelineBeforeNow(mm);
+            musicSheetAppear();
+            toggleAnswer();
+            tilting();
+            slideLearn();
           });
-        },
-      });
+        });
+      }
 
-      document.querySelector(".woodblocks").classList.remove("hidden");
-      document.querySelector(".comics").classList.remove("hidden");
-      document.querySelector(".timeline").classList.remove("hidden");
-      $musicArticle.classList.remove("hidden");
-      $endSection.classList.remove("hidden");
-      // fallingWoodblock();
-      // dateIcon();
-      timelineBeforeNow(mm);
-      musicSheetAppear();
-      toggleAnswer();
-      tilting();
-      slideLearn();
-    });
-  });
+      if (isMobile) {
+        $portraitWoodblock.forEach((element) => {
+          element.addEventListener("click", () => {
+            gsap.to(clickingWoodblock, {
+              y: "110vh",
+              rotation: 365,
+              duration: 3,
+              onComplete: () => {
+                // Fade out after the movement is complete
+                gsap.to(clickingWoodblock, {
+                  opacity: 0,
+                  duration: 1, // Adjust duration as needed
+                });
+              },
+            });
+
+            document.querySelector(".woodblocks").classList.remove("hidden");
+            document.querySelector(".comics").classList.remove("hidden");
+            document.querySelector(".timeline").classList.remove("hidden");
+            $musicArticle.classList.remove("hidden");
+            $endSection.classList.remove("hidden");
+            // fallingWoodblock();
+            // dateIcon();
+            timelineBeforeNow(mm);
+            musicSheetAppear();
+            toggleAnswer();
+            tilting();
+            slideLearn();
+          });
+        });
+      }
+    }
+  );
 };
 
 // const fallingWoodblock = () => {
@@ -630,16 +674,16 @@ const toggleAnswer = () => {
   const $arrow = document.querySelector(".woodblocks__question__arrow");
   $answer.classList.add("hidden");
 
- 
-    $question.addEventListener("click", () => {
-      if (!$answer.classList.contains("hidden")) {
-        $answer.classList.add("hidden");
-        $arrow.classList.remove("woodblocks__question__arrow--open");
-        $arrow.classList.add("woodblocks__question__arrow--close");
-      } else {
-        $answer.classList.remove("hidden");
-        $arrow.classList.remove("woodblocks__question__arrow--close");
-        $arrow.classList.add("woodblocks__question__arrow--open");
+
+  $question.addEventListener("click", () => {
+    if (!$answer.classList.contains("hidden")) {
+      $answer.classList.add("hidden");
+      $arrow.classList.remove("woodblocks__question__arrow--open");
+      $arrow.classList.add("woodblocks__question__arrow--close");
+    } else {
+      $answer.classList.remove("hidden");
+      $arrow.classList.remove("woodblocks__question__arrow--close");
+      $arrow.classList.add("woodblocks__question__arrow--open");
     };
   })
 
@@ -784,17 +828,19 @@ const timelineBeforeNow = (mm) => {
   const $timeline = document.querySelector(".timeline__line");
   const timelineWidth = $timeline.offsetWidth;
   const amountToScroll = timelineWidth - window.innerWidth;
-  console.log(timelineWidth, amountToScroll )
+  console.log(timelineWidth, amountToScroll)
 
   mm.add(
     {
-      isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 300px) and (max-width:480px)"
+      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 480px) and (max-width: 768px)",
+      isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
     },
     (context) => {
-      let { isMobile, isDesktop } = context.conditions;
+      let { isSmallerMobile, isMobile, isDesktop } = context.conditions;
 
-      if (isMobile) {
+      if (isSmallerMobile) {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: ".timeline",
@@ -803,6 +849,29 @@ const timelineBeforeNow = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
+            markers: true,
+          },
+        });
+
+        tl.fromTo(
+          ".timeline",
+          { x: 0 },
+          { x: -amountToScroll, duration: 20, ease: "none" }
+        );
+
+      }
+
+      if (isMobile) {
+        console.log("mobile")
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".timeline",
+            start: "30% 50%",
+            end: "+=" + amountToScroll,
+            pin: true,
+            scrub: 1,
+            pinSpacing: false,
+            markers: true,
           },
         });
 
@@ -834,7 +903,7 @@ const timelineBeforeNow = (mm) => {
 };
 
 const musicSheetAppear = () => {
-  const $begginingMusic = document.querySelector(".beggining_music");
+  const $begginingMusic = document.querySelector(".music__grid__container");
   const musicWidth = $begginingMusic.offsetWidth;
   const amountToScroll = musicWidth - window.innerWidth;
   console.log(musicWidth, window.innerWidth, amountToScroll)
@@ -842,24 +911,25 @@ const musicSheetAppear = () => {
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".beggining_music",
-      start: "15% 40%",
-      end: "+=" + amountToScroll,
+      start: "30% 40%",
+      end: "+=" + amountToScroll + "5%",
       pin: true,
       scrub: 1,
       pinSpacing: false,
+      markers: true,
     },
   });
 
   tl.fromTo(
     ".beggining_music__portrait_words",
     { x: 0 },
-    { x: -amountToScroll, duration: 20, ease: "none" }
+    { x: amountToScroll, duration: 20, ease: "none" }
   )
     .fromTo(
-      ".music__grid__container",
-      { marginInlineStart: "0vw" },
-      { marginInlineStart: "0vw", duration: 20, ease: "none" }
-    );
+      ".music__grid__container__old",
+      { inlineSize: "420vw" },
+      { inlineSize: "200vw", duration: 20, ease: "none" }
+    ), ">";
 };
 
 
@@ -944,7 +1014,7 @@ const dragPhone = () => {
           $woodblockArticle.classList.remove("hidden");
           $bibliaPhone.classList.add("hidden")
           $bibliaPages.classList.remove("relative_pages");
-          woodBlock();
+          woodBlock(mm);
         }
       }
     }
@@ -952,6 +1022,7 @@ const dragPhone = () => {
 };
 
 const init = () => {
+  const mm = gsap.matchMedia();
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(Draggable);
 
