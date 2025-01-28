@@ -153,139 +153,6 @@ const toggleNavigation = () => {
   open === "false" ? openNavigation() : closeNavigation();
 };
 
-// const intro = (mm) => {
-//   // mm.add(
-//   //   {
-//   //     isDesktop: "(min-width: 1024px)",
-//   //     isMobile: "(min-width: 300px)"
-//   //   },
-//   //   (context) => {
-//   //     let { isMobile, isDesktop } = context.conditions;
-
-//   //     if (isMobile) {
-//   //       const tl = gsap.timeline({
-//   //         scrollTrigger: {
-//   //           trigger: ".intro__grid__intro",
-//   //           start: "top 10%",
-//   //           end: "+=500",
-//   //           pin: ".intro__grid",
-//   //           scrub: true,
-//   //         },
-//   //       });
-
-//   //       tl.fromTo(".intro__flex, .intro__scroll_div", {
-//   //         opacity: 1
-//   //       },
-//   //         {
-//   //           opacity: 0,
-//   //           duration: 1,
-//   //           ease: "power1.out"
-//   //         });
-
-//   //       tl.fromTo(
-//   //         ".stroll",
-//   //         { opacity: 0 },
-//   //         { opacity: 1, duration: 5, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin",
-//   //         { marginBottom: "20px", y: 0 },
-//   //         { marginBottom: 0, y: -300, duration: 1, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
-
-//   //       tl.fromTo(
-//   //         ".hello_there",
-//   //         { opacity: 0 },
-//   //         { opacity: 1, duration: 1, ease: "power1.out" }
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin__writing_icon, .intro__plantin__post_it",
-//   //         { opacity: 1 },
-//   //         { opacity: 0, duration: 1, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin",
-//   //         { x: 0 },
-//   //         { x: -20, duration: 1, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //     }
-
-//   //     if (isDesktop) {
-//   //       const tl = gsap.timeline({
-//   //         scrollTrigger: {
-//   //           trigger: ".intro__grid",
-//   //           start: "top 10%",
-//   //           end: "+=600",
-//   //           pin: ".intro__grid",
-//   //           scrub: true,
-//   //         },
-//   //       });
-
-//   //       tl.fromTo(".intro__flex, .intro__scroll_div", {
-//   //         opacity: 1
-//   //       },
-//   //         {
-//   //           opacity: 0,
-//   //           duration: 1,
-//   //           ease: "power1.out"
-//   //         });
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin__post_it, .intro__plantin__book_icon, .intro__plantin__writing_icon",
-//   //         { opacity: 0 },
-//   //         { opacity: 1, duration: 5, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".stroll",
-//   //         { opacity: 0 },
-//   //         { opacity: 1, duration: 5, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin",
-//   //         { y: "0%" },
-//   //         { y: "5vh", duration: 5, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(".stroll", { opacity: 1 }, { opacity: 0, duration: 1, ease: "power1.out" });
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin",
-//   //         { x: 0 },
-//   //         { x: "20vw", duration: 1, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //       tl.fromTo(
-//   //         ".intro__plantin__post_it, .intro__plantin__book_icon, .intro__plantin__writing_icon",
-//   //         { opacity: 1 },
-//   //         { opacity: 0, duration: 1, ease: "power1.out" },
-//   //         "<"
-//   //       );
-
-//   //     }
-
-
-//   //     return;
-//   //   }
-//   // );
-//   slideIntro();
-
-// };
 const prevButtonIntro = document.querySelector('.intro__grid__prev');
 const nextButtonIntro = document.querySelector('.intro__grid__next');
 const $introGroup = document.querySelector('.intro__grid');
@@ -308,10 +175,9 @@ const intro = (mm) => {
           scrollTrigger: {
             trigger: ".intro__plantin",
             start: "top 10%",
-            end: "+=600",
+            end: "+=800",
             pin: ".intro__grid",
             scrub: true,
-            markers: true,
             onUpdate: (self) => {
               const progressIndex = Math.round(self.progress * ($introsPhone.length - 1));
               if (progressIndex !== currentIndex) {
@@ -351,7 +217,6 @@ const intro = (mm) => {
             start: "30% 10%", // When the animation starts (relative to the viewport)
             end: "+=1600 90%", // Length of the animation scroll distance
             scrub: true,
-            markers: true,
           },
         });
 
@@ -377,7 +242,6 @@ const intro = (mm) => {
             start: "30% 10%", // When the animation starts (relative to the viewport)
             end: "+=2200 90%", // Length of the animation scroll distance
             scrub: true,
-            markers: true,
           },
         });
 
@@ -614,6 +478,7 @@ const clearForm = () => {
   });
 }
 
+
 const submit = (mm) => {
   const $signatureForm = document.getElementById("signatureForm");
   mm.add(
@@ -633,16 +498,10 @@ const submit = (mm) => {
             $bibliaSecond.classList.remove("hidden");
             $submit.classList.add("hidden");
             $woodblockArticle.classList.remove("hidden");
-            $musicArticle.classList.remove("hidden");
-            $endSection.classList.remove("hidden");
             $formInstructions.classList.add("hidden");
             woodBlock();
-            timelineBeforeNow(mm);
             dateIcon();
-            toggleAnswer();
-            tilting();
-            musicSheetAppear();
-            slideLearn();
+
             event.preventDefault();
           }
         });
@@ -676,11 +535,12 @@ const submit = (mm) => {
 const dateIcon = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".biblia__pages__second_page",
-      start: "top 10%",
-      end: "bottom 10%",
+      trigger: ".second_page__second_text",
+      start: "20% 10%",
+      end: "80% 10%",
       scrub: true,
     },
+    yoyo: true,
   });
 
   tl.fromTo(
@@ -691,122 +551,101 @@ const dateIcon = () => {
     ".conclusion_biblia__date_icon",
     { opacity: 1, scale: 1 },
     { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out" }
+  ).fromTo(
+    ".conclusion_biblia__date_icon",
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out" }
   );
 };
 
 const woodBlock = () => {
-  let scrollTriggered = false;
-
-  // Scroll-triggered animation for .woodblock_article
-  const scrollTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".woodblock_article",
-      start: "top 75%", // Adjust as needed
-      end: "50% 50%",
-      scrub: true,
-      onLeave: () => (scrollTriggered = true), // Mark as triggered when leaving the section
-    },
-  });
-
-  scrollTimeline
-    .fromTo(
-      ".conclusion_biblia__clicking_portrait",
-      { x: "-100%", opacity: 0 }, // Starts off-screen to the left
-      { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } // Slides in smoothly
-    )
-    .fromTo(
-      ".conclusion_biblia__background",
-      { x: "100%", opacity: 0 },
-      { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" },
-      "<"
-    );
 
   const $portraitWoodblock = document.querySelectorAll(
     ".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon"
   );
 
+  const clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
+
   $portraitWoodblock.forEach((element) => {
     element.addEventListener("click", () => {
-      if (scrollTriggered) {
-        scrollTimeline.kill();
-      }
-
-      const tl = gsap.timeline();
-
-      tl.fromTo(
-        ".clicking_portrait__g_woodblock",
-        { rotation: 0, x: 0, y: 0, opacity: 1 },
-        {
-          rotation: 360,
-          x: "10vw",
-          y: "+=800",
-          yoyo: true,
-          duration: 1,
-          ease: "power1.out",
-        }
-      );
-
-      tl.add(() => {
-        document.querySelector(".woodblocks").classList.remove("hidden");
-        document.querySelector(".comics").classList.remove("hidden");
-        document.querySelector(".timeline").classList.remove("hidden");
-        $musicArticle.classList.remove("hidden");
-        $endSection.classList.remove("hidden");
-        fallingWoodblock();
-        // dateIcon();
-        timelineBeforeNow(mm);
-        musicSheetAppear();
+      gsap.to(clickingWoodblock, {
+        y: "150vh",
+        rotation: 365,
+        duration: 3,
+        onComplete: () => {
+          // Fade out after the movement is complete
+          gsap.to(clickingWoodblock, {
+            opacity: 0,
+            duration: 1, // Adjust duration as needed
+          });
+        },
       });
+
+      document.querySelector(".woodblocks").classList.remove("hidden");
+      document.querySelector(".comics").classList.remove("hidden");
+      document.querySelector(".timeline").classList.remove("hidden");
+      $musicArticle.classList.remove("hidden");
+      $endSection.classList.remove("hidden");
+      // fallingWoodblock();
+      // dateIcon();
+      timelineBeforeNow(mm);
+      musicSheetAppear();
+      toggleAnswer();
+      tilting();
+      slideLearn();
     });
   });
 };
 
-const fallingWoodblock = () => {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: ".woodblocks__first_text",
-      start: "top 80%",
-      end: "bottom 40%",
-      scrub: true,
-    },
-  })
-    .fromTo(
-      ".clicking_portrait__g_woodblock",
-      { y: 0, scale: 1, x: 0 },
-      { y: "+=800", scale: 0.8, x: "10vw", rotation: 365, duration: 1, ease: "power1.out" }
-    )
-    .fromTo(
-      ".clicking_portrait__g_woodblock",
-      { opacity: 1 },
-      { opacity: 0, duration: 0.2, ease: "power1.out" }
-    )
-    .fromTo(
-      ".g__grid__g",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.2, ease: "power1.out" },
-      "-=0.3"
-    );
-};
+// const fallingWoodblock = () => {
+//   gsap.timeline({
+//     scrollTrigger: {
+//       trigger: ".woodblocks__first_text",
+//       start: "top 80%",
+//       end: "bottom 40%",
+//       scrub: true,
+//     },
+//   })
+//     .fromTo(
+//       ".clicking_portrait__g_woodblock",
+//       { y: 0, scale: 1, x: 0 },
+//       { y: "+=800", scale: 0.8, x: "10vw", rotation: 365, duration: 1, ease: "power1.out" }
+//     )
+//     .fromTo(
+//       ".clicking_portrait__g_woodblock",
+//       { opacity: 1 },
+//       { opacity: 0, duration: 0.2, ease: "power1.out" }
+//     )
+//     .fromTo(
+//       ".g__grid__g",
+//       { opacity: 0 },
+//       { opacity: 1, duration: 0.2, ease: "power1.out" },
+//       "-=0.3"
+//     );
+// };
 
 const toggleAnswer = () => {
   const $question = document.querySelector(".woodblocks__question__text");
   const $answer = document.querySelector(".woodblocks__question__answer");
   const $arrow = document.querySelector(".woodblocks__question__arrow");
+  $answer.classList.add("hidden");
 
-  if ($question && $answer && $arrow) {
+ 
     $question.addEventListener("click", () => {
-      if ($answer.style.display === "block") {
+      if (!$answer.classList.contains("hidden")) {
         $answer.classList.add("hidden");
         $arrow.classList.remove("woodblocks__question__arrow--open");
         $arrow.classList.add("woodblocks__question__arrow--close");
       } else {
-        $answer.classList.add("block");
+        $answer.classList.remove("hidden");
         $arrow.classList.remove("woodblocks__question__arrow--close");
         $arrow.classList.add("woodblocks__question__arrow--open");
-      }
-    });
-  }
+    };
+  })
+
 };
+
+let currentIndexTilt = Math.floor(Math.random() * $optionsTilt.length); // Start at a random index
 
 const tilting = () => {
   update();
@@ -826,18 +665,18 @@ const tilting = () => {
 
 const update = () => {
   $optionsTilt.forEach((option, index) => {
-    option.style.display = index === currentIndex ? 'block' : 'none';
+    option.style.display = index === currentIndexTilt ? 'block' : 'none';
   });
   checkOptionContent();
 };
 
 const next = () => {
-  currentIndex = (currentIndex + 1) % $optionsTilt.length;
+  currentIndexTilt = (currentIndexTilt + 1) % $optionsTilt.length;
   update();
 };
 
 const prev = () => {
-  currentIndex = (currentIndex - 1 + $optionsTilt.length) % $optionsTilt.length;
+  currentIndexTilt = (currentIndexTilt - 1 + $optionsTilt.length) % $optionsTilt.length;
   update();
 };
 
@@ -846,7 +685,6 @@ const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
   if (!isTilting) {
     if (leftToRight > 15 && frontToBack >= 90 && frontToBack <= 105 && twist < 308 && twist > 270) {
       isTilting = true;
-
       $comicsInstructions.textContent = "";
       prev();
     } else if (leftToRight < -15 && frontToBack >= 90 && frontToBack <= 108 && twist > 86 && twist < 109) {
@@ -862,7 +700,7 @@ const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
 };
 
 const checkOptionContent = () => {
-  const currentOption = $optionsTilt[currentIndex];
+  const currentOption = $optionsTilt[currentIndexTilt];
   if (currentOption.classList.contains('comics__options__1')) {
     $resultsTitle.textContent = "Not Nature...";
     $resultsP.textContent = "";
@@ -946,6 +784,7 @@ const timelineBeforeNow = (mm) => {
   const $timeline = document.querySelector(".timeline__line");
   const timelineWidth = $timeline.offsetWidth;
   const amountToScroll = timelineWidth - window.innerWidth;
+  console.log(timelineWidth, amountToScroll )
 
   mm.add(
     {
@@ -959,7 +798,7 @@ const timelineBeforeNow = (mm) => {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: ".timeline",
-            start: "top 20%",
+            start: "50% 50%",
             end: "+=" + amountToScroll,
             pin: true,
             scrub: 1,
@@ -970,7 +809,7 @@ const timelineBeforeNow = (mm) => {
         tl.fromTo(
           ".timeline",
           { x: 0 },
-          { x: amountToScroll, duration: 20, ease: "none" }
+          { x: -amountToScroll, duration: 20, ease: "none" }
         );
 
       }
