@@ -37,7 +37,7 @@ const messages = gsap.utils.toArray(".messaging__messages > div");
 const $optionsTilt = document.querySelectorAll('.comics__options__grid li');
 const $resultsTitle = document.querySelector(".comics__results__title");
 const $resultsP = document.querySelector(".comics__results__p");
- let isTilting = false;
+let isTilting = false;
 
 // // drag music
 const $dragElement = document.querySelector(".music__grid_container__slider_line");
@@ -286,67 +286,131 @@ const toggleNavigation = () => {
 //   slideIntro();
 
 // };
-
-
 const prevButtonIntro = document.querySelector('.intro__grid__prev');
 const nextButtonIntro = document.querySelector('.intro__grid__next');
 const $introGroup = document.querySelector('.intro__grid');
 const $intros = Array.from($introGroup.querySelectorAll('.slide_intro'));
+const $introsPhone = Array.from($introGroup.querySelectorAll('.slide_intro_phone'));
 
-
-const intro = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".intro__grid",
-      start: "top 10%",
-      end: "+=600",
-      pin: ".intro__grid",
-      scrub: true,
-      onUpdate: (self) => {
-        const progressIndex = Math.round(self.progress * ($intros.length - 1));
-        if (progressIndex !== currentIndex) {
-          currentIndex = progressIndex;
-          updateIntro();
-
-          if (currentIndex === 1) {
-            tl.fromTo(
-              ".intro__plantin",
-              { y: "0%" },
-              { y: "5vh", duration: 5, ease: "power1.out" },
-              "<"
-            );
-          } else if (currentIndex === 2) {
-            tl.fromTo(
-              ".intro__plantin",
-              { x: 0 },
-              { x: "20vw", duration: 1, ease: "power1.out" },
-              "<"
-            );
-          }
-        }
-      },
+const intro = (mm) => {
+  mm.add(
+    {
+      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 320px) and (max-width: 768px)",
     },
-  });
+    (context) => {
+      let { isMobile, isDesktop, isProjecting } = context.conditions;
+
+      if (isMobile) {
+        // Mobile logic
+        const tlMobile = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro__plantin",
+            start: "top 10%",
+            end: "+=600",
+            pin: ".intro__grid",
+            scrub: true,
+            markers: true,
+            onUpdate: (self) => {
+              const progressIndex = Math.round(self.progress * ($introsPhone.length - 1));
+              if (progressIndex !== currentIndex) {
+                currentIndex = progressIndex;
+                updateIntroPhone();
+
+                if (currentIndex === 1) {
+                  tlMobile
+                    .fromTo(
+                      ".intro__plantin",
+                      { x: 0 },
+                      { x: "-10vw", duration: 1, ease: "power1.out" },
+                      "<"
+                    )
+                    .fromTo(
+                      ".intro__plantin__writing_icon, .intro__plantin__post_it",
+                      { opacity: 1 },
+                      { opacity: 0, duration: 1, ease: "power1.out" },
+                      "<"
+                    )
+                    .to(
+                      ".hello_there",
+                      { marginBlockStart: "-5vh", duration: 1, ease: "power1.out" },
+                      "<"
+                    );
+                }
+              }
+            },
+          },
+        });
+      }
+
+      if (isDesktop) {
+        const tlDesktop = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro__grid", // The element that triggers the scroll animation
+            start: "30% 10%", // When the animation starts (relative to the viewport)
+            end: "+=1600 90%", // Length of the animation scroll distance
+            scrub: true,
+            markers: true,
+          },
+        });
+
+        // First animation: moving the element vertically
+        tlDesktop.fromTo(
+          ".intro__plantin", // Target element
+          { y: "0vh" }, // Start position
+          { y: "160vh", duration: 10, ease: "power1.out" }, // End position and animation properties
+          "<"
+        );
+
+        tlDesktop.fromTo(
+          ".intro__plantin", // Target element
+          { x: 0 }, // Start position
+          { x: "20vw", duration: 1, ease: "power1.out" }
+        );
+      }
+
+      if (isProjecting) {
+        const tlProjecting = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro__grid", // The element that triggers the scroll animation
+            start: "30% 10%", // When the animation starts (relative to the viewport)
+            end: "+=2200 90%", // Length of the animation scroll distance
+            scrub: true,
+            markers: true,
+          },
+        });
+
+        // First animation: moving the element vertically
+        tlProjecting.fromTo(
+          ".intro__plantin", // Target element
+          { y: "0vh" }, // Start position
+          { y: "160vh", duration: 10, ease: "power1.out" }, // End position and animation properties
+          "<"
+        );
+
+        tlProjecting.fromTo(
+          ".intro__plantin", // Target element
+          { x: 0 }, // Start position
+          { x: "20vw", duration: 1, ease: "power1.out" }
+        );
+      }
+    }
+  );
 };
+
+
+function updateIntroPhone() {
+  $introsPhone.forEach((slide, index) => {
+    slide.style.display = index === currentIndex ? 'flex' : 'none';
+  });
+}
 
 const updateIntro = () => {
   $intros.forEach((intro, index) => {
-    intro.style.display = index === currentIndex ? 'block' : 'none';
+    intro.style.display = index === currentIndex ? 'grid' : 'none';
   });
 }
-
-const nextIntro = () => {
-  currentIndex = (currentIndex + 1) % $intros.length;
-  updateIntro();
-}
-
-const prevIntro = () => {
-  currentIndex = (currentIndex - 1 + $intros.length) % $intros.length;
-  updateIntro();
-}
-
-
-
 
 
 const showMessages = (mm) => {
@@ -460,22 +524,22 @@ const bibleStamps = () => {
 
   tl.fromTo(
     ".biblia__photos__plantin_page",
-    { x: "-100%"},
+    { x: "-100%" },
     { x: "0%", duration: 1.5, ease: "power1.out" },
     "<"
   ).fromTo(
     ".biblia__photos__atlas",
-    { x: "100%"},
+    { x: "100%" },
     { x: "0%", duration: 1.5, ease: "power1.out" },
     "<"
   ).fromTo(
     ".biblia__photos__open_biblia",
-    { x: "-100%"},
+    { x: "-100%" },
     { x: "0%", duration: 1.5, ease: "power1.out" },
     "<"
   ).fromTo(
     ".biblia__photos__music_sheet",
-    { x: "100%"},
+    { x: "100%" },
     { x: "0%", duration: 1.5, ease: "power1.out" },
     "<"
   );
@@ -534,7 +598,7 @@ const getY = (event) => {
 }
 
 const clearForm = () => {
-  
+
   const $clearButton = document.getElementById("clearButton");
 
   $retry.classList.remove("hidden");
@@ -555,7 +619,7 @@ const submit = (mm) => {
   mm.add(
     {
       isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 300px) and (max-width:450px)"
+      isMobile: "(min-width: 300px) and (max-width:480px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -652,9 +716,9 @@ const woodBlock = () => {
     )
     .fromTo(
       ".conclusion_biblia__background",
-      { x: "100%", opacity: 0 }, 
+      { x: "100%", opacity: 0 },
       { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" },
-      "<" 
+      "<"
     );
 
   const $portraitWoodblock = document.querySelectorAll(
@@ -708,8 +772,8 @@ const fallingWoodblock = () => {
   })
     .fromTo(
       ".clicking_portrait__g_woodblock",
-      { y: 0, scale: 1, x:0 },
-      { y: "+=800", scale: 0.8,x:"10vw", rotation: 365, duration: 1, ease: "power1.out" }
+      { y: 0, scale: 1, x: 0 },
+      { y: "+=800", scale: 0.8, x: "10vw", rotation: 365, duration: 1, ease: "power1.out" }
     )
     .fromTo(
       ".clicking_portrait__g_woodblock",
@@ -782,7 +846,7 @@ const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
   if (!isTilting) {
     if (leftToRight > 15 && frontToBack >= 90 && frontToBack <= 105 && twist < 308 && twist > 270) {
       isTilting = true;
-      
+
       $comicsInstructions.textContent = "";
       prev();
     } else if (leftToRight < -15 && frontToBack >= 90 && frontToBack <= 108 && twist > 86 && twist < 109) {
@@ -851,24 +915,24 @@ const dragWoodblock = () => {
 
         if (isInside) {
           if (this.target.classList.contains("comics__options__1")) {
-         
+
             $resultsTitle.textContent = "Not Nature...";
             $resultsP.textContent = "";
           } else if (this.target.classList.contains("comics__options__2")) {
-            
+
             $resultsTitle.textContent = "Long People Yes!";
             $resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
           } else if (this.target.classList.contains("comics__options__3")) {
-           
+
             $resultsTitle.textContent = "G for good try but try again.";
             $resultsP.textContent = "";
           } else if (this.target.classList.contains("comics__options__4")) {
-          
+
             $resultsTitle.textContent = "Not Exactly...";
             $resultsP.textContent = "";
           }
         } else {
-          
+
           $resultsTitle.textContent = "";
           $resultsP.textContent = "";
         }
@@ -886,7 +950,7 @@ const timelineBeforeNow = (mm) => {
   mm.add(
     {
       isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 300px) and (max-width:450px)"
+      isMobile: "(min-width: 300px) and (max-width:480px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -915,7 +979,7 @@ const timelineBeforeNow = (mm) => {
         gsap.timeline({
           scrollTrigger: {
             trigger: ".timeline",
-            start: "-40% 100%", 
+            start: "-40% 100%",
             end: "10% 25%",
             scrub: true,
           },
@@ -943,8 +1007,7 @@ const musicSheetAppear = () => {
       end: "+=" + amountToScroll,
       pin: true,
       scrub: 1,
-      markers: true,
-      pinSpacing:false,
+      pinSpacing: false,
     },
   });
 
@@ -957,7 +1020,7 @@ const musicSheetAppear = () => {
       ".music__grid__container",
       { marginInlineStart: "0vw" },
       { marginInlineStart: "0vw", duration: 20, ease: "none" }
-    ); 
+    );
 };
 
 
@@ -985,7 +1048,7 @@ const dragMusic = () => {
       $newMusic.style.clipPath = `inset(0 ${100 - visiblePercentage}% 0 0)`;
       $oldMusic.style.clipPath = `inset(0 0 0 ${visiblePercentage}%)`;
 
-     
+
     },
   });
 };
@@ -1024,7 +1087,7 @@ const dragPhone = () => {
       const phoneRect = $bibliaPhone.getBoundingClientRect();
       const draggedRect = this.target.getBoundingClientRect();
 
-     
+
 
       const isInside =
         draggedRect.bottom > phoneRect.bottom &&
@@ -1052,7 +1115,7 @@ const dragPhone = () => {
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(Draggable);
-  
+
   menu(mm);
   intro(mm);
   showMessages(mm);
