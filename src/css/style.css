@@ -1218,18 +1218,6 @@ footer {
 
 
 
-footer::before {
-  content: '';
-  position: absolute;
-  top: -128vh;
-  left: -83vw;
-  width: 135vw;
-  height: 100%;
-  background-image: url('../assets/nature/phone/left/left_w_512.avif');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left center;
-}
 
 footer::after {
   content: '';
