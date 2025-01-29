@@ -774,11 +774,6 @@ const dragWoodblock = () => {
       );
 
 
-      // document.querySelectorAll(".comics__options__1__img, .comics__options__2__img, .comics__options__3__img, .comics__options__4__img").forEach(option => {
-      //   if (option !== this.target) {
-      //     option.style.transform = `translate(0, 0)`;
-      //   }
-      // });
 
       if (!isInside) {
         $resultsTitle.textContent = "";
@@ -953,9 +948,10 @@ const musicSheetAppear = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
-            markers: true,
           },
         });
+
+        
 
         tlSmaller.fromTo(
           ".beggining_music__portrait_words",
