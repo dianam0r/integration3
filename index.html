@@ -19,12 +19,12 @@
 
     <header class="header">
       
-      <!-- <div class="intro__plants">
+      <div class="intro__plants not_computer">
         <div class="intro__plants__phone">
               <picture class="plants__phone__left">
                   <source
-                          sizes="(min-width: 320px)  150vw,
-                    (min-width:1420px) 150vw"
+                          sizes="(min-width:1420px) 150vw,(min-width: 320px)  150vw"
+                    
                           srcset="
                   ./src/assets/plants/hero_phone_left/plants_hero_phone_left_e0jckp_c_scale,w_520.avif 520w,
                     ./src/assets/plants/hero_phone_left/plants_hero_phone_left_e0jckp_c_scale,w_610.avif 610w,
@@ -42,8 +42,7 @@
               </picture>
               <picture class="plants__phone__right">
                   <source
-                          sizes="(min-width: 320px)  150vw,
-                    (min-width:1420px) 150vw"
+                          sizes="(min-width:1420px) 150vw, (min-width: 320px)  150vw"
                           srcset="
                   ./src/assets/plants/hero_phone_right/plants_hero_phone_right_nldr6p_c_scale,w_520.avif 520w,
                     ./src/assets/plants/hero_phone_right/plants_hero_phone_right_nldr6p_c_scale,w_610.avif 610w,
@@ -60,7 +59,7 @@
                     alt="leafs">
               </picture>
         </div>
-      </div> -->
+      </div>
 
       <nav class="header__nav">
 
@@ -94,7 +93,7 @@
           <li class="header__nav__list__item"><a href="#woodblock">Wood Block</a></li>
           <li class="header__nav__list__item"><a href="#octomissae">Octo Missae</a></li>
           <li class="header__nav__list__item"><a href="#">More Stories</a></li>
-          <li class="header__nav__list__item"><button class="nav__list__tickets strong not_computer"><a href="#">Tickets</a></button></li>
+          <li class="header__nav__list__item_tickets"><button class="nav__list__tickets strong not_computer"><a href="#">Tickets</a></button></li>
         </ul>
         
         <button class="header__nav__tickets not_phone strong"><a href="#">Tickets</a></button>
@@ -203,19 +202,6 @@
                 let us delve into those wonders.</p>
               </div>
             </div>
-            <picture class="hello_there__writing_icon not_computer">
-                    <source
-                            sizes="(min-width:1024px) 10vw,(min-width:768px) 14vw,(min-width: 320px)  18vw"
-                      
-                            srcset="
-                    ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_200.avif 200w,
-                      ./src/assets/icons/ink/ink_icon_oiywhs_c_scale,w_525.avif 525w"
-                            type="image/avif">
-                      <img
-                      sizes="320px"
-                      src="./src/assets/icons/ink/ink_icon.png"
-                      alt="Icon of ink with a pen feather">
-            </picture>        
           </div>
 
        
@@ -535,7 +521,7 @@
 
       </article>
 
-      <article class="woodblock_article hidden">
+      <article id="woodblock" class="woodblock_article hidden">
         <h2 class="hidden">Plantin and the Woodblocks</h2>
 
         <section  class="conclusion_biblia">
@@ -626,6 +612,7 @@
                   </p>
             </div>
           </div>  
+          <p class="conclusion_biblia__clicking_instructions">Click on the Woodblock</p>
 
         </section>
 
@@ -755,7 +742,7 @@
                 </svg>
                 <div class="grid__square__instructions__wrapper not_phone">
                   <p class="grid__square__instructions ">Drag the woodblocks inside</p>
-                  <picture class="grid__square__icon ">
+                  <picture class="grid__square__icon">
                           <source
                                   sizes="(min-width:1024px) 10vw,(min-width: 320px)  50vw"
                             
@@ -774,7 +761,7 @@
 
               <ul class="options__grid__options">
                 <li class="comics__options__1"> 
-                  <svg width="204" height="271" viewBox="0 0 204 271" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="comics__options__1__around not_phone" width="204" height="271" viewBox="0 0 204 271" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path opacity="0.18" d="M146.288 2.17292L1.89949 32.5101L21.3234 252.153L49.8921 268.701L202.118 236.165L170.303 29.6643L146.288 2.17292Z" stroke="#623800" stroke-width="3"/>
                   </svg>
                   <picture class="comics__options__1__img">
@@ -794,7 +781,7 @@
                   </picture>
                 </li>
                 <li class="comics__options__2">  
-                  <svg width="314" height="208" viewBox="0 0 314 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="comics__options__2__around not_phone" width="314" height="208" viewBox="0 0 314 208" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path opacity="0.18" d="M2 175L29 20.5L292 2L311.5 198L29 205.5L2 175Z" stroke="#623800" stroke-width="3"/>
                   </svg>
 
@@ -814,7 +801,7 @@
                   </picture>
                 </li>
                 <li class="comics__options__3"> 
-                  <svg width="216" height="213" viewBox="0 0 216 213" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="comics__options__3__around not_phone" width="216" height="213" viewBox="0 0 216 213" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path opacity="0.18" d="M191.266 210.624L213.694 23.9663L34.9797 2.49285L2.12686 187.898L191.266 210.624Z" stroke="#623800" stroke-width="3"/>
                   </svg>
 
@@ -835,7 +822,7 @@
                   </picture>
                 </li>
                 <li class="comics__options__4"> 
-                  <svg width="247" height="284" viewBox="0 0 247 284" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="comics__options__4__around not_phone" width="247" height="284" viewBox="0 0 247 284" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path opacity="0.18" d="M153.91 2.07338L1.9516 65.3504L68.7446 281.306L244.632 215.913L173.715 26.0452L153.91 2.07338Z" stroke="#623800" stroke-width="3"/>
                   </svg>
 
@@ -859,9 +846,11 @@
               
             </div>
 
-            <p class="comics__instructions not_computer">  Tilt your phone</p>
-            <p class="comics__results__title strong"></p>
-            <p class="comics__results__p"></p>
+            <div class="comics__background__results_instructions">
+              <p class="results_instructions__instructions not_computer">  Tilt your phone</p>
+              <p class="results_instructions__results_title strong"></p>
+              <p class="results_instructions__results_p"></p>
+            </div>
 
           </div>
         </section>
@@ -874,7 +863,80 @@
               <p>In the 1960s, the woodblocks were systematically cataloged, with their printed images compiled into five volumes previously accessible only in the museum's reading room. However, earlier treatments with toxic anti-woodworm products posed preservation challenges, limiting physical access.</p>
               <p class="timeline__before__year strong">1960</p>
             </div>
-            <hr class="timeline__line"/>
+            <div class="timeline__with_text__line_wrapper">
+              <hr class="line_wrapper__line"/>
+              <div class="line_wrapper__seals">
+
+                <div class="line_wrapper__seals__left">
+
+                  <picture class="line_wrapper__seals__left__carving">
+                            <source
+                                    sizes="(min-width:1024px) 10vw,(min-width: 320px)  30vw"
+                              
+                                    srcset="
+                            ./src/assets/icons_timeline/carving/1_carving_n0cf4c_c_scale,w_200.avif 200w,
+                            ./src/assets/icons_timeline/carving/1_carving_n0cf4c_c_scale,w_512.avif 512w,
+                            "
+                                    type="image/avif">
+                              <img
+                              sizes="320px"
+                              src="./src/assets/icons_timeline/carving/1_carving_mf9fmt_c_scale,w_200.png"
+                              alt="carving seal">
+                  </picture>
+
+                  <picture class="line_wrapper__seals__left__nature">
+                            <source
+                                    sizes="(min-width:1024px) 8vw,(min-width: 320px)  20vw"
+                              
+                                    srcset="
+                            ./src/assets/icons_timeline/nature/nature_e3rkjs_c_scale,w_200.avif 200w,
+                            ./src/assets/icons_timeline/nature/nature_e3rkjs_c_scale,w_512.avif 512w,
+                            "
+                                    type="image/avif">
+                              <img
+                              sizes="320px"
+                              src="./src/assets/icons_timeline/nature/nature_cb8dwt_c_scale,w_200.png"
+                              alt="nature seal">
+                  </picture>
+
+                </div>
+
+                <div class="line_wrapper__seals__right">
+
+                  <picture class="line_wrapper__seals__wood_day">
+                            <source
+                                    sizes="(min-width:1024px) 10vw,(min-width: 320px) 20vw"
+                              
+                                    srcset="
+                            ./src/assets/icons_timeline/day/day_wood_d2ew95_c_scale,w_200.avif 200w,
+                            ./src/assets/icons_timeline/day/day_wood_d2ew95_c_scale,w_509.avif 509w,
+                            "
+                                    type="image/avif">
+                              <img
+                              sizes="320px"
+                              src="./src/assets/icons_timeline/day/day_wood_zuj9qa_c_scale,w_200.png"
+                              alt="wood block wednesday seal">
+                  </picture>
+
+                  <picture class="line_wrapper__seals__scan">
+                            <source
+                                    sizes="(min-width:1024px) 8vw,(min-width: 320px)  20vw"
+                              
+                                    srcset="
+                            ./src/assets/icons_timeline/scan/scan_rpeldl_c_scale,w_200.avif 200w,
+                            ./src/assets/icons_timeline/scan/scan_rpeldl_c_scale,w_512.avif 512w,
+                            "
+                                    type="image/avif">
+                              <img
+                              sizes="320px"
+                              src="./src/assets/icons_timeline/scan/scan_bvxtdk_c_scale,w_200.png"
+                              alt="wood block wednesday seal">
+                  </picture>
+
+                </div>
+
+              </div>
+            </div>
             <div class="timeline__now">
               <p class="timeline__now__year strong">Now</p>
               <p>Today, the digitized collection ensures these historical treasures can be admired without handling risks, preserving their legacy for future generations. These blocks, the foundation of 16th-century publishing, continue to inspire globally. Now digitized, they are celebrated through webinars, events, and initiatives like #WoodblockWednesday. Visitors can delve into their intricate beauty and historical significance through the Plantin-Moretus Museum's exhibitions and online database. 
@@ -882,77 +944,7 @@
             </div>
           </div>
 
-          <div class="timeline___seals">
-
-            <div class="timeline___seals__left">
-
-              <picture class="timeline___seals__left__carving">
-                        <source
-                                sizes="(min-width:1024px) 10vw,(min-width: 320px)  30vw"
-                          
-                                srcset="
-                        ./src/assets/icons_timeline/carving/1_carving_n0cf4c_c_scale,w_200.avif 200w,
-                        ./src/assets/icons_timeline/carving/1_carving_n0cf4c_c_scale,w_512.avif 512w,
-                        "
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/icons_timeline/carving/1_carving_mf9fmt_c_scale,w_200.png"
-                          alt="carving seal">
-              </picture>
-
-              <picture class="timeline___seals__right__nature">
-                        <source
-                                sizes="(min-width:1024px) 8vw,(min-width: 320px)  20vw"
-                          
-                                srcset="
-                        ./src/assets/icons_timeline/nature/nature_e3rkjs_c_scale,w_200.avif 200w,
-                        ./src/assets/icons_timeline/nature/nature_e3rkjs_c_scale,w_512.avif 512w,
-                        "
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/icons_timeline/nature/nature_cb8dwt_c_scale,w_200.png"
-                          alt="nature seal">
-              </picture>
-
-            </div>
-
-            <div class="timeline___seals__right">
-
-              <picture class="timeline___seals__right__wood_day">
-                        <source
-                                sizes="(min-width:1024px) 10vw,(min-width: 320px) 20vw"
-                          
-                                srcset="
-                        ./src/assets/icons_timeline/day/day_wood_d2ew95_c_scale,w_200.avif 200w,
-                        ./src/assets/icons_timeline/day/day_wood_d2ew95_c_scale,w_509.avif 509w,
-                        "
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/icons_timeline/day/day_wood_zuj9qa_c_scale,w_200.png"
-                          alt="wood block wednesday seal">
-              </picture>
-
-              <picture class="timeline___seals__right__scan">
-                        <source
-                                sizes="(min-width:1024px) 8vw,(min-width: 320px)  20vw"
-                          
-                                srcset="
-                        ./src/assets/icons_timeline/scan/scan_rpeldl_c_scale,w_200.avif 200w,
-                        ./src/assets/icons_timeline/scan/scan_rpeldl_c_scale,w_512.avif 512w,
-                        "
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/icons_timeline/scan/scan_bvxtdk_c_scale,w_200.png"
-                          alt="wood block wednesday seal">
-              </picture>
-
-            </div>
-
-          </div>
+          
 
         </section>
       </article>
@@ -966,68 +958,84 @@
           <h3 class="hidden">Introduction to Music</h3>
 
           <div class="music__grid__container">
-                <svg class="music__grid__container__new hidden slider-image" 
-                  width="1240" height="217" viewBox="0 0 1240 217" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M108.075 59.6589C110.41 68.3707 103.581 77.9454 92.545 80.9029C81.5087 83.8604 70.8073 78.9834 68.4727 70.2717C66.1381 61.5599 72.9668 51.9851 84.0031 49.0276C95.0394 46.0701 105.741 50.9471 108.075 59.6589Z" fill="#623800" stroke="#623800"/>
-                  <path d="M228.028 63.0319C230.362 71.7437 223.534 81.3184 212.497 84.276C201.461 87.2335 190.759 82.3565 188.425 73.6447C186.09 64.9329 192.919 55.3582 203.955 52.4007C214.992 49.4431 225.693 54.3201 228.028 63.0319Z" fill="#623800" stroke="#623800"/>
-                  <path d="M345.981 66.3503C348.316 75.0621 341.487 84.6368 330.451 87.5943C319.415 90.5518 308.713 85.6748 306.378 76.9631C304.044 68.2513 310.873 58.6765 321.909 55.719C332.945 52.7615 343.647 57.6385 345.981 66.3503Z" fill="#623800" stroke="#623800"/>
-                  <path d="M69.665 69.1484L66.6846 175.107" stroke="#623800" stroke-width="3"/>
-                  <path d="M189.118 72.5098L186.137 178.468" stroke="#623800" stroke-width="3"/>
-                  <path d="M307.071 75.8262L304.091 181.784" stroke="#623800" stroke-width="3"/>
-                  <path d="M65.8535 169.082L307.258 175.872" stroke="#623800" stroke-width="12"/>
-                  <path d="M67.0845 143.105L187.037 146.48" stroke="#623800" stroke-width="12"/>
-                  <path d="M796.34 134.567C793.761 125.924 800.318 116.161 811.267 112.895C822.215 109.628 833.05 114.202 835.628 122.845C838.207 131.487 831.65 141.25 820.701 144.517C809.753 147.784 798.918 143.21 796.34 134.567Z" fill="#623800" stroke="#623800"/>
-                  <path d="M676.34 134.567C673.761 125.924 680.318 116.161 691.267 112.895C702.215 109.628 713.05 114.202 715.628 122.845C718.207 131.487 711.65 141.25 700.701 144.517C689.753 147.784 678.918 143.21 676.34 134.567Z" fill="#623800" stroke="#623800"/>
-                  <path d="M593.34 134.567C590.761 125.924 597.318 116.161 608.267 112.895C619.215 109.628 630.05 114.202 632.628 122.845C635.207 131.487 628.65 141.25 617.701 144.517C606.753 147.784 595.918 143.21 593.34 134.567Z" fill="#623800" stroke="#623800"/>
-                  <path d="M834.468 124L834.468 18" stroke="#623800" stroke-width="3"/>
-                  <path d="M714.968 124L714.968 18" stroke="#623800" stroke-width="3"/>
-                  <path d="M631.968 124L631.968 18" stroke="#623800" stroke-width="3"/>
-                  <path d="M835 24L632 24" stroke="#623800" stroke-width="12"/>
-                  <path d="M715 47H632" stroke="#623800" stroke-width="12"/>
-                  <path d="M461.628 24.4332C464.207 33.0759 457.65 42.8388 446.701 46.1055C435.752 49.3721 424.918 44.798 422.34 36.1552C419.761 27.5125 426.318 17.7496 437.266 14.4829C448.215 11.2163 459.049 15.7905 461.628 24.4332Z" fill="#623800" stroke="#623800"/>
-                  <path d="M423 35V141" stroke="#623800" stroke-width="3"/>
-                  <path d="M996.628 100.437C999.207 109.08 992.65 118.843 981.701 122.109C970.752 125.376 959.918 120.802 957.34 112.159C954.761 103.516 961.318 93.7535 972.266 90.4869C983.215 87.2202 994.049 91.7944 996.628 100.437Z" fill="#623800" stroke="#623800"/>
-                  <path d="M958 111.004V217.004" stroke="#623800" stroke-width="3"/>
-                  <g opacity="0.18">
-                  <path d="M1 182.998L1263 209.612" stroke="#623800" stroke-width="7"/>
-                  <path d="M1 140.502L1263 167.116" stroke="#623800" stroke-width="7"/>
-                  <path d="M1 88.9922L1263 115.606" stroke="#623800" stroke-width="7"/>
-                  <path d="M1 46.9258L1263 73.5394" stroke="#623800" stroke-width="7"/>
-                  <path d="M1 4L1263 30.6136" stroke="#623800" stroke-width="7"/>
-                  </g>
+                <svg class="music__grid__container__new slider-image" 
+                    width="1240" height="217" viewBox="0 0 1240 217" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  
+                  <!-- Music Notes -->
+                   <!-- 1 -->
+                  <path class="new__note new__1_note" d="M108.075 59.6589C110.41 68.3707 103.581 77.9454 92.545 80.9029C81.5087 83.8604 70.8073 78.9834 68.4727 70.2717C66.1381 61.5599 72.9668 51.9851 84.0031 49.0276C95.0394 46.0701 105.741 50.9471 108.075 59.6589Z" fill="#DD8C21" stroke="#DD8C21"/> 
+
+                  <path class="new__note new__1_note" d="M69.665 69.1484L66.6846 175.107" stroke="#DD8C21" stroke-width="3"/>
+                  <!-- 1 -->
+                   <!-- 2 -->
+                  <path class="new__note new__2_note" d="M228.028 63.0319C230.362 71.7437 223.534 81.3184 212.497 84.276C201.461 87.2335 190.759 82.3565 188.425 73.6447C186.09 64.9329 192.919 55.3582 203.955 52.4007C214.992 49.4431 225.693 54.3201 228.028 63.0319Z" fill="#DD8C21" stroke="#DD8C21"/> 
+                  <path class="new__note new__2_note" d="M189.118 72.5098L186.137 178.468" stroke="#DD8C21" stroke-width="3"/>
+                  <!-- 2 -->
+                   <!-- 3 -->
+                  <path class="new__note new__3_note" d="M345.981 66.3503C348.316 75.0621 341.487 84.6368 330.451 87.5943C319.415 90.5518 308.713 85.6748 306.378 76.9631C304.044 68.2513 310.873 58.6765 321.909 55.719C332.945 52.7615 343.647 57.6385 345.981 66.3503Z" fill="#DD8C21" 
+                  stroke="#DD8C21"/> 
+                  <path class="new__note new__3_note" d="M307.071 75.8262L304.091 181.784" stroke="#DD8C21" stroke-width="3"/>
+                  <!-- 3 -->
+                  <path d="M796.34 134.567C793.761 125.924 800.318 116.161 811.267 112.895C822.215 109.628 833.05 114.202 835.628 122.845C838.207 131.487 831.65 141.25 820.701 144.517C809.753 147.784 798.918 143.21 796.34 134.567Z" fill="#DD8C21" stroke="#DD8C21" opacity="0"/> 
+                  
+                  <path d="M676.34 134.567C673.761 125.924 680.318 116.161 691.267 112.895C702.215 109.628 713.05 114.202 715.628 122.845C718.207 131.487 711.65 141.25 700.701 144.517C689.753 147.784 678.918 143.21 676.34 134.567Z" fill="#DD8C21" stroke="#DD8C21" opacity="0"/> 
+                  <!-- 4 -->
+                  <path class="new__note new__4_note" d="M593.34 134.567C590.761 125.924 597.318 116.161 608.267 112.895C619.215 109.628 630.05 114.202 632.628 122.845C635.207 131.487 628.65 141.25 617.701 144.517C606.753 147.784 595.918 143.21 593.34 134.567Z" fill="#DD8C21" stroke="#DD8C21"/>
+                  <path class="new__note new__4_note" d="M834.468 124L834.468 18" stroke="#DD8C21" stroke-width="3"/> 
+                  <!-- 4 -->
+                   <!-- 5 -->
+                  <path class="new__note new__5_note" d="M461.628 24.4332C464.207 33.0759 457.65 42.8388 446.701 46.1055C435.752 49.3721 424.918 44.798 422.34 36.1552C419.761 27.5125 426.318 17.7496 437.266 14.4829C448.215 11.2163 459.049 15.7905 461.628 24.4332Z" fill="#DD8C21" stroke="#DD8C21"/> 
+                  <path class="new__note new__5_note" d="M423 35V141" stroke="#DD8C21" stroke-width="3"/>
+                  <!-- 5 -->
+                  <path d="M996.628 100.437C999.207 109.08 992.65 118.843 981.701 122.109C970.752 125.376 959.918 120.802 957.34 112.159C954.761 103.516 961.318 93.7535 972.266 90.4869C983.215 87.2202 994.049 91.7944 996.628 100.437Z" fill="#DD8C21" stroke="#DD8C21" opacity="0"/> 
+
+                  <path d="M714.968 124L714.968 18" stroke="#DD8C21" stroke-width="3" opacity="0"/>
+                  <path d="M631.968 124L631.968 18" stroke="#DD8C21" stroke-width="3" opacity="0"/>
+                  <path d="M958 111.004V217.004" stroke="#DD8C21" stroke-width="3" opacity="0"/>
+
                 </svg>
+
+                
+
 
                 <svg class="music__grid__container__old slider-image" width="1240" height="217" viewBox="0 0 1240 217" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g opacity="0.18">
-  <path d="M1 190.158L1263 216.772" stroke="#623800" stroke-width="7"/>
-  <path d="M1 147.662L1263 174.276" stroke="#623800" stroke-width="7"/>
-  <path d="M1 96.1523L1263 122.766" stroke="#623800" stroke-width="7"/>
-  <path d="M1 54.0859L1263 80.6995" stroke="#623800" stroke-width="7"/>
-  <path d="M1 11.1602L1263 37.7738" stroke="#623800" stroke-width="7"/>
-  </g>
-  <path d="M136.645 102.591L161.541 72.543L192.447 109.888L169.268 133.926L136.645 102.591Z" stroke="#623800" stroke-width="7"/>
-  <path d="M246.533 126.2L271.43 96.1523L302.336 133.497L279.156 157.535L246.533 126.2Z" stroke="#623800" stroke-width="7"/>
-  <path d="M350.412 171.7L375.309 141.652L406.215 178.997L383.035 203.035L350.412 171.7Z" stroke="#623800" stroke-width="7"/>
-  <path d="M500.65 152.813L525.547 122.766L556.453 160.111L533.273 184.149L500.65 152.813Z" stroke="#623800" stroke-width="7"/>
-  <path d="M375.309 55.8027V147.663" stroke="#623800" stroke-width="7"/>
-  <path d="M525.546 29.1895V121.049" stroke="#623800" stroke-width="7"/>
-  <path d="M882.684 84.1336L907.581 54.0859L938.487 91.4308L915.307 115.469L882.684 84.1336Z" stroke="#623800" stroke-width="7"/>
-  <path d="M975.402 121.907L1000.3 91.8594L1031.21 129.204L1008.03 153.242L975.402 121.907Z" stroke="#623800" stroke-width="7"/>
-  <path d="M732.446 115.897L757.342 85.8496L788.249 123.195L765.069 147.233L732.446 115.897Z" fill="#623800" stroke="#623800" stroke-width="7"/>
-  <path d="M694.672 131.171L701.566 122.766L710.125 133.212L703.706 139.936L694.672 131.171Z" fill="#623800" stroke="#623800" stroke-width="7"/>
-  <path d="M1091.3 145.946L1116.2 115.898L1147.1 153.243L1123.92 177.281L1091.3 145.946Z" fill="#623800" stroke="#623800" stroke-width="7"/>
-  <path d="M1050.09 97.7259L1055.45 91.002L1062.11 99.3589L1057.12 104.738L1050.09 97.7259Z" fill="#623800" stroke="#623800" stroke-width="7"/>
-  <path d="M1167.71 160.54L1192.6 130.492L1223.51 167.837L1200.33 191.875L1167.71 160.54Z" fill="#623800" stroke="#623800" stroke-width="7"/>
-  <path d="M642.303 11.1602V103.02" stroke="#623800" stroke-width="7"/>
-  <path d="M760.776 0V91.8599" stroke="#623800" stroke-width="7"/>
-  <path d="M911.015 111.605V203.465" stroke="#623800" stroke-width="7"/>
-  <path d="M1003.73 147.662V239.522" stroke="#623800" stroke-width="7"/>
-  <path d="M1119.63 24.0391V115.899" stroke="#623800" stroke-width="7"/>
-  <path d="M1196.04 45.5V137.36" stroke="#623800" stroke-width="7"/>
-  <path d="M617 134.048L641.897 104L672.803 141.345L649.623 165.383L617 134.048Z" stroke="#623800" stroke-width="7"/>
+                    <!-- Music sheet lines -->
+                    <g opacity="0.18">
+                      <path d="M1 190.158L1263 216.772" stroke="#623800" stroke-width="7"/>
+                      <path d="M1 147.662L1263 174.276" stroke="#623800" stroke-width="7"/>
+                      <path d="M1 96.1523L1263 122.766" stroke="#623800" stroke-width="7"/>
+                      <path d="M1 54.0859L1263 80.6995" stroke="#623800" stroke-width="7"/>
+                      <path d="M1 11.1602L1263 37.7738" stroke="#623800" stroke-width="7"/>
+                    </g>
+
+                    <!-- Music Notes -->
+                    <!-- <path d="M732.446 115.897L757.342 85.8496L788.249 123.195L765.069 147.233L732.446 115.897Z" fill="#623800" stroke="#623800" stroke-width="7"/> 
+                    <path d="M694.672 131.171L701.566 122.766L710.125 133.212L703.706 139.936L694.672 131.171Z" fill="#623800" stroke="#623800" stroke-width="7"/> 
+                    <path d="M1091.3 145.946L1116.2 115.898L1147.1 153.243L1123.92 177.281L1091.3 145.946Z" fill="#623800" stroke="#623800" stroke-width="7"/> 
+                    <path d="M1050.09 97.7259L1055.45 91.002L1062.11 99.3589L1057.12 104.738L1050.09 97.7259Z" fill="#623800" stroke="#623800" stroke-width="7"/> 
+                    <path d="M1167.71 160.54L1192.6 130.492L1223.51 167.837L1200.33 191.875L1167.71 160.54Z" fill="#623800" stroke="#623800" stroke-width="7"/>  -->
+
+                    <!-- Stems of the notes -->
+                    <path class="old__3_note old__note" d="M375.309 55.8027V147.663" stroke="#623800" stroke-width="7"/>
+                    <path class="old__4_note old__note" d="M525.546 29.1895V121.049" stroke="#623800" stroke-width="7"/>
+                    <path class="old__5_note old__note" d="M642.303 11.1602V103.02" stroke="#623800" stroke-width="7"/>
+                    <!-- <path d="M760.776 0V91.8599" stroke="#623800" stroke-width="7"/>
+                    <path d="M911.015 111.605V203.465" stroke="#623800" stroke-width="7"/>
+                    <path d="M1003.73 147.662V239.522" stroke="#623800" stroke-width="7"/>
+                    <path d="M1119.63 24.0391V115.899" stroke="#623800" stroke-width="7"/>
+                    <path d="M1196.04 45.5V137.36" stroke="#623800" stroke-width="7"/> -->
+
+                    <!-- Other musical elements -->
+                    <path class="old__1_note old__note" d="M136.645 102.591L161.541 72.543L192.447 109.888L169.268 133.926L136.645 102.591Z" stroke="#623800" stroke-width="7"/>
+                    <path class="old__2_note old__note" d="M246.533 126.2L271.43 96.1523L302.336 133.497L279.156 157.535L246.533 126.2Z" stroke="#623800" stroke-width="7"/>
+                    <path class="old__3_note old__note" d="M350.412 171.7L375.309 141.652L406.215 178.997L383.035 203.035L350.412 171.7Z" stroke="#623800" stroke-width="7"/>
+                    <path class="old__4_note old__note" d="M500.65 152.813L525.547 122.766L556.453 160.111L533.273 184.149L500.65 152.813Z" stroke="#623800" stroke-width="7"/>
+                    <!-- <path d="M882.684 84.1336L907.581 54.0859L938.487 91.4308L915.307 115.469L882.684 84.1336Z" stroke="#623800" stroke-width="7"/>
+                    <path d="M975.402 121.907L1000.3 91.8594L1031.21 129.204L1008.03 153.242L975.402 121.907Z" stroke="#623800" stroke-width="7"/> -->
+                    <path class="old__5_note old__note" d="M617 134.048L641.897 104L672.803 141.345L649.623 165.383L617 134.048Z" stroke="#623800" stroke-width="7"/>
                 </svg>
 
-                <div class="music__grid_container__slider_line"> 
+                <div class="music__grid_container__slider_line not_phone"> 
 
                   <picture>
                         <source
@@ -1045,6 +1053,7 @@
                 </div>
 
           </div>
+
 
           <div class="beggining_music__portrait_words">
             <div class="beggining_music__portrait_words__plantin">
@@ -1097,11 +1106,6 @@
               <p class="music__text__p">Contains eight Mass settings. Four for five voices, and two each for six and seven voices.
               The publication was massive, measuring 55 by 40 cm, designed so all choir singers could read it together.</p>
             </div> 
-      
-            <div class="music__grid">
-              <p class="music__grid__then strong ">Then</p>
-              <p class="music__grid__now strong">Now</p>
-            </div>
 
         </section>
       
@@ -1113,15 +1117,17 @@
           <h3 class="learn__title" >What did we learn?</h3>
 
           <div class="learn__carousel">
-            <button class="carousel__button prev not_computer" >&#8592;</button>
+            <svg class="carousel__button_prev not_computer"  width="55" height="24" viewBox="0 0 55 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 2.5L26.8625 20.5L53 2.5" stroke="#DD8C21" stroke-width="5"/>
+                </svg>
 
-            <ul>
+            <ul class="learn__carousel__ul">
 
               <li class="carousel__biblia slide">
 
                 <picture class="learn__biblia__img">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  65vw"
                               srcset="
                       ./src/assets/learn_more/bible/learn_bible_jhcx0g_c_scale,w_200.avif 200w,
                       ./src/assets/learn_more/bible/learn_bible_jhcx0g_c_scale,w_502.avif 502w,
@@ -1140,7 +1146,7 @@
               <li class="carousel__wood slide">
                 <picture class="learn__wood__img">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  70vw"
                               srcset="
                       ./src/assets/learn_more/woodblock/learn_wood_nkj9z0_c_scale,w_200.avif 200w,
                       ./src/assets/learn_more/woodblock/learn_wood_nkj9z0_c_scale,372.avif 372w,
@@ -1160,7 +1166,7 @@
               <li class="carousel__octo slide">
                 <picture class="learn__octo__img">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  65vw"
                               srcset="
                       ./src/assets/learn_more/octo/learn_octo_aulfek_c_scale,w_200.avif 200w,
                       ./src/assets/learn_more/octo/learn_octo_aulfek_c_scale,w_379.avif 379w"
@@ -1177,8 +1183,9 @@
 
             </ul>
             
-            <button class="carousel__button next not_computer">&#8594;</button>
-          
+           <svg class="carousel__button_next not_computer"  width="55" height="24" viewBox="0 0 55 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 2.5L26.8625 20.5L53 2.5" stroke="#DD8C21" stroke-width="5"/>
+                </svg>
           </div>
 
         </section>
@@ -1195,7 +1202,7 @@
 
             <picture class="bye__imgs__garden">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 30vw,(min-width: 480px)  100vw,(min-width: 320px)  120vw"
                               srcset="
                       ./src/assets/bye_white/garden_lr1nrx_c_scale,w_200.avif 200w,
                         ./src/assets/bye_white/garden_lr1nrx_c_scale,w_512.avif 512w"
@@ -1208,7 +1215,7 @@
 
             <picture class="bye__imgs__entrance">
                       <source
-                              sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
+                              sizes="(min-width:1024px) 30vw,(min-width: 480px)  70vw,(min-width: 320px)  90vw"
                               srcset="
                       ./src/assets/bye_yellow/museums_entrance_rr5vsv_c_scale,w_200.avif 200w,
                         ./src/assets/bye_yellow/museums_entrance_rr5vsv_c_scale,522.avif 522w,
@@ -1229,34 +1236,6 @@
     </main>
 
     <footer>
-
-      <div class="nature__footer not_computer">
-        <picture class="nature__footer__left">
-                        <source
-                                sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
-                                srcset="
-                        ./src/assets/nature/phone/left/left_nvalj6_c_scale,w_200.avif 200w,
-                          ./src/assets/nature/phone/left/left_nvalj6_c_scale,w_512.avif 512w"
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/nature/phone/left/left_utgoax_c_scale,w_200.png"
-                          alt="leafs">
-        </picture>
-
-        <picture class="nature__footer_computer__right">
-                        <source
-                                sizes="(min-width:1024px) 30vw,(min-width: 320px)  75vw"
-                                srcset="
-                        ./src/assets/nature/phone/right/right_nen1mk_c_scale,w_200.avif 200w,
-                          ./src/assets/nature/phone/right/right_nen1mk_c_scale,w_512.avif 512w"
-                                type="image/avif">
-                          <img
-                          sizes="320px"
-                          src="./src/assets/nature/phone/right/right_jxwpdd_c_scale,w_200.png"
-                          alt="leafs">
-        </picture>
-      </div>
 
       <div class="nature__footer not_phone">
         <picture class="nature__footer__left">
@@ -1287,7 +1266,7 @@
       </div>
 
       <div class="footer__info">
-        <nav>
+        <nav class="footer__info__nav">
           <h2 class="hidden">Footer Navigation</h2>
           <ul class="footer__nav">
             <li><a href="#biblia">Biblia</a></li>
@@ -1303,8 +1282,7 @@
         Vrijdagmarkt 22<br>
         2000 Antwerp<br>
         Belgium<br>
-        tel. +32 (0)3 221 14 50<br>
-        museum.plantin.moretus@antwerpen.be</p>
+        tel. +32 (0)3 221 14 50
           </div>
           <div class="footer__socials">
               
@@ -1313,13 +1291,13 @@
 <path d="M36.3967 18.6026H36.4129M19.4116 11.3232H35.5879C40.0549 11.3232 43.6761 14.9444 43.6761 19.4114V35.5877C43.6761 40.0546 40.0549 43.6758 35.5879 43.6758H19.4116C14.9447 43.6758 11.3235 40.0546 11.3235 35.5877V19.4114C11.3235 14.9444 14.9447 11.3232 19.4116 11.3232ZM33.9703 26.4804C34.1699 27.8267 33.94 29.2016 33.3132 30.4097C32.6863 31.6177 31.6945 32.5974 30.4789 33.2092C29.2632 33.8211 27.8855 34.0341 26.5418 33.8179C25.1981 33.6017 23.9568 32.9673 22.9944 32.0049C22.0321 31.0425 21.3977 29.8012 21.1814 28.4575C20.9652 27.1138 21.1782 25.7362 21.7901 24.5205C22.402 23.3048 23.3816 22.313 24.5896 21.6862C25.7977 21.0593 27.1726 20.8294 28.5189 21.029C29.8921 21.2327 31.1635 21.8726 32.1451 22.8542C33.1268 23.8358 33.7667 25.1072 33.9703 26.4804Z" stroke="#DED2C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
 
-              <svg class="socials__facebook" width="57" height="55" viewBox="0 0 57 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="socials__facebook" width="55" height="55" viewBox="0 0 57 55" fill="none" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="28.4428" cy="27.4997" rx="28.4433" ry="27.4997" fill="#DD8C21"/>
 <path d="M37.2051 11.3232H32.3522C30.2071 11.3232 28.1498 12.1754 26.633 13.6922C25.1162 15.209 24.264 17.2663 24.264 19.4114V24.2643H19.4111V30.7348H24.264V43.6758H30.7345V30.7348H35.5874L37.2051 24.2643H30.7345V19.4114C30.7345 18.9824 30.905 18.5709 31.2083 18.2676C31.5117 17.9642 31.9231 17.7938 32.3522 17.7938H37.2051V11.3232Z" stroke="#DED2C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
 
 
-              <svg class="socials__soundcloud" width="76" height="68" viewBox="0 0 76 68" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg class="socials__soundcloud" width="55" height="55" viewBox="0 0 76 68" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <ellipse cx="40.5002" cy="34" rx="35.1667" ry="34" fill="#DD8C21"/>
 <rect x="0.333496" y="15" width="72" height="33" fill="url(#pattern0_276_50638)"/>
 <defs>
@@ -1330,7 +1308,7 @@
 </defs>
               </svg>
               
-              <svg class="socials__tripadvisor" width="58" height="55" viewBox="0 0 58 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg class="socials__tripadvisor" width="55" height="55" viewBox="0 0 58 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <ellipse cx="29.2602" cy="27.4997" rx="28.4433" ry="27.4997" fill="#DD8C21"/>
 <rect x="7.01807" y="8.08789" width="44.4848" height="36.3967" fill="url(#pattern0_299_86033)"/>
 <defs>
@@ -1341,7 +1319,7 @@
 </defs>
               </svg>
 
-              <svg class="socials__youtube" width="57" height="55" viewBox="0 0 57 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="socials__youtube" width="55" height="55" viewBox="0 0 57 55" fill="none" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="28.4433" cy="27.4987" rx="28.4433" ry="27.4997" fill="#DD8C21"/>
 <g clip-path="url(#clip0_299_86038)">
 <path d="M45.3583 18.4723C45.1662 17.7046 44.7748 17.0012 44.2238 16.4331C43.6728 15.8651 42.9816 15.4525 42.2201 15.237C39.4378 14.5576 28.3085 14.5576 28.3085 14.5576C28.3085 14.5576 17.1792 14.5576 14.3969 15.3017C13.6354 15.5172 12.9442 15.9298 12.3932 16.4978C11.8422 17.0659 11.4509 17.7693 11.2587 18.537C10.7495 21.3606 10.5004 24.2251 10.5146 27.0942C10.4964 29.985 10.7455 32.8713 11.2587 35.7162C11.4705 36.4601 11.8707 37.1367 12.4204 37.6808C12.9701 38.2249 13.6509 38.6179 14.3969 38.8221C17.1792 39.5662 28.3085 39.5662 28.3085 39.5662C28.3085 39.5662 39.4378 39.5662 42.2201 38.8221C42.9816 38.6066 43.6728 38.194 44.2238 37.626C44.7748 37.0579 45.1662 36.3545 45.3583 35.5868C45.8636 32.7844 46.1127 29.9418 46.1025 27.0942C46.1206 24.2035 45.8715 21.3172 45.3583 18.4723Z" stroke="#DED2C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1354,7 +1332,7 @@
 </defs>
               </svg>
 
-              <svg class="socials__pinterest" width="76" height="68" viewBox="0 0 76 68" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg class="socials__pinterest" width="55" height="55" viewBox="0 0 76 68" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <ellipse cx="38.5002" cy="34" rx="35.1667" ry="34" fill="#DD8C21"/>
 <rect x="0.333496" y="3" width="75" height="61" fill="url(#pattern0_276_50653)"/>
 <defs>
@@ -1365,7 +1343,7 @@
 </defs>
               </svg>
 
-              <svg class="socials__medium" width="58" height="55" viewBox="0 0 58 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg class="socials__medium" width="55" height="55" viewBox="0 0 58 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <ellipse cx="28.9912" cy="27.4987" rx="28.4433" ry="27.4997" fill="#DD8C21"/>
 <rect x="5.40063" y="8.08691" width="46.9113" height="38.0143" fill="url(#pattern0_299_86049)"/>
 <defs>

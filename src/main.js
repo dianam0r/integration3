@@ -33,8 +33,8 @@ const messages = gsap.utils.toArray(".messaging__messages > div");
 
 // tilting woodblocks
 const $optionsTilt = document.querySelectorAll('.comics__options__grid li');
-const $resultsTitle = document.querySelector(".comics__results__title");
-const $resultsP = document.querySelector(".comics__results__p");
+const $resultsTitle = document.querySelector(".results_instructions__results_title");
+const $resultsP = document.querySelector(".results_instructions__results_p");
 let isTilting = false;
 
 // drag music
@@ -44,8 +44,8 @@ const $dragElement = document.querySelector(".music__grid_container__slider_line
 const $carousel = document.querySelector('.learn__carousel');
 const $slides = Array.from($carousel.querySelectorAll('.slide'));
 let insideCount = 0;
-const prevButton = $carousel.querySelector('.carousel__button.prev');
-const nextButton = $carousel.querySelector('.carousel__button.next');
+const prevButton = $carousel.querySelector('.carousel__button_prev');
+const nextButton = $carousel.querySelector('.carousel__button_next');
 
 let currentIndex = 0;
 
@@ -54,12 +54,20 @@ const $portraitWoodblock = document.querySelectorAll(
 );
 const clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
 
+const prevButtonIntro = document.querySelector('.intro__grid__prev');
+const nextButtonIntro = document.querySelector('.intro__grid__next');
+const $introGroup = document.querySelector('.intro__grid');
+const $intros = Array.from($introGroup.querySelectorAll('.slide_intro'));
+const $introsPhone = Array.from($introGroup.querySelectorAll('.slide_intro_phone'));
+
+let currentIndexTilt = Math.floor(Math.random() * $optionsTilt.length);
+
 const menu = (mm) => {
 
   mm.add(
     {
       isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 300px)"
+      isMobile: "(min-width: 320px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -88,12 +96,12 @@ const menu = (mm) => {
           $woodblockArticle.classList.remove("hidden");
           $musicArticle.classList.remove("hidden");
           $endSection.classList.remove("hidden");
-          woodBlock();
+          woodBlock(mm);
           timelineBeforeNow(mm);
           dateIcon();
           toggleAnswer();
           tilting();
-          musicSheetAppear();
+          musicSheetAppear(mm);
           slideLearn();
           gsap.to(window, { duration: 1, scrollTo: "#woodblock" });
         })
@@ -104,12 +112,12 @@ const menu = (mm) => {
           $woodblockArticle.classList.remove("hidden");
           $musicArticle.classList.remove("hidden");
           $endSection.classList.remove("hidden");
-          woodBlock();
+          woodBlock(mm);
           timelineBeforeNow(mm);
           dateIcon();
           toggleAnswer();
           tilting();
-          musicSheetAppear();
+          musicSheetAppear(mm);
           slideLearn();
           gsap.to(window, { duration: 1, scrollTo: "#octomissae" });
         })
@@ -155,11 +163,6 @@ const toggleNavigation = () => {
   open === "false" ? openNavigation() : closeNavigation();
 };
 
-const prevButtonIntro = document.querySelector('.intro__grid__prev');
-const nextButtonIntro = document.querySelector('.intro__grid__next');
-const $introGroup = document.querySelector('.intro__grid');
-const $intros = Array.from($introGroup.querySelectorAll('.slide_intro'));
-const $introsPhone = Array.from($introGroup.querySelectorAll('.slide_intro_phone'));
 
 const intro = (mm) => {
   mm.add(
@@ -201,7 +204,7 @@ const intro = (mm) => {
                     )
                     .to(
                       ".hello_there",
-                      { marginBlockStart: "-5vh", duration: 1, ease: "power1.out" },
+                      { marginBlockStart: "-15vh", duration: 1, ease: "power1.out" },
                       "<"
                     );
                 }
@@ -215,22 +218,22 @@ const intro = (mm) => {
         const tlDesktop = gsap.timeline({
           scrollTrigger: {
             trigger: ".intro__grid",
-            start: "30% 10%", 
-            end: "+=1600 90%", 
+            start: "30% 10%",
+            end: "+=1600 90%",
             scrub: true,
           },
         });
 
         tlDesktop.fromTo(
           ".intro__plantin",
-          { y: "0vh" }, 
+          { y: "0vh" },
           { y: "160vh", duration: 10, ease: "power1.out" },
           "<"
         );
 
         tlDesktop.fromTo(
-          ".intro__plantin", 
-          { x: 0 }, 
+          ".intro__plantin",
+          { x: 0 },
           { x: "20vw", duration: 1, ease: "power1.out" }
         );
       }
@@ -238,30 +241,29 @@ const intro = (mm) => {
       if (isProjecting) {
         const tlProjecting = gsap.timeline({
           scrollTrigger: {
-            trigger: ".intro__grid", 
+            trigger: ".intro__grid",
             start: "30% 10%",
-            end: "+=2200 90%", 
+            end: "+=2200 90%",
             scrub: true,
           },
         });
 
         tlProjecting.fromTo(
-          ".intro__plantin", 
+          ".intro__plantin",
           { y: "0vh" },
-          { y: "160vh", duration: 10, ease: "power1.out" }, 
+          { y: "160vh", duration: 10, ease: "power1.out" },
           "<"
         );
 
         tlProjecting.fromTo(
           ".intro__plantin",
-          { x: 0 }, 
+          { x: 0 },
           { x: "20vw", duration: 1, ease: "power1.out" }
         );
       }
     }
   );
 };
-
 
 function updateIntroPhone() {
   $introsPhone.forEach((slide, index) => {
@@ -274,7 +276,6 @@ const updateIntro = () => {
     intro.style.display = index === currentIndex ? 'grid' : 'none';
   });
 }
-
 
 const showMessages = (mm) => {
 
@@ -349,58 +350,6 @@ const showMessages = (mm) => {
 
 };
 
-const bibleStamps = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".biblia",
-      start: "top 50%",
-      end: "20% 30%",
-      scrub: true,
-    },
-  });
-
-  tl.fromTo(
-    [
-      ".biblia__photos__biblia_icon",
-      ".biblia__photos__octo_icon",
-      ".biblia__photos__location_icon",
-    ],
-    { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8, duration: 1.5, ease: "power1.out", stagger: 0.5 },
-    "<"
-  ).fromTo(
-    [
-      ".biblia__photos__biblia_icon",
-      ".biblia__photos__octo_icon",
-      ".biblia__photos__location_icon",
-    ],
-    { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1, duration: 1.5, ease: "power1.out", stagger: 0.5 },
-    "<"
-  );
-
-  tl.fromTo(
-    ".biblia__photos__plantin_page",
-    { x: "-100%" },
-    { x: "0%", duration: 1.5, ease: "power1.out" },
-    "<"
-  ).fromTo(
-    ".biblia__photos__atlas",
-    { x: "100%" },
-    { x: "0%", duration: 1.5, ease: "power1.out" },
-    "<"
-  ).fromTo(
-    ".biblia__photos__open_biblia",
-    { x: "-100%" },
-    { x: "0%", duration: 1.5, ease: "power1.out" },
-    "<"
-  ).fromTo(
-    ".biblia__photos__music_sheet",
-    { x: "100%" },
-    { x: "0%", duration: 1.5, ease: "power1.out" },
-    "<"
-  );
-};
 
 
 const signForm = (mm) => {
@@ -470,14 +419,13 @@ const clearForm = () => {
   });
 }
 
-
 const submit = (mm) => {
   const $signatureForm = document.getElementById("signatureForm");
   mm.add(
     {
       isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
       isDesktop: "(min-width: 769px) and (max-width: 1479px)",
-      isMobile: "(min-width: 480px) and (max-width: 768px)"
+      isMobile: "(min-width: 320px) and (max-width: 768px)"
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -492,6 +440,7 @@ const submit = (mm) => {
             $submit.classList.add("hidden");
             $woodblockArticle.classList.remove("hidden");
             $formInstructions.classList.add("hidden");
+            document.querySelector(".biblia").classList.add("biblia-no_padding")
             woodBlock(mm);
             dateIcon();
             event.preventDefault();
@@ -566,7 +515,7 @@ const woodBlock = (mm) => {
         $portraitWoodblock.forEach((element) => {
           element.addEventListener("click", () => {
             gsap.to(clickingWoodblock, {
-              y: "150vh",
+              y: "142vh",
               rotation: 365,
               duration: 3,
               onComplete: () => {
@@ -582,9 +531,11 @@ const woodBlock = (mm) => {
             document.querySelector(".timeline").classList.remove("hidden");
             $musicArticle.classList.remove("hidden");
             $endSection.classList.remove("hidden");
+            document.querySelector(".conclusion_biblia").classList.add("conclusion_biblia-less_margin");
             dateIcon();
             timelineBeforeNow(mm);
-            musicSheetAppear();
+            musicSheetAppear(mm);
+            animationNotes();
             toggleAnswer();
             tilting();
             slideLearn();
@@ -602,7 +553,7 @@ const woodBlock = (mm) => {
               onComplete: () => {
                 gsap.to(clickingWoodblock, {
                   opacity: 0,
-                  duration: 1, 
+                  duration: 1,
                 });
               },
             });
@@ -614,7 +565,8 @@ const woodBlock = (mm) => {
             $endSection.classList.remove("hidden");
             dateIcon();
             timelineBeforeNow(mm);
-            musicSheetAppear();
+            musicSheetAppear(mm);
+            animationNotes();
             toggleAnswer();
             tilting();
             slideLearn();
@@ -626,13 +578,13 @@ const woodBlock = (mm) => {
           element.addEventListener("click", () => {
             gsap.to(clickingWoodblock, {
               y: "110vh",
-              x:"10vw",
+              x: "10vw",
               rotation: 365,
               duration: 3,
               onComplete: () => {
                 gsap.to(clickingWoodblock, {
                   opacity: 0,
-                  duration: 1, 
+                  duration: 1,
                 });
               },
             });
@@ -644,7 +596,7 @@ const woodBlock = (mm) => {
             $endSection.classList.remove("hidden");
             dateIcon();
             timelineBeforeNow(mm);
-            musicSheetAppear();
+            musicSheetAppear(mm);
             dragWoodblock();
             slideLearn();
           });
@@ -674,8 +626,6 @@ const toggleAnswer = () => {
   })
 
 };
-
-let currentIndexTilt = Math.floor(Math.random() * $optionsTilt.length);
 
 const tilting = () => {
   update();
@@ -711,7 +661,7 @@ const prev = () => {
 };
 
 const handleOrientationEvent = (leftToRight, frontToBack, twist) => {
-  const $comicsInstructions = document.querySelector('.comics__instructions');
+  const $comicsInstructions = document.querySelector('.results_instructions__instructions');
   if (!isTilting) {
     if (leftToRight > 15 && frontToBack >= 90 && frontToBack <= 105 && twist < 308 && twist > 270) {
       isTilting = true;
@@ -811,7 +761,7 @@ const dragWoodblock = () => {
 };
 
 const timelineBeforeNow = (mm) => {
-  const $timeline = document.querySelector(".timeline__line");
+  const $timeline = document.querySelector(".timeline__with_text__line_wrapper");
   const timelineWidth = $timeline.offsetWidth;
   const amountToScroll = timelineWidth - window.innerWidth;
   console.log(timelineWidth, amountToScroll)
@@ -834,7 +784,6 @@ const timelineBeforeNow = (mm) => {
             end: "+=" + amountToScroll,
             pin: true,
             scrub: 1,
-            pinSpacing: false,
           },
         });
 
@@ -876,9 +825,9 @@ const timelineBeforeNow = (mm) => {
             scrub: true,
           },
         }).fromTo(
-          ".timeline___seals",
-          { x: "-100%", opacity: 0 },  
-          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } 
+          ".line_wrapper__seals",
+          { x: "-100%", opacity: 0 },
+          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" }
         );
       }
       return;
@@ -886,35 +835,136 @@ const timelineBeforeNow = (mm) => {
   );
 };
 
-const musicSheetAppear = () => {
+const musicSheetAppear = (mm) => {
   const $begginingMusic = document.querySelector(".music__grid__container");
   const musicWidth = $begginingMusic.offsetWidth;
   const amountToScroll = musicWidth - window.innerWidth;
   console.log(musicWidth, window.innerWidth, amountToScroll)
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".beggining_music",
-      start: "30% 40%",
-      end: "+=" + amountToScroll + "5%",
-      pin: true,
-      scrub: 1,
-      pinSpacing: false,
+  mm.add(
+    {
+      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 480px) and (max-width: 768px)",
+      isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
     },
-  });
+    (context) => {
+      let { isSmallerMobile, isMobile, isDesktop } = context.conditions;
 
-  tl.fromTo(
-    ".beggining_music__portrait_words",
-    { x: 0 },
-    { x: amountToScroll, duration: 20, ease: "none" }
+      if (isSmallerMobile) {
+        let tlSmaller = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".beggining_music",
+            start: "30% 40%",
+            end: "bottom 20%",
+            pin: true,
+            scrub: 1,
+            pinSpacing: false,
+            markers: true,
+          },
+        });
+
+        tlSmaller.fromTo(
+          ".beggining_music__portrait_words",
+          { x: 0 },
+          { x: `-${amountToScroll} -20vw`, duration: 20, ease: "none" },
+          "start"
+        )
+          .fromTo(
+            ".music__grid__container",
+            { inlineSize: "420vw", y: 0 },
+            { inlineSize: "200vw", y: "30vh", duration: 20, ease: "none" },
+            "start"
+          )
+
+      }
+
+      if (isMobile) {
+        let tlSmaller = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".beggining_music",
+            start: "30% 40%",
+            end: "bottom 20%",
+            pin: true,
+            scrub: 1,
+            pinSpacing: false,
+            markers: true,
+          },
+        });
+
+        tlSmaller.fromTo(
+          ".beggining_music__portrait_words",
+          { x: 0 },
+          { x: `-${amountToScroll} -20vw`, duration: 20, ease: "none" },
+          "start"
+        )
+          .fromTo(
+            ".music__grid__container",
+            { inlineSize: "420vw", y: 0 },
+            { inlineSize: "200vw", y: "30vh", duration: 20, ease: "none" },
+            "start"
+          )
+
+      }
+    }
   )
-    .fromTo(
-      ".music__grid__container__old",
-      { inlineSize: "420vw" },
-      { inlineSize: "200vw", duration: 20, ease: "none" }
-    ), ">";
 };
 
+const animationNotes = () => {
+  const oldMusicNotes = [
+    document.querySelectorAll('.old__1_note'),
+    document.querySelectorAll('.old__2_note'),
+    document.querySelectorAll('.old__3_note'),
+    document.querySelectorAll('.old__4_note'),
+    document.querySelectorAll('.old__5_note')
+  ];
+
+  const newNote1 = document.querySelectorAll('.new__1_note');
+  const newNote2 = document.querySelectorAll('.new__2_note');
+  const newNote3 = document.querySelectorAll('.new__3_note');
+  const newNote4 = document.querySelectorAll('.new__4_note');
+  const newNote5 = document.querySelectorAll('.new__5_note');
+
+  const noteGroups = [newNote1, newNote2, newNote3, newNote4, newNote5];
+
+  noteGroups.forEach((group) => {
+    group.forEach((note) => {
+      note.classList.add("opacity");
+    });
+  });
+
+  let tl = gsap.timeline({ paused: true });
+
+  tl.fromTo(
+    oldMusicNotes,
+    { y: -50, opacity: 1 },
+    {
+      y: 300,
+      opacity: 0.8,
+      duration: 1.5,
+      stagger: 0.2,
+      ease: "bounce.out"
+    }
+  );
+
+  noteGroups.forEach((note, index) => {
+    tl.fromTo(
+      note,
+      { opacity: 0, x: -200 },
+      { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" },
+      index * 0.6
+    );
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    trigger: ".music__text",
+    start: "top 80%", // Adjust trigger position
+    onEnter: () => tl.play(),
+    once: true // Ensures the animation runs only once
+  });
+};
 
 const dragMusic = () => {
   const container1 = document.querySelector(".music__grid__container");
@@ -945,8 +995,6 @@ const dragMusic = () => {
   });
 };
 
-
-
 const slideLearn = () => {
   nextButton.addEventListener('click', showNextSlide);
   prevButton.addEventListener('click', showPrevSlide);
@@ -955,7 +1003,7 @@ const slideLearn = () => {
 
 const updateSlide = () => {
   $slides.forEach((slide, index) => {
-    slide.style.display = index === currentIndex ? 'block' : 'none';
+    slide.style.display = index === currentIndex ? 'flex' : 'none';
   });
 }
 
@@ -1012,9 +1060,7 @@ const init = () => {
   menu(mm);
   intro(mm);
   showMessages(mm);
-  bibleStamps();
   signForm(mm);
-  dragWoodblock();
   dragMusic();
 };
 
