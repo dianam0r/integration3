@@ -5,10 +5,10 @@ const $canvas = document.getElementById("signatureCanvas");
 const ctx = $canvas.getContext("2d");
 let isDrawing = false;
 let hasDrawing = false;
-const $submit = document.querySelector('.biblia__submit');
+const $submit = document.querySelector('.form__field__submit__next');
 const $bibliaPages = document.querySelector('.biblia__pages');
 const $bibliaPhone = document.querySelector('.biblia__phone');
-const $bibliaWrite = document.querySelector('.biblia__submit__write');
+const $bibliaWrite = document.querySelector('.form__field__submit__write');
 const $retry = document.querySelector('.biblia__retry');
 const $formInstructions = document.querySelector('.form__field__instructions');
 
@@ -345,11 +345,6 @@ const showMessages = (mm) => {
             { opacity: 0, y: 20 },
             { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
           )
-            .to(
-              plantin,
-              { y: `+=${40 * (index + 1)}`, duration: 0.5, ease: "power1.out" },
-              "<"
-            );
         });
       }
 
@@ -525,7 +520,7 @@ const submit = (mm) => {
             $bibliaPages.classList.add("relative_pages");
             $bibliaFirst.classList.add("absolute");
             $formInstructions.classList.add("hidden");
-            dragPhone();
+            dragPhone(mm);
             event.preventDefault();
           }
         });
@@ -572,7 +567,7 @@ const woodBlock = (mm) => {
       isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
     },
     (context) => {
-      let { isMobile, isSmallerMobile } = context.conditions;
+      let { isMobile, isSmallerMobile, isDesktop } = context.conditions;
 
       if (isSmallerMobile) {
         $portraitWoodblock.forEach((element) => {
@@ -633,6 +628,37 @@ const woodBlock = (mm) => {
             musicSheetAppear();
             toggleAnswer();
             tilting();
+            slideLearn();
+          });
+        });
+      }
+      if (isDesktop) {
+        $portraitWoodblock.forEach((element) => {
+          element.addEventListener("click", () => {
+            gsap.to(clickingWoodblock, {
+              y: "110vh",
+              x:"10vw",
+              rotation: 365,
+              duration: 3,
+              onComplete: () => {
+                // Fade out after the movement is complete
+                gsap.to(clickingWoodblock, {
+                  opacity: 0,
+                  duration: 1, // Adjust duration as needed
+                });
+              },
+            });
+
+            document.querySelector(".woodblocks").classList.remove("hidden");
+            document.querySelector(".comics").classList.remove("hidden");
+            document.querySelector(".timeline").classList.remove("hidden");
+            $musicArticle.classList.remove("hidden");
+            $endSection.classList.remove("hidden");
+            // fallingWoodblock();
+            // dateIcon();
+            timelineBeforeNow(mm);
+            musicSheetAppear();
+            dragWoodblock();
             slideLearn();
           });
         });
@@ -986,7 +1012,7 @@ const showPrevSlide = () => {
   updateSlide();
 }
 
-const dragPhone = () => {
+const dragPhone = (mm) => {
   Draggable.create([$bibliaSecond, $bibliaFirst], {
     bounds: ".biblia__phone",
     type: "x,y",
