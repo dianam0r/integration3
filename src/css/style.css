@@ -100,7 +100,7 @@ a {
 .yellow {
   color: var(--color-yellow);
 }
-
+.footer__nav>li:hover,
 .strong {
   font-weight: bold;
 }
@@ -1068,6 +1068,11 @@ footer {
 .timeline {
   margin-block-end: 50vh;
 }
+
+.footer__nav>li {
+  transition: font-weight 0.3s ease-in-out;
+}
+
 
 .comics__options__5__img:hover,
 .comics__options__4__img:hover,

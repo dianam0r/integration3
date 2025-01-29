@@ -1,5 +1,3 @@
-
-
 // sign form
 const $canvas = document.getElementById("signatureCanvas");
 const ctx = $canvas.getContext("2d");
@@ -33,16 +31,16 @@ const $headerNav = document.querySelector('.header__nav')
 // messages
 const messages = gsap.utils.toArray(".messaging__messages > div");
 
-// //tilting woodblocks
+// tilting woodblocks
 const $optionsTilt = document.querySelectorAll('.comics__options__grid li');
 const $resultsTitle = document.querySelector(".comics__results__title");
 const $resultsP = document.querySelector(".comics__results__p");
 let isTilting = false;
 
-// // drag music
+// drag music
 const $dragElement = document.querySelector(".music__grid_container__slider_line");
 
-// // slide
+// slide
 const $carousel = document.querySelector('.learn__carousel');
 const $slides = Array.from($carousel.querySelectorAll('.slide'));
 let insideCount = 0;
@@ -92,7 +90,7 @@ const menu = (mm) => {
           $endSection.classList.remove("hidden");
           woodBlock();
           timelineBeforeNow(mm);
-          // dateIcon();
+          dateIcon();
           toggleAnswer();
           tilting();
           musicSheetAppear();
@@ -108,7 +106,7 @@ const menu = (mm) => {
           $endSection.classList.remove("hidden");
           woodBlock();
           timelineBeforeNow(mm);
-          // dateIcon();
+          dateIcon();
           toggleAnswer();
           tilting();
           musicSheetAppear();
@@ -174,7 +172,6 @@ const intro = (mm) => {
       let { isMobile, isDesktop, isProjecting } = context.conditions;
 
       if (isMobile) {
-        // Mobile logic
         const tlMobile = gsap.timeline({
           scrollTrigger: {
             trigger: ".intro__plantin",
@@ -217,24 +214,23 @@ const intro = (mm) => {
       if (isDesktop) {
         const tlDesktop = gsap.timeline({
           scrollTrigger: {
-            trigger: ".intro__grid", // The element that triggers the scroll animation
-            start: "30% 10%", // When the animation starts (relative to the viewport)
-            end: "+=1600 90%", // Length of the animation scroll distance
+            trigger: ".intro__grid",
+            start: "30% 10%", 
+            end: "+=1600 90%", 
             scrub: true,
           },
         });
 
-        // First animation: moving the element vertically
         tlDesktop.fromTo(
-          ".intro__plantin", // Target element
-          { y: "0vh" }, // Start position
-          { y: "160vh", duration: 10, ease: "power1.out" }, // End position and animation properties
+          ".intro__plantin",
+          { y: "0vh" }, 
+          { y: "160vh", duration: 10, ease: "power1.out" },
           "<"
         );
 
         tlDesktop.fromTo(
-          ".intro__plantin", // Target element
-          { x: 0 }, // Start position
+          ".intro__plantin", 
+          { x: 0 }, 
           { x: "20vw", duration: 1, ease: "power1.out" }
         );
       }
@@ -242,24 +238,23 @@ const intro = (mm) => {
       if (isProjecting) {
         const tlProjecting = gsap.timeline({
           scrollTrigger: {
-            trigger: ".intro__grid", // The element that triggers the scroll animation
-            start: "30% 10%", // When the animation starts (relative to the viewport)
-            end: "+=2200 90%", // Length of the animation scroll distance
+            trigger: ".intro__grid", 
+            start: "30% 10%",
+            end: "+=2200 90%", 
             scrub: true,
           },
         });
 
-        // First animation: moving the element vertically
         tlProjecting.fromTo(
-          ".intro__plantin", // Target element
-          { y: "0vh" }, // Start position
-          { y: "160vh", duration: 10, ease: "power1.out" }, // End position and animation properties
+          ".intro__plantin", 
+          { y: "0vh" },
+          { y: "160vh", duration: 10, ease: "power1.out" }, 
           "<"
         );
 
         tlProjecting.fromTo(
-          ".intro__plantin", // Target element
-          { x: 0 }, // Start position
+          ".intro__plantin",
+          { x: 0 }, 
           { x: "20vw", duration: 1, ease: "power1.out" }
         );
       }
@@ -364,7 +359,6 @@ const bibleStamps = () => {
     },
   });
 
-  // Animate the icons with staggered opacity and scale
   tl.fromTo(
     [
       ".biblia__photos__biblia_icon",
@@ -409,7 +403,6 @@ const bibleStamps = () => {
 };
 
 
-// form
 const signForm = (mm) => {
   $canvas.addEventListener("mousedown", startDrawing);
   $canvas.addEventListener("mousemove", draw);
@@ -577,10 +570,9 @@ const woodBlock = (mm) => {
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                // Fade out after the movement is complete
                 gsap.to(clickingWoodblock, {
                   opacity: 0,
-                  duration: 1, // Adjust duration as needed
+                  duration: 1,
                 });
               },
             });
@@ -590,8 +582,7 @@ const woodBlock = (mm) => {
             document.querySelector(".timeline").classList.remove("hidden");
             $musicArticle.classList.remove("hidden");
             $endSection.classList.remove("hidden");
-            // fallingWoodblock();
-            // dateIcon();
+            dateIcon();
             timelineBeforeNow(mm);
             musicSheetAppear();
             toggleAnswer();
@@ -609,10 +600,9 @@ const woodBlock = (mm) => {
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                // Fade out after the movement is complete
                 gsap.to(clickingWoodblock, {
                   opacity: 0,
-                  duration: 1, // Adjust duration as needed
+                  duration: 1, 
                 });
               },
             });
@@ -622,8 +612,7 @@ const woodBlock = (mm) => {
             document.querySelector(".timeline").classList.remove("hidden");
             $musicArticle.classList.remove("hidden");
             $endSection.classList.remove("hidden");
-            // fallingWoodblock();
-            // dateIcon();
+            dateIcon();
             timelineBeforeNow(mm);
             musicSheetAppear();
             toggleAnswer();
@@ -641,10 +630,9 @@ const woodBlock = (mm) => {
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                // Fade out after the movement is complete
                 gsap.to(clickingWoodblock, {
                   opacity: 0,
-                  duration: 1, // Adjust duration as needed
+                  duration: 1, 
                 });
               },
             });
@@ -654,8 +642,7 @@ const woodBlock = (mm) => {
             document.querySelector(".timeline").classList.remove("hidden");
             $musicArticle.classList.remove("hidden");
             $endSection.classList.remove("hidden");
-            // fallingWoodblock();
-            // dateIcon();
+            dateIcon();
             timelineBeforeNow(mm);
             musicSheetAppear();
             dragWoodblock();
@@ -666,33 +653,6 @@ const woodBlock = (mm) => {
     }
   );
 };
-
-// const fallingWoodblock = () => {
-//   gsap.timeline({
-//     scrollTrigger: {
-//       trigger: ".woodblocks__first_text",
-//       start: "top 80%",
-//       end: "bottom 40%",
-//       scrub: true,
-//     },
-//   })
-//     .fromTo(
-//       ".clicking_portrait__g_woodblock",
-//       { y: 0, scale: 1, x: 0 },
-//       { y: "+=800", scale: 0.8, x: "10vw", rotation: 365, duration: 1, ease: "power1.out" }
-//     )
-//     .fromTo(
-//       ".clicking_portrait__g_woodblock",
-//       { opacity: 1 },
-//       { opacity: 0, duration: 0.2, ease: "power1.out" }
-//     )
-//     .fromTo(
-//       ".g__grid__g",
-//       { opacity: 0 },
-//       { opacity: 1, duration: 0.2, ease: "power1.out" },
-//       "-=0.3"
-//     );
-// };
 
 const toggleAnswer = () => {
   const $question = document.querySelector(".woodblocks__question__text");
@@ -715,7 +675,7 @@ const toggleAnswer = () => {
 
 };
 
-let currentIndexTilt = Math.floor(Math.random() * $optionsTilt.length); // Start at a random index
+let currentIndexTilt = Math.floor(Math.random() * $optionsTilt.length);
 
 const tilting = () => {
   update();
@@ -875,7 +835,6 @@ const timelineBeforeNow = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
-            markers: true,
           },
         });
 
@@ -897,7 +856,6 @@ const timelineBeforeNow = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
-            markers: true,
           },
         });
 
@@ -919,8 +877,8 @@ const timelineBeforeNow = (mm) => {
           },
         }).fromTo(
           ".timeline___seals",
-          { x: "-100%", opacity: 0 }, // Starts off-screen to the left
-          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } // Slides in smoothly
+          { x: "-100%", opacity: 0 },  
+          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" } 
         );
       }
       return;
@@ -942,7 +900,6 @@ const musicSheetAppear = () => {
       pin: true,
       scrub: 1,
       pinSpacing: false,
-      markers: true,
     },
   });
 
