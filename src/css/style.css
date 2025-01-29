@@ -93,9 +93,6 @@ button {
   outline: none;
 }
 
-nav {
-  z-index: 5;
-}
 
 a {
   text-decoration: none;
@@ -150,6 +147,7 @@ a {
 
 .header__nav {
   position: fixed;
+  z-index: 5;
 }
 
 
@@ -266,7 +264,7 @@ h1 {
 }
 
 .intro__grid {
-  background-image: url(/integration3/src/assets/archs_hero/Archs.svg);
+  background-image: url(../assets/archs_hero/Archs.svg);
   background-position: -38vw -8vh;
   background-repeat: no-repeat;
   padding-block-start: 10vh;
@@ -495,7 +493,7 @@ h1 {
 .biblia__photos__biblia_icon {
   grid-column: 1;
   grid-row: 1;
-  z-index: 5;
+  z-index: 4;
 }
 
 .biblia__photos__open_biblia {
