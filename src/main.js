@@ -21,6 +21,9 @@ const $bibliaFirst = document.querySelector('.biblia__pages__first_page');
 const $woodblockArticle = document.querySelector('.woodblock_article');
 const $musicArticle = document.querySelector('.music_article');
 const $endSection = document.querySelector('.end_section');
+const $comicsSection = document.querySelector('.comics');
+const $timelineSection = document.querySelector('.timeline');
+const $woodblocks = document.querySelector('.woodblocks');
 
 const $iconLink = document.querySelector('#iconlink');
 const $menuClosedIcon = document.querySelector('.icons__closed');
@@ -29,7 +32,7 @@ const $menuOctomissae = document.querySelector('#nav__list li:nth-child(3) a');
 const $headerNav = document.querySelector('.header__nav')
 
 // messages
-const messages = gsap.utils.toArray(".messaging__messages > div");
+const $messages = gsap.utils.toArray(".messaging__messages > div");
 
 // tilting woodblocks
 const $optionsTilt = document.querySelectorAll('.comics__options__grid li');
@@ -38,24 +41,24 @@ const $resultsP = document.querySelector(".results_instructions__results_p");
 let isTilting = false;
 
 // drag music
-const $dragElement = document.querySelector(".music__grid_container__slider_line");
+const $dragElement = document.querySelector(".music__grid_container2__slider_line");
 
 // slide
 const $carousel = document.querySelector('.learn__carousel');
 const $slides = Array.from($carousel.querySelectorAll('.slide'));
 let insideCount = 0;
-const prevButton = $carousel.querySelector('.carousel__button_prev');
-const nextButton = $carousel.querySelector('.carousel__button_next');
+const $prevButton = $carousel.querySelector('.carousel__button_prev');
+const $nextButton = $carousel.querySelector('.carousel__button_next');
 
 let currentIndex = 0;
 
 const $portraitWoodblock = document.querySelectorAll(
   ".clicking_portrait__hand, .clicking_portrait__g_woodblock, .clicking_portrait__click_icon"
 );
-const clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
+const $clickingWoodblock = document.querySelector(".clicking_portrait__g_woodblock");
 
-const prevButtonIntro = document.querySelector('.intro__grid__prev');
-const nextButtonIntro = document.querySelector('.intro__grid__next');
+const $prevButtonIntro = document.querySelector('.intro__grid__prev');
+const $nextButtonIntro = document.querySelector('.intro__grid__next');
 const $introGroup = document.querySelector('.intro__grid');
 const $intros = Array.from($introGroup.querySelectorAll('.slide_intro'));
 const $introsPhone = Array.from($introGroup.querySelectorAll('.slide_intro_phone'));
@@ -66,8 +69,8 @@ const menu = (mm) => {
 
   mm.add(
     {
-      isDesktop: "(min-width: 1024px)",
-      isMobile: "(min-width: 320px)"
+      isDesktop: "(min-width: 1024px) and (max-width: 1479px)",
+      isMobile: "(min-width: 320px) and (max-width: 768px)",
     },
     (context) => {
       let { isMobile, isDesktop } = context.conditions;
@@ -94,15 +97,7 @@ const menu = (mm) => {
           closeNavigation();
           $bibliaSecond.classList.remove("hidden");
           $woodblockArticle.classList.remove("hidden");
-          $musicArticle.classList.remove("hidden");
-          $endSection.classList.remove("hidden");
           woodBlock(mm);
-          timelineBeforeNow(mm);
-          dateIcon();
-          toggleAnswer();
-          tilting();
-          musicSheetAppear(mm);
-          slideLearn();
           gsap.to(window, { duration: 1, scrollTo: "#woodblock" });
         })
 
@@ -118,6 +113,8 @@ const menu = (mm) => {
           toggleAnswer();
           tilting();
           musicSheetAppear(mm);
+          animationNotes(mm);
+
           slideLearn();
           gsap.to(window, { duration: 1, scrollTo: "#octomissae" });
         })
@@ -125,11 +122,34 @@ const menu = (mm) => {
       }
 
       if (isDesktop) {
-
-        $navButton.classList.add('hidden');
         $navList.classList.remove("hidden");
-
         $navButton.removeEventListener("click", toggleNavigation);
+
+        $menuWoodblock.addEventListener('click', () => {
+          $bibliaSecond.classList.remove("hidden");
+          $woodblockArticle.classList.remove("hidden");
+          woodBlock(mm);
+          gsap.to(window, { duration: 1, scrollTo: "#woodblock" });
+        })
+
+        $menuOctomissae.addEventListener('click', () => {
+          $bibliaSecond.classList.remove("hidden");
+          $woodblockArticle.classList.remove("hidden");
+          $musicArticle.classList.remove("hidden");
+          $endSection.classList.remove("hidden");
+          $woodblocks.classList.remove("hidden");
+          $comicsSection.classList.remove("hidden");
+          $timelineSection.classList.remove("hidden");
+          woodBlock(mm);
+          animationNotes(mm);
+          dragMusic();
+          timelineBeforeNow(mm);
+          dateIcon();
+          musicSheetAppear(mm);
+          slideLearn();
+          gsap.to(window, { duration: 1, scrollTo: "#octomissae" });
+        })
+
       }
 
       return;
@@ -168,11 +188,12 @@ const intro = (mm) => {
   mm.add(
     {
       isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
-      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isDesktop: "(min-width: 1024px) and (max-width: 1479px)",
+      isTablet: "(min-width: 769px) and (max-width: 1023px)",
       isMobile: "(min-width: 320px) and (max-width: 768px)",
     },
     (context) => {
-      let { isMobile, isDesktop, isProjecting } = context.conditions;
+      let { isMobile, isTablet, isDesktop, isProjecting } = context.conditions;
 
       if (isMobile) {
         const tlMobile = gsap.timeline({
@@ -190,6 +211,46 @@ const intro = (mm) => {
 
                 if (currentIndex === 1) {
                   tlMobile
+                    .fromTo(
+                      ".intro__plantin",
+                      { x: 0 },
+                      { x: "-10vw", duration: 1, ease: "power1.out" },
+                      "<"
+                    )
+                    .fromTo(
+                      ".intro__plantin__writing_icon, .intro__plantin__post_it",
+                      { opacity: 1 },
+                      { opacity: 0, duration: 1, ease: "power1.out" },
+                      "<"
+                    )
+                    .to(
+                      ".hello_there",
+                      { marginBlockStart: "-15vh", duration: 1, ease: "power1.out" },
+                      "<"
+                    );
+                }
+              }
+            },
+          },
+        });
+      }
+
+      if (isTablet) {
+        const tlTablet = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".intro__plantin",
+            start: "top 10%",
+            end: "+=800",
+            pin: ".intro__grid",
+            scrub: true,
+            onUpdate: (self) => {
+              const progressIndex = Math.round(self.progress * ($introsPhone.length - 1));
+              if (progressIndex !== currentIndex) {
+                currentIndex = progressIndex;
+                updateIntroPhone();
+
+                if (currentIndex === 1) {
+                  tlTablet
                     .fromTo(
                       ".intro__plantin",
                       { x: 0 },
@@ -299,7 +360,7 @@ const showMessages = (mm) => {
           },
         });
 
-        messages.forEach((message) => {
+        $messages.forEach((message) => {
           tl.fromTo(
             message,
             { opacity: 0, y: 20 },
@@ -335,7 +396,7 @@ const showMessages = (mm) => {
           },
         });
 
-        messages.forEach((message, index) => {
+        $messages.forEach((message) => {
           tl.fromTo(
             message,
             { opacity: 0, y: 20 },
@@ -349,7 +410,6 @@ const showMessages = (mm) => {
   );
 
 };
-
 
 
 const signForm = (mm) => {
@@ -514,12 +574,12 @@ const woodBlock = (mm) => {
       if (isSmallerMobile) {
         $portraitWoodblock.forEach((element) => {
           element.addEventListener("click", () => {
-            gsap.to(clickingWoodblock, {
+            gsap.to($clickingWoodblock, {
               y: "142vh",
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                gsap.to(clickingWoodblock, {
+                gsap.to($clickingWoodblock, {
                   opacity: 0,
                   duration: 1,
                 });
@@ -535,10 +595,11 @@ const woodBlock = (mm) => {
             dateIcon();
             timelineBeforeNow(mm);
             musicSheetAppear(mm);
-            animationNotes();
+            animationNotes(mm);
             toggleAnswer();
             tilting();
             slideLearn();
+
           });
         });
       }
@@ -546,12 +607,12 @@ const woodBlock = (mm) => {
       if (isMobile) {
         $portraitWoodblock.forEach((element) => {
           element.addEventListener("click", () => {
-            gsap.to(clickingWoodblock, {
+            gsap.to($clickingWoodblock, {
               y: "110vh",
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                gsap.to(clickingWoodblock, {
+                gsap.to($clickingWoodblock, {
                   opacity: 0,
                   duration: 1,
                 });
@@ -566,7 +627,7 @@ const woodBlock = (mm) => {
             dateIcon();
             timelineBeforeNow(mm);
             musicSheetAppear(mm);
-            animationNotes();
+            animationNotes(mm);
             toggleAnswer();
             tilting();
             slideLearn();
@@ -576,13 +637,13 @@ const woodBlock = (mm) => {
       if (isDesktop) {
         $portraitWoodblock.forEach((element) => {
           element.addEventListener("click", () => {
-            gsap.to(clickingWoodblock, {
+            gsap.to($clickingWoodblock, {
               y: "110vh",
               x: "10vw",
               rotation: 365,
               duration: 3,
               onComplete: () => {
-                gsap.to(clickingWoodblock, {
+                gsap.to($clickingWoodblock, {
                   opacity: 0,
                   duration: 1,
                 });
@@ -598,7 +659,8 @@ const woodBlock = (mm) => {
             timelineBeforeNow(mm);
             musicSheetAppear(mm);
             dragWoodblock();
-            slideLearn();
+            animationNotes(mm);
+            dragMusic();
           });
         });
       }
@@ -697,14 +759,7 @@ const checkOptionContent = () => {
 };
 
 const dragWoodblock = () => {
-  document.querySelectorAll('.comics__options__1,.comics__options__2,.comics__options__3,.comics__options__4').forEach(option => {
-    const rect = option.getBoundingClientRect();
-    option.dataset.originalX = rect.left;
-    option.dataset.originalY = rect.top;
-    console.log(rect)
-  });
-
-  Draggable.create('.comics__options__1,.comics__options__2,.comics__options__3,.comics__options__4', {
+  Draggable.create('.comics__options__1__img,.comics__options__2__img,.comics__options__3__img,.comics__options__4__img', {
     bounds: ".comics",
     type: "x,y",
     onDragEnd: function () {
@@ -719,11 +774,11 @@ const dragWoodblock = () => {
       );
 
 
-      document.querySelectorAll(".comics__options__1, .comics__options__2, .comics__options__3, .comics__options__4").forEach(option => {
-        if (option !== this.target) {
-          option.style.transform = `translate(0, 0)`;
-        }
-      });
+      // document.querySelectorAll(".comics__options__1__img, .comics__options__2__img, .comics__options__3__img, .comics__options__4__img").forEach(option => {
+      //   if (option !== this.target) {
+      //     option.style.transform = `translate(0, 0)`;
+      //   }
+      // });
 
       if (!isInside) {
         $resultsTitle.textContent = "";
@@ -732,19 +787,18 @@ const dragWoodblock = () => {
 
 
         if (isInside) {
-          if (this.target.classList.contains("comics__options__1")) {
-
+          if (this.target.classList.contains("comics__options__1__img")) {
             $resultsTitle.textContent = "Not Nature...";
             $resultsP.textContent = "";
-          } else if (this.target.classList.contains("comics__options__2")) {
+          } else if (this.target.classList.contains("comics__options__2__img")) {
 
             $resultsTitle.textContent = "Long People Yes!";
             $resultsP.textContent = "These figures are proportioned with more than the usual 7 heads, just like superheroes in comics. This exaggeration makes them appear larger, stronger, and more powerful.";
-          } else if (this.target.classList.contains("comics__options__3")) {
+          } else if (this.target.classList.contains("comics__options__3__img")) {
 
             $resultsTitle.textContent = "G for good try but try again.";
             $resultsP.textContent = "";
-          } else if (this.target.classList.contains("comics__options__4")) {
+          } else if (this.target.classList.contains("comics__options__4__img")) {
 
             $resultsTitle.textContent = "Not Exactly...";
             $resultsP.textContent = "";
@@ -816,20 +870,6 @@ const timelineBeforeNow = (mm) => {
 
       }
 
-      if (isDesktop) {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: ".timeline",
-            start: "-40% 100%",
-            end: "10% 25%",
-            scrub: true,
-          },
-        }).fromTo(
-          ".line_wrapper__seals",
-          { x: "-100%", opacity: 0 },
-          { x: "0%", opacity: 1, duration: 1.5, ease: "power1.out" }
-        );
-      }
       return;
     }
   );
@@ -839,11 +879,10 @@ const musicSheetAppear = (mm) => {
   const $begginingMusic = document.querySelector(".music__grid__container");
   const musicWidth = $begginingMusic.offsetWidth;
   const amountToScroll = musicWidth - window.innerWidth;
-  console.log(musicWidth, window.innerWidth, amountToScroll)
 
   mm.add(
     {
-      isProjecting: "(min-width: 1480px) and (max-width: 1920px)",
+      isProjecting: "(min-width: 1480px)",
       isDesktop: "(min-width: 769px) and (max-width: 1479px)",
       isMobile: "(min-width: 480px) and (max-width: 768px)",
       isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
@@ -860,7 +899,6 @@ const musicSheetAppear = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
-            markers: true,
           },
         });
 
@@ -880,7 +918,7 @@ const musicSheetAppear = (mm) => {
       }
 
       if (isMobile) {
-        let tlSmaller = gsap.timeline({
+        let tlMobile = gsap.timeline({
           scrollTrigger: {
             trigger: ".beggining_music",
             start: "30% 40%",
@@ -888,11 +926,10 @@ const musicSheetAppear = (mm) => {
             pin: true,
             scrub: 1,
             pinSpacing: false,
-            markers: true,
           },
         });
 
-        tlSmaller.fromTo(
+        tlMobile.fromTo(
           ".beggining_music__portrait_words",
           { x: 0 },
           { x: `-${amountToScroll} -20vw`, duration: 20, ease: "none" },
@@ -906,12 +943,48 @@ const musicSheetAppear = (mm) => {
           )
 
       }
+
+      if (isDesktop) {
+        let tlSmaller = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".beggining_music",
+            start: "50% 40%",
+            end: "bottom 20%",
+            pin: true,
+            scrub: 1,
+            pinSpacing: false,
+            markers: true,
+          },
+        });
+
+        tlSmaller.fromTo(
+          ".beggining_music__portrait_words",
+          { x: 0 },
+          { x: `-${amountToScroll}`, duration: 20, ease: "none" },
+          "start"
+        )
+          .fromTo(
+            ".music__grid__container",
+            { x: 0, y: 0, opacity: 1 },
+            { x: -10, y: "50vh", duration: 20, ease: "none" },
+            "start"
+          ).fromTo(
+            ".music__grid__container",
+            { opacity: 1 },
+            { opacity: 0, duration: 20, ease: "none" },
+            "after"
+          ).fromTo(".music__grid_container2__slider_line",
+            { opacity: 0 },
+            { opacity: 1, duration: 20, ease: "none" },
+            "after")
+
+      }
     }
   )
 };
 
-const animationNotes = () => {
-  const oldMusicNotes = [
+const animationNotes = (mm) => {
+  const $oldMusicNotes = [
     document.querySelectorAll('.old__1_note'),
     document.querySelectorAll('.old__2_note'),
     document.querySelectorAll('.old__3_note'),
@@ -919,15 +992,15 @@ const animationNotes = () => {
     document.querySelectorAll('.old__5_note')
   ];
 
-  const newNote1 = document.querySelectorAll('.new__1_note');
-  const newNote2 = document.querySelectorAll('.new__2_note');
-  const newNote3 = document.querySelectorAll('.new__3_note');
-  const newNote4 = document.querySelectorAll('.new__4_note');
-  const newNote5 = document.querySelectorAll('.new__5_note');
+  const $newNote1 = document.querySelectorAll('.new__1_note');
+  const $newNote2 = document.querySelectorAll('.new__2_note');
+  const $newNote3 = document.querySelectorAll('.new__3_note');
+  const $newNote4 = document.querySelectorAll('.new__4_note');
+  const $newNote5 = document.querySelectorAll('.new__5_note');
 
-  const noteGroups = [newNote1, newNote2, newNote3, newNote4, newNote5];
+  const $noteGroups = [$newNote1, $newNote2, $newNote3, $newNote4, $newNote5];
 
-  noteGroups.forEach((group) => {
+  $noteGroups.forEach((group) => {
     group.forEach((note) => {
       note.classList.add("opacity");
     });
@@ -935,53 +1008,101 @@ const animationNotes = () => {
 
   let tl = gsap.timeline({ paused: true });
 
-  tl.fromTo(
-    oldMusicNotes,
-    { y: -50, opacity: 1 },
+  mm.add(
     {
-      y: 300,
-      opacity: 0.8,
-      duration: 1.5,
-      stagger: 0.2,
-      ease: "bounce.out"
-    }
-  );
+      isProjecting: "(min-width: 1480px)",
+      isDesktop: "(min-width: 769px) and (max-width: 1479px)",
+      isMobile: "(min-width: 480px) and (max-width: 768px)",
+      isSmallerMobile: "(min-width: 320px) and (max-width: 479px)",
+    },
+    (context) => {
+      let { isSmallerMobile, isMobile, isDesktop } = context.conditions;
 
-  noteGroups.forEach((note, index) => {
-    tl.fromTo(
-      note,
-      { opacity: 0, x: -200 },
-      { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" },
-      index * 0.6
-    );
-  });
+      if (isMobile) {
+        tl.fromTo(
+          $oldMusicNotes,
+          { y: -50, opacity: 1 },
+          {
+            y: 300,
+            opacity: 0.8,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "bounce.out"
+          }
+        );
 
-  gsap.registerPlugin(ScrollTrigger);
+        $noteGroups.forEach((note, index) => {
+          tl.fromTo(
+            note,
+            { opacity: 0, x: -200 },
+            { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" },
+            index * 0.6
+          );
+        });
 
-  ScrollTrigger.create({
-    trigger: ".music__text",
-    start: "top 80%", // Adjust trigger position
-    onEnter: () => tl.play(),
-    once: true // Ensures the animation runs only once
-  });
-};
+
+        ScrollTrigger.create({
+          trigger: ".music__text",
+          start: "top 80%",
+          onEnter: () => tl.play(),
+          once: true
+        });
+
+}
+
+      if (isDesktop) {
+        tl.fromTo(
+          $oldMusicNotes,
+          { y: -50, opacity: 1 },
+          {
+            y: 300,
+            opacity: 0.8,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "bounce.out"
+          }
+        );
+
+        $noteGroups.forEach((note, index) => {
+          tl.fromTo(
+            note,
+            { opacity: 0, x: -200 },
+            { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" },
+            index * 0.6
+          );
+        });
+
+
+        ScrollTrigger.create({
+          trigger: ".beggining_music__portrait_words__plantin",
+          start: "top 80%",
+          onEnter: () => tl.play(),
+          once: true
+        });
+
+      }
+
+})}
+
+  
+
 
 const dragMusic = () => {
-  const container1 = document.querySelector(".music__grid__container");
-  const $newMusic = document.querySelector(".music__grid__container__new.slider-image");
-  const $oldMusic = document.querySelector(".music__grid__container__old.slider-image");
+  const $container1 = document.querySelector(".music__grid__container2");
+  const $newMusic = document.querySelector(".music__grid__container2__new.slider-image");
+  const $oldMusic = document.querySelector(".music__grid__container2__old.slider-image");
 
   Draggable.create($dragElement, {
     type: "x",
-    bounds: ".music__grid__container",
+    bounds: ".music__grid__container2",
     onDrag: function () {
       const dragLocation = $dragElement.getBoundingClientRect();
-      const container1Location = container1.getBoundingClientRect();
+      const container1Location = $container1.getBoundingClientRect();
 
       const relativeX =
         dragLocation.left - container1Location.left + dragLocation.width / 2;
 
-      const containerWidth = container1.offsetWidth;
+      const containerWidth = $container1.offsetWidth;
 
       const scalingFactor = (containerWidth / 1027) * 84;
 
@@ -996,8 +1117,8 @@ const dragMusic = () => {
 };
 
 const slideLearn = () => {
-  nextButton.addEventListener('click', showNextSlide);
-  prevButton.addEventListener('click', showPrevSlide);
+  $nextButton.addEventListener('click', showNextSlide);
+  $prevButton.addEventListener('click', showPrevSlide);
   updateSlide();
 }
 
@@ -1027,8 +1148,6 @@ const dragPhone = (mm) => {
       const phoneRect = $bibliaPhone.getBoundingClientRect();
       const draggedRect = this.target.getBoundingClientRect();
 
-
-
       const isInside =
         draggedRect.bottom > phoneRect.bottom &&
         draggedRect.left > phoneRect.left &&
@@ -1057,11 +1176,18 @@ const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(Draggable);
 
+  $bibliaSecond.classList.add("hidden");
+  $bibliaPhone.classList.add("hidden");
+  $woodblockArticle.classList.add("hidden");
+  $musicArticle.classList.add("hidden");
+  $endSection.classList.add("hidden");
+  $woodblocks.classList.add("hidden");
+  $comicsSection.classList.add("hidden");
+  $timelineSection.classList.add("hidden");
   menu(mm);
   intro(mm);
   showMessages(mm);
   signForm(mm);
-  dragMusic();
 };
 
 init();
