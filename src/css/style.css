@@ -351,7 +351,7 @@ h1 {
 
 
 .hello_there__text__background {
-  background-image: url(/integration3/src/assets/hello_there_talking_bckg/background_platin_talking.svg);
+  background-image: url(../assets/hello_there_talking_bckg/background_platin_talking.svg);
   background-repeat: no-repeat;
   background-size: 84vw 32vh;
   display: flex;
@@ -1205,7 +1205,7 @@ footer::before {
   left: -265px;
   width: 135vw;
   height: 100%;
-  background-image: url('../assets/nature/phone/left/left_nvalj6_c_scale\,w_512.avif');
+  background-image: url('../assets/nature/phone/left/left_w_512.avif');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
@@ -1218,7 +1218,7 @@ footer::after {
   left: 160px;
   width: 135vw;
   height: 100%;
-  background-image: url('../assets/nature/phone/right/right_nen1mk_c_scale\,w_512.avif');
+  background-image: url('../assets/nature/phone/right/right_w_512.avif');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
