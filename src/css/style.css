@@ -1178,6 +1178,7 @@ footer {
 } */
 
 
+
 .timeline {
   margin-block-end: 50vh;
 }
@@ -1306,7 +1307,9 @@ footer::after {
   z-index: 5;
 }
 
-
+.not_phone {
+  display: none;
+}
 
 @media screen and (min-width: 480px) {
 
@@ -1834,6 +1837,7 @@ footer::after {
     inline-size: 100vw;
     margin-block-start: 60vh;
   }
+
 
   .stroll__text {
     grid-column: 2;
@@ -2518,7 +2522,7 @@ footer::after {
 
 @media screen and (min-width: 1420px) {
 
-  .footer__info__contacts{
+  .footer__info__contacts {
     text-align: end;
   }
 
@@ -2806,8 +2810,6 @@ footer::after {
   grid-template-rows: 1fr;
 }
 
-.not_phone {
-  display: none;
-}
+
 
 /* 450 to phone */
